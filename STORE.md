@@ -7,7 +7,9 @@ Bundle ID / package: `dev.bonhomieinc.manendi` (Bonhomie LLC, same Apple team an
 ### 1. The API
 - Render → New → Blueprint → this repo (`render.yaml`). Fill the secrets: `MONGODB_URI` (Atlas), `SUPPORT_EMAIL`,
   `LEGAL_NAME`, `LEGAL_ADDRESS`, `REVENUECAT_SECRET_KEY`. Sandbox `USCIS_*` keys are safe here (step 2).
-- The store pages are served by the API: `/privacy`, `/terms`, `/support`, `/erase`.
+- The store pages are served by the API (`/privacy`, `/terms`, `/support`, `/erase`) and copied to an always-on static
+  site, **https://manendi.onrender.com**, rebuilt on every push (`site/build.mjs`). Use the static URLs in both listings:
+  privacy `https://manendi.onrender.com/privacy`, support `https://manendi.onrender.com/support`.
 
 ### 2. USCIS Case Status API (live case status)
 Official path: [developer.uscis.gov → Production access](https://developer.uscis.gov/get-started/production-access).
@@ -35,7 +37,7 @@ Official path: [developer.uscis.gov → Production access](https://developer.usc
   RevenueCat and `eas submit`).
 
 ### 4. Build settings (EAS)
-- `cd app && npx eas-cli@latest init` — creates the EAS project id (push notifications need it).
+- EAS project: **@bonhomie95/manendi** (`extra.eas.projectId` in app.json, created 2026-11-12).
 - Push for case alerts: `npx eas-cli@latest credentials` → APNs key (iOS) and FCM V1 key (Android).
 
 ### 5. Build and submit
@@ -65,12 +67,12 @@ npx eas-cli@latest submit -p android --profile production
 
   • Your status clock: I-94, passport, visa stamp, work permit renewal windows, OPT unemployment days, grace periods,
     H-1B six-year limit, green card renewal, removing conditions and your citizenship filing date.
-  • Every case, one glance: your family’s USCIS cases with each step explained.
+  • Every case, one glance: your family’s USCIS receipt numbers in one place, each step explained in plain English.
   • Radar: new rules, fees and notices that touch your visa, straight from the Federal Register.
   • Travel: log trips and see your citizenship travel budget before you book.
   • Private by design: no account, and your status, dates, trips and documents stay on your phone.
 
-  Manendi Plus adds your whole household, unlimited watched cases with change alerts, the citizenship travel budget,
+  Manendi Plus adds your whole household, unlimited cases, the citizenship travel budget,
   the H-1B limit and green card queue, a Face ID document vault, and a status report PDF.
 
   Manendi gives information, not legal advice. Every clock links its official source.
@@ -81,9 +83,29 @@ npx eas-cli@latest submit -p android --profile production
 - **Short description:** Every date that keeps you in status: I-94, OPT, EAD, H-1B, green card, citizenship.
 - **Data safety:** collects Device or other IDs (random key), App activity › Other user-generated content (receipt
   numbers), Purchase history; all for app functionality, encrypted in transit, not shared, deletable in the app or
-  at `/erase`. No data collected from status, dates, trips or documents (they never leave the device).
+  at https://manendi.onrender.com/erase. No data collected from status, dates, trips or documents (they never leave the device).
 - **Content rating:** no objectionable content · **Target audience:** 18+.
 
 ## Store art
-Screens worth framing: Status (hero clock), Cases, Radar, Travel (budget), Plan. Generate raw shots from the
-iOS 6.9" simulator and an Android phone, then frame them like Ambodo's `scripts/store-art.py`.
+Ready in `store/` (regenerate: `cd app && python3 scripts/store-art.py <raw-shots-dir>`):
+- `store/ios/01–06-*.jpg`: App Store 6.9" (1320×2868). The app is iPhone-only, so no iPad set is needed.
+- `store/android/01–06-*.jpg`: Play phone (1080×1920), `store/play-feature-graphic.png` (1024×500),
+  `store/play-icon-512.png`.
+- Order: Status · Family · clock detail · Travel · Cases · Radar. Raw shots come from a demo household (Ada H-1B,
+  Sam H-4 with a work permit, Mia H-4) at 9:41 with live USCIS off, exactly as production behaves today.
+
+## Publishing session (you signed in, Claude drives the browser pane)
+Claude never types passwords or codes, ticks agreements or declarations, uploads files, or pastes secret keys.
+Those steps are marked **you**.
+1. **RevenueCat:** project "Manendi" → iOS + Android apps (`dev.bonhomieinc.manendi`) → products, entitlement
+   `plus`, offering `default` (§3). Claude puts the public SDK keys in `app/eas.json`. **You:** upload the App Store
+   in-app purchase key and the Play service-account JSON, and paste the secret key into Render as `REVENUECAT_SECRET_KEY`.
+2. **App Store Connect:** new app (Manendi: Visa Status Clock, bundle `dev.bonhomieinc.manendi`), subscription group
+   "Manendi Plus" with both products, listing text, URLs (privacy/support on manendi.onrender.com), review notes (§6).
+   **You:** Paid Apps agreement/tax/banking if not done, App Privacy answers (above), age rating, export compliance
+   (standard HTTPS encryption only), and uploading `store/ios/*`.
+3. **Google Play Console:** create the app, store listing text, subscriptions, countries, app access notes.
+   **You:** the creation declarations, Data safety and content rating (answers above), ads (none), target audience
+   (18+), uploading `store/android/*` and the two `store/play-*` graphics.
+4. **Builds:** `eas build -p android --profile production`, then `-p ios` (**you** sign in to Apple once when EAS
+   asks), then `eas submit` for both; Claude attaches the builds and submits them for review.

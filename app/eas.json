@@ -18,7 +18,8 @@
       "environment": "production",
       "env": {
         "MANENDI_STORE_BUILD": "1",
-        "EXPO_PUBLIC_API_URL": "https://manendi-api.onrender.com"
+        "EXPO_PUBLIC_API_URL": "https://manendi-api.onrender.com",
+        "EXPO_PUBLIC_SITE_URL": "https://manendi.onrender.com"
       }
     }
   },

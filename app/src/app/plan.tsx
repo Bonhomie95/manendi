@@ -16,9 +16,13 @@ import { brand, font, tint, useColors } from '@/lib/theme';
 
 const store = Platform.OS === 'ios' ? 'Apple Account' : 'Google Play account';
 
-const PERKS: [string, string, string, string][] = [
+type Perk = [string, string, string, string];
+// Change alerts need live USCIS status (production keys, after USCIS's demo): never promise them before then.
+const CASES: Perk = ['tray.full.fill', 'inbox', 'Every case, in one place', 'Unlimited receipt numbers, every step explained in plain English.'];
+const WATCHED: Perk = ['tray.full.fill', 'inbox', 'Every case, watched', 'Unlimited receipt numbers, and an alert the moment one changes.'];
+const PERKS: Perk[] = [
   ['person.2.fill', 'group', 'Your whole household', 'Spouse, kids, parents: every visa in the house, each with its own clocks.'],
-  ['tray.full.fill', 'inbox', 'Every case, watched', 'Unlimited receipt numbers, and an alert the moment one changes.'],
+  CASES,
   ['airplane', 'flight', 'Citizenship travel budget', 'How many days abroad you can still spend, plus long-trip warnings.'],
   ['hourglass', 'hourglass_top', 'H-1B limit & green card queue', 'Six years plus every day you can win back, and your place in line.'],
   ['lock.doc.fill', 'lock', 'Document vault', `Passports, I-797s and cards behind ${LOCK}. They never leave your phone.`],
@@ -28,7 +32,7 @@ const PERKS: [string, string, string, string][] = [
 export default function Plan() {
   const c = useColors();
   const insets = useSafeAreaInsets();
-  const { plus, data, setPlan, sync } = useStore();
+  const { plus, data, live, setPlan, sync } = useStore();
   const [offers, setOffers] = useState<Offer[]>([]);
   const [period, setPeriod] = useState<Offer['period']>('annual');
   const [busy, setBusy] = useState<'buy' | 'restore' | null>(null);
@@ -109,7 +113,7 @@ export default function Plan() {
             </Animated.View>
           )}
 
-          {PERKS.map(([ios, android, title, sub], i) => (
+          {PERKS.map((p) => (live.on && p === CASES ? WATCHED : p)).map(([ios, android, title, sub], i) => (
             <Animated.View key={title} entering={FadeInDown.delay(300 + i * 70).springify()}>
               <Row style={{ gap: 14, alignItems: 'flex-start' }}>
                 <View style={[st.perk, { backgroundColor: tint([c.accent, c.gold, c.alt][i % 3], 0.15) }]}>

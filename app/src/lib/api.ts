@@ -18,8 +18,10 @@ export function openLink(url: string) {
     showTitle: true, enableBarCollapsing: true, createTask: false,
   });
 }
-/** The API's public pages, the same URLs the store listings use. */
-export const openPage = (page: 'privacy' | 'terms' | 'support' | 'erase') => openLink(`${API_URL}/${page}`);
+// Store builds open the always-on static copies (the free API sleeps at night); development opens the local API's.
+const SITE_URL = process.env.EXPO_PUBLIC_SITE_URL ?? API_URL;
+/** The public pages, the same URLs the store listings use. */
+export const openPage = (page: 'privacy' | 'terms' | 'support' | 'erase') => openLink(`${SITE_URL}/${page}`);
 
 // No accounts: the device proves itself with a random key it makes once and keeps in the keychain.
 // It stays on this device (a restored backup on a new phone makes a new key and re-attaches its cases).
