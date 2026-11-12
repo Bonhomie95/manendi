@@ -39,7 +39,8 @@ node --test keepalive/keepalive.test.mjs
   Erased from the app (Family → Erase my server data); idle devices are dropped after a year.
 - **Case status** — USCIS's official Case Status API. Sandbox keys work today; production access needs the
   USCIS demo (booked into 2027). Until then the app links egov.uscis.gov and logs updates by hand; watched
-  cases light up on their own once production keys are set.
+  cases light up on their own once production keys are set. In production, sandbox keys only drive an hourly
+  sandbox drill (USCIS wants 5+ days of 200/4xx traffic before it grants access); users never see sandbox data.
 - **Radar** — the Federal Register API (rules, proposed rules, notices, presidential documents), tagged by
   visa type and cached hourly.
 - **Official pages** — USCIS, State, CBP and Federal Register links open over the app (Safari View Controller /

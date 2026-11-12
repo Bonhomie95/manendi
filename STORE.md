@@ -6,15 +6,24 @@ Bundle ID / package: `dev.bonhomieinc.manendi` (Bonhomie LLC, same Apple team an
 
 ### 1. The API
 - Render → New → Blueprint → this repo (`render.yaml`). Fill the secrets: `MONGODB_URI` (Atlas), `SUPPORT_EMAIL`,
-  `LEGAL_NAME`, `LEGAL_ADDRESS`, `REVENUECAT_SECRET_KEY`. Leave the `USCIS_*` keys empty until step 2.
+  `LEGAL_NAME`, `LEGAL_ADDRESS`, `REVENUECAT_SECRET_KEY`. Sandbox `USCIS_*` keys are safe here (step 2).
 - The store pages are served by the API: `/privacy`, `/terms`, `/support`, `/erase`.
 
 ### 2. USCIS Case Status API (live case status)
-1. Sign up at developer.uscis.gov → create a developer app → request the Case Status API → sandbox keys.
-2. Sandbox: set `USCIS_BASE=https://api-int.uscis.gov` + the sandbox ID/secret to exercise real calls (test receipts only).
-3. Production: email USCIS for production access (Form G-1595 + a live demo; slots were booked through Feb 2027),
-   then set the production base URL and keys. Until then the app stays fully useful: cases are saved, checked
-   on egov.uscis.gov and logged by hand, and they light up automatically once keys are in.
+Official path: [developer.uscis.gov → Production access](https://developer.uscis.gov/get-started/production-access).
+1. **Sandbox (done):** developer account + a developer app with the Case Status API → sandbox ID/secret.
+2. **Traffic:** USCIS wants a *minimum of 5 consecutive calendar days* of sandbox API traffic with both success and
+   error responses (200 and 4xx). With the sandbox keys on Render (base `https://api-int.uscis.gov`), the production
+   API drills the sandbox hourly by itself (test receipt `EAC9999103402` → 200, `EAC0000000000` → 4xx) and never shows
+   sandbox data to users. The sandbox answers Mon–Fri 7am–8pm Eastern; check the `uscis sandbox drill:` log lines.
+3. **Request:** after a full Mon–Fri run, email USCIS Torch API Developer Support (address on the
+   [request page](https://developer.uscis.gov/get-started/production-access/request)): app name, that users look up
+   only their own receipts with consent, and that sandbox integration is implemented and tested.
+4. **Affidavit:** USCIS replies with the Developer Portal Affidavit Form: print it, wet-sign it, send it back.
+5. **Demo ID + demo:** they issue a 4-digit demo ID to add to API request headers, a scheduler link and the USCIS API
+   Demo Checklist. Demo slots were booked through February 2027 (next: March 2027).
+6. **Go live:** after the demo, USCIS shares the production token URL, keys and quotas. Set `USCIS_BASE`,
+   `USCIS_CLIENT_ID` and `USCIS_CLIENT_SECRET` on Render: watched cases light up and change alerts start.
 - USCIS terms: only users' own receipts (with consent) — the app never scans "neighbor" numbers.
 
 ### 3. Subscriptions (Manendi Plus)

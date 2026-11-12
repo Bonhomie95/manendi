@@ -18,7 +18,17 @@ if (prod && missing.length) throw new Error(`Set ${missing.join(', ')} — produ
 if (prod && process.env.USCIS_MOCK === '1') throw new Error('USCIS_MOCK serves fake case statuses — never in production');
 // Test purchases (no real charge) are on outside production unless BILLING_DEV=false.
 const BILLING_DEV = process.env.BILLING_DEV ? process.env.BILLING_DEV === 'true' : !prod;
-const cases = uscis({ base: process.env.USCIS_BASE, id: process.env.USCIS_CLIENT_ID, secret: process.env.USCIS_CLIENT_SECRET, mock: process.env.USCIS_MOCK === '1' });
+// USCIS issues sandbox keys first and production keys only after a demo (booked into 2027). The sandbox only knows test
+// cases, so in production sandbox keys never answer users (they get manual mode). Instead the API drills the sandbox
+// hourly, one real test case and one bad receipt, because USCIS wants 5+ consecutive days of 200 and 4xx traffic before
+// it grants production. Set the production USCIS_BASE + keys when they arrive and cases go live for everyone.
+const { USCIS_BASE = 'https://api-int.uscis.gov', USCIS_CLIENT_ID, USCIS_CLIENT_SECRET } = process.env;
+const sandboxInProd = prod && USCIS_BASE.includes('api-int.');
+const cases = uscis({ base: USCIS_BASE, mock: process.env.USCIS_MOCK === '1', ...(sandboxInProd ? {} : { id: USCIS_CLIENT_ID, secret: USCIS_CLIENT_SECRET }) });
+const drill = sandboxInProd && USCIS_CLIENT_ID && USCIS_CLIENT_SECRET ? uscis({ base: USCIS_BASE, id: USCIS_CLIENT_ID, secret: USCIS_CLIENT_SECRET }) : null;
+const practice = () => Promise.allSettled([drill.status('EAC9999103402'), drill.status('EAC0000000000')])
+  .then((r) => console.log('uscis sandbox drill:', r.map((x) => (x.status === 'fulfilled' ? 200 : x.reason.status)).join(' ')));
+if (drill) { setTimeout(practice, 60e3).unref(); setInterval(practice, 3600e3).unref(); }
 const rcSubscriber = revenueCat(REVENUECAT_SECRET_KEY);
 const client = new MongoClient(MONGODB_URI);
 const db = client.db(MONGODB_DB);
@@ -219,7 +229,7 @@ http.createServer(async (req, res) => {
     res.writeHead(e.status ?? 500, { 'content-type': 'application/json' });
     res.end(JSON.stringify({ error: e.status ? e.message : 'Something went wrong' }));
   }
-}).listen(Number(PORT), HOST, () => console.log(`manendi api → http://${HOST}:${PORT} (db: ${MONGODB_DB}, cases: ${cases.mock ? 'mock' : cases.live ? 'live' : 'off'})`));
+}).listen(Number(PORT), HOST, () => console.log(`manendi api → http://${HOST}:${PORT} (db: ${MONGODB_DB}, cases: ${cases.mock ? 'mock' : cases.live ? 'live' : 'off'}${drill ? ' + sandbox drill' : ''})`));
 
 // ponytail: Render's free plan sleeps after 15 idle minutes (~1 min cold start). Pinging our own public URL every 5–10
 // minutes counts as traffic, so the API stays warm. KEEPALIVE_HOURS ("12-04", UTC) limits that to part of the day: a free
