@@ -22,7 +22,7 @@ export default function Radar() {
   const tone = (t: string) => ({ Rule: c.accent, 'Proposed Rule': c.gold, 'Presidential Document': c.alt })[t] ?? c.muted;
 
   return (
-    <Screen onRefresh={reload} refreshing={loading}>
+    <Screen onRefresh={reload}>
       <View style={{ marginTop: 4, gap: 4 }}>
         <T v="title">Radar</T>
         <T v="small" muted>Rules, fees and notices that touch your visa, straight from the Federal Register.</T>

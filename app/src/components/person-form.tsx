@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { View } from 'react-native';
 import { DateField } from '@/components/date-field';
 import { Chip, Row, T } from '@/components/ui';
@@ -23,10 +24,11 @@ export function StatusPicker({ value, onChange }: { value: Status | null; onChan
 
 /** The dates that matter for a status, plus its yes/no questions. */
 export function DatesForm({ status, dates, setDates, ds, setDs, married, setMarried }: {
-  status: Status; dates: Person['dates']; setDates: (d: Person['dates']) => void;
+  status: Status; dates: Person['dates']; setDates: Dispatch<SetStateAction<Person['dates']>>;
   ds: boolean; setDs: (v: boolean) => void; married: boolean; setMarried: (v: boolean) => void;
 }) {
-  const set = (k: DateKey, v?: string) => setDates({ ...dates, [k]: v });
+  // Functional update: every field writes into the latest dates, never a stale snapshot.
+  const set = (k: DateKey, v?: string) => setDates((d) => ({ ...d, [k]: v }));
   return (
     <View style={{ gap: 18 }}>
       {(status === 'F-1' || status === 'J-1') && (

@@ -13,7 +13,7 @@ export function Sheet({ title, children, footer }: { title: string; children: Re
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1, backgroundColor: c.bg }}>
       {/* iOS shows modals as sheets below the status bar; Android shows them full-screen, edge to edge. */}
       <Row style={{ justifyContent: 'space-between', paddingHorizontal: 22, paddingTop: 20 + (Platform.OS === 'android' ? insets.top : 0), paddingBottom: 6 }}>
-        <T v="title">{title}</T>
+        <T v="title" style={{ flex: 1, marginRight: 12 }}>{title}</T>
         <Tap onPress={() => router.back()} accessibilityLabel="Close" style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center' }}>
           <Icon ios="xmark" android="close" size={15} />
         </Tap>

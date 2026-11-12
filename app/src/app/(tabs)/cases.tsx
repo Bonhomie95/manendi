@@ -9,7 +9,7 @@ import { font, tint, useColors } from '@/lib/theme';
 
 export default function Cases() {
   const c = useColors();
-  const { data, watches, live, sync, syncing } = useStore();
+  const { data, watches, live, sync } = useStore();
   const items = data.cases.map((k) => {
     const w = watches.find((x) => x.receipt === k.receipt);
     return { k, w, status: w?.status ?? k.log[0]?.status ?? null, date: w?.modified ?? k.log[0]?.date ?? null };
@@ -17,7 +17,7 @@ export default function Cases() {
   const who = (id: string) => data.people.find((p) => p.id === id)?.name ?? '';
 
   return (
-    <Screen onRefresh={sync} refreshing={syncing}>
+    <Screen onRefresh={sync}>
       <Row style={{ justifyContent: 'space-between', marginTop: 4 }}>
         <T v="title">Cases</T>
         <Tap onPress={() => router.push('/case')} accessibilityLabel="Add a case"

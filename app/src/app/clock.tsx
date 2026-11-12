@@ -28,7 +28,7 @@ export default function ClockScreen() {
     <Sheet title={clock.title} footer={
       <Row style={{ gap: 10 }}>
         <Button title="Edit dates" kind="soft" style={{ flex: 1 }} onPress={() => router.replace({ pathname: '/person', params: { id: p.id } })} />
-        <Button title={locked ? 'See Plus' : `Open ${host}`} kind="accent" style={{ flex: 1.4 }} onPress={() => (locked ? router.replace('/plan') : openLink(clock.source))} />
+        <Button title={locked ? 'See Plus' : 'Official page'} kind="accent" style={{ flex: 1.4 }} onPress={() => (locked ? router.replace('/plan') : openLink(clock.source))} />
       </Row>
     }>
       <View style={{ alignItems: 'center', gap: 14 }}>

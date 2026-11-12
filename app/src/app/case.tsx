@@ -42,7 +42,7 @@ function AddCase() {
     <Sheet title="Add a case" footer={<Button title="Watch this case" kind="accent" loading={busy} disabled={!ok || !personId} onPress={add} />}>
       <Field label="Receipt number" value={receipt} onChangeText={setReceipt} placeholder="IOE0912345678" autoCapitalize="characters" autoCorrect={false} autoFocus maxLength={16} />
       <T v="small" muted>Three letters and ten digits, top left of any USCIS notice. Only add cases that are yours or that someone asked you to track.</T>
-      <Field label="Label (optional)" value={label} onChangeText={setLabel} placeholder="e.g. Ada · work permit renewal" maxLength={60} />
+      <Field label="Label (optional)" value={label} onChangeText={setLabel} placeholder={`e.g. ${data.people.find((x) => x.id === personId)?.name ?? 'Ada'} · work permit renewal`} maxLength={60} />
       {data.people.length > 1 && (
         <View style={{ gap: 8 }}>
           <T v="label">Whose case</T>

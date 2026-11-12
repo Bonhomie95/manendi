@@ -76,13 +76,14 @@ export default function Setup() {
                   <DateField label="Started this job" value={jobStart} onChange={setJobStart} hint="Counts toward your unemployment and grace-period clocks" />
                 </View>
               )}
+              <T v="small" muted>Information, not legal advice. Every clock links its official source.</T>
             </>
           )}
         </Animated.View>
       </ScrollView>
+      <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: insets.top, backgroundColor: c.bg }} />
       <View style={{ paddingHorizontal: 24, paddingBottom: insets.bottom + 14, gap: 10 }}>
         <Button title={step < 2 ? 'Next' : 'Start my clock'} kind="accent" disabled={!now.ok} onPress={() => (step < 2 ? setStep(step + 1) : finish())} />
-        {step === 2 && <T v="small" muted style={{ textAlign: 'center' }}>Information, not legal advice. Every clock links its official source.</T>}
       </View>
     </KeyboardAvoidingView>
   );

@@ -10,6 +10,7 @@ import { Button, Icon, Row, T, Tap, toast } from '@/components/ui';
 import { api, openPage, type PlanView } from '@/lib/api';
 import { buy, getOffers, manageUrl, restore, testMode, type Offer } from '@/lib/billing';
 import { full } from '@/lib/dates';
+import { LOCK } from '@/lib/meta';
 import { useStore } from '@/lib/store';
 import { brand, font, tint, useColors } from '@/lib/theme';
 
@@ -20,7 +21,7 @@ const PERKS: [string, string, string, string][] = [
   ['tray.full.fill', 'inbox', 'Every case, watched', 'Unlimited receipt numbers, and an alert the moment one changes.'],
   ['airplane', 'flight', 'Citizenship travel budget', 'How many days abroad you can still spend, plus long-trip warnings.'],
   ['hourglass', 'hourglass_top', 'H-1B limit & green card queue', 'Six years plus every day you can win back, and your place in line.'],
-  ['lock.doc.fill', 'lock', 'Document vault', 'Passports, I-797s and cards behind Face ID. They never leave your phone.'],
+  ['lock.doc.fill', 'lock', 'Document vault', `Passports, I-797s and cards behind ${LOCK}. They never leave your phone.`],
   ['doc.richtext', 'picture_as_pdf', 'Status report', 'Every date and case on one clean page for your attorney or HR.'],
 ];
 

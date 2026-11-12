@@ -42,7 +42,6 @@ type Ctx = {
   all: Clock[];
   watches: Watch[];
   live: { on: boolean; mock: boolean };
-  syncing: boolean;
   testMode: boolean;
   update: (fn: (d: Data) => Data) => void;
   savePerson: (p: Person) => void;
@@ -58,7 +57,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<Data>(load);
   const [watches, setWatches] = useState<Watch[]>([]);
   const [live, setLive] = useState({ on: false, mock: false });
-  const [syncing, setSyncing] = useState(false);
   const [testMode, setTestMode] = useState(false);
   const dataRef = useRef(data);
 
@@ -75,7 +73,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   // Plan + watched cases from the API. Cases this phone knows but the server doesn't (new phone, erased data) re-attach.
   const sync = useCallback(async () => {
-    setSyncing(true);
     try {
       const d = dataRef.current;
       const plan = await api<PlanView>('/device', { body: { appUserId: d.userId } });
@@ -91,13 +88,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       setLive({ on: w.live, mock: w.mock });
     } catch (e) {
       if (!(e instanceof ApiError)) throw e; // offline: keep what we have
-    } finally {
-      setSyncing(false);
     }
   }, [setPlan]);
 
   useEffect(() => {
-    void sync(); // eslint-disable-line react-hooks/set-state-in-effect -- state only changes after the network answers
+    void sync();
     startBilling(dataRef.current.userId).catch(() => {});
     const sub = AppState.addEventListener('change', (s) => s === 'active' && sync());
     return () => sub.remove();
@@ -113,7 +108,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   useEffect(() => { if (data.reminders) scheduleReminders(all, data.people).catch(() => {}); }, [all, data.people, data.reminders]);
 
   const value = useMemo<Ctx>(() => ({
-    data, plus, all, watches, live, syncing, testMode, update, setPlan, sync,
+    data, plus, all, watches, live, testMode, update, setPlan, sync,
     me: data.people.find((p) => p.relation === 'me') ?? data.people[0],
     savePerson: (p) => update((d) => ({ ...d, people: d.people.some((x) => x.id === p.id) ? d.people.map((x) => (x.id === p.id ? p : x)) : [...d.people, p] })),
     removePerson: (id) => update((d) => ({
@@ -130,7 +125,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       setWatches([]);
       update((d) => ({ ...blank(), userId: d.userId }));
     },
-  }), [data, plus, all, watches, live, syncing, testMode, update, setPlan, sync]);
+  }), [data, plus, all, watches, live, testMode, update, setPlan, sync]);
 
   return <StoreContext value={value}>{children}</StoreContext>;
 }

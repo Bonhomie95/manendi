@@ -67,6 +67,7 @@ export const SOURCES = {
 // ---------- dates: 'YYYY-MM-DD' strings, counted in UTC so time zones never shift a day ----------
 const ms = (s: string) => { const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d); };
 const iso = (t: number) => new Date(t).toISOString().slice(0, 10);
+const pretty = (s: string) => new Date(ms(s)).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 export const daysBetween = (a: string, b: string) => Math.round((ms(b) - ms(a)) / 864e5);
 export const shift = (s: string, n: number) => iso(ms(s) + n * 864e5);
 export const addYears = (s: string, n: number) => { const [y, m, d] = s.split('-').map(Number); return iso(Date.UTC(y + n, m - 1, d)); };
@@ -123,7 +124,7 @@ export function clocks(p: Person, today: string): Clock[] {
     const work = WORK.includes(p.status);
     add({
       id: 'i94', title: 'Authorized stay (I-94)', kind: 'expires', date: d.i94, source: SOURCES.i94,
-      level: visitor ? level(n, 14, 45) : level(n, 30, 180), progress: clamp(n / (work ? 1095 : visitor ? 180 : 365)),
+      level: visitor ? level(n, 14, 45) : level(n, 30, 180), progress: clamp(n / 180), // the 6-month extension window
       note: n < 0 ? 'This date has passed. Talk to an immigration attorney today.'
         : visitor ? 'Overstaying even a day can cancel your visa. To stay longer, file Form I-539 before this date.'
           : work ? 'This, not your visa stamp, is when your stay ends. Extensions can usually be filed up to 6 months ahead.'
@@ -256,7 +257,7 @@ export function clocks(p: Person, today: string): Clock[] {
         id: 'grace', title: '60-day grace period', kind: 'window', date: graceEnd, source: SOURCES.grace, progress: clamp(n / 60),
         level: today <= last.end ? 'soon' : n < 0 ? 'over' : 'urgent',
         note: today <= last.end
-          ? `Your job ends ${last.end}. From the next day you get up to 60 days, or until your I-94 date if that comes first.`
+          ? `Your job ends ${pretty(last.end)}. From the next day you get up to 60 days, or until your I-94 date if that comes first.`
           : 'Before this date: a new employer files for you, you change status, or you leave. An attorney can help you pick fast.',
       });
     }
@@ -269,7 +270,7 @@ export function clocks(p: Person, today: string): Clock[] {
     add({
       id: 'h1b-max', title: 'H-1B six-year limit', kind: 'milestone', date: maxOut, source: SOURCES.h1b, plus: true,
       level: n < 0 ? 'info' : n <= 365 ? 'soon' : 'ok', progress: clamp(n / 2190),
-      note: `Six years from ${d.h1bStart}, plus ${recaptured} day${recaptured === 1 ? '' : 's'} abroad you can win back. A green card in process can extend it.`,
+      note: `Six years from ${pretty(d.h1bStart)}, plus ${recaptured} day${recaptured === 1 ? '' : 's'} abroad you can win back. A green card in process can extend it.`,
     });
   }
 
@@ -329,7 +330,7 @@ export function clocks(p: Person, today: string): Clock[] {
       count: { used, limit: allowed, unit: 'days abroad' }, progress: clamp(left / allowed),
       level: left < 0 ? 'over' : left < 60 ? 'urgent' : left < 180 ? 'soon' : 'ok',
       note: left < 0 ? `You’ve spent ${-left} days too many abroad for this window. Your filing date may need to move.`
-        : `About ${left} more days abroad before ${periodEnd} still keeps you over the ${required}-day presence rule.`,
+        : `About ${left} more days abroad before ${pretty(periodEnd)} still keeps you over the ${required}-day presence rule.`,
     });
 
     // Continuous residence: a single trip of 6 months or more puts it in doubt; a year or more breaks it.
@@ -351,7 +352,7 @@ export function clocks(p: Person, today: string): Clock[] {
     const waited = daysBetween(d.priorityDate, today);
     add({
       id: 'queue', title: 'Green card queue', kind: 'info', level: 'info', source: SOURCES.bulletin, plus: true,
-      note: `Priority date ${d.priorityDate}${p.category ? ` · ${p.category}` : ''}${p.chargeability ? ` · ${p.chargeability}` : ''}. Waiting ${span(waited)}. Compare it with this month’s Visa Bulletin.`,
+      note: `Priority date ${pretty(d.priorityDate)}${p.category ? ` · ${p.category}` : ''}${p.chargeability ? ` · ${p.chargeability}` : ''}. Waiting ${span(waited)}. Compare it with this month’s Visa Bulletin.`,
     });
   }
 

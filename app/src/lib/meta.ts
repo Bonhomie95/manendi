@@ -1,5 +1,9 @@
+import { Platform } from 'react-native';
 import type { DocKind } from './store';
 import type { Status } from './rules';
+
+/** What guards the vault, in each platform's own words. */
+export const LOCK = Platform.OS === 'ios' ? 'Face ID' : 'your screen lock';
 
 /** [SF Symbol, Material Symbol] per status family. */
 export function statusIcon(s: Status): [string, string] {

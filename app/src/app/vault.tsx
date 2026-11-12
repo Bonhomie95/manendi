@@ -2,10 +2,10 @@ import { Image } from 'expo-image';
 import * as LocalAuthentication from 'expo-local-authentication';
 import { Redirect, router } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { Button, Card, Icon, Row, Screen, T, Tap } from '@/components/ui';
 import { full } from '@/lib/dates';
-import { DOC_KINDS } from '@/lib/meta';
+import { DOC_KINDS, LOCK } from '@/lib/meta';
 import { useStore, vaultFile } from '@/lib/store';
 import { useColors } from '@/lib/theme';
 
@@ -26,7 +26,7 @@ export default function Vault() {
   if (!plus) return <Redirect href="/plan" />;
 
   return (
-    <Screen style={{ paddingTop: 12 }}>
+    <Screen>
       <Row style={{ justifyContent: 'space-between' }}>
         <Tap onPress={() => router.back()} accessibilityLabel="Back" style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center' }}>
           <Icon ios="chevron.left" android="arrow_back" size={18} />
@@ -38,7 +38,7 @@ export default function Vault() {
         )}
       </Row>
       <T v="title">Document vault</T>
-      <Row style={{ gap: 6 }}><Icon ios="lock.fill" android="lock" size={12} color={c.muted} /><T v="small" muted>Stored only on this phone, behind Face ID or your passcode.</T></Row>
+      <Row style={{ gap: 6 }}><Icon ios="lock.fill" android="lock" size={12} color={c.muted} /><T v="small" muted>Stored only on this phone, behind {LOCK}{Platform.OS === 'ios' ? ' or your passcode' : ''}.</T></Row>
 
       {!open ? (
         <Card style={{ alignItems: 'center', gap: 12, paddingVertical: 34, marginTop: 10 }}>

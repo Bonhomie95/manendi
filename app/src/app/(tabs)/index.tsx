@@ -23,7 +23,7 @@ function Action({ ios, android, label, onPress }: { ios: string; android: string
 
 export default function Status() {
   const c = useColors();
-  const { data, all, plus, me, sync, syncing } = useStore();
+  const { data, all, plus, me, sync } = useStore();
   const [who, setWho] = useState<string>('all');
   const people = data.people;
   const list = who === 'all' ? all : all.filter((x) => x.personId === who);
@@ -36,7 +36,7 @@ export default function Status() {
   const col = top ? levelColor(c, top.level) : c.accent;
 
   return (
-    <Screen onRefresh={sync} refreshing={syncing}>
+    <Screen onRefresh={sync}>
       <Row style={{ justifyContent: 'space-between', marginTop: 4 }}>
         <View>
           <T v="label">{greeting()}</T>

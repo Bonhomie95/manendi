@@ -60,7 +60,7 @@ export default function DocScreen() {
         <T v="label">What it is</T>
         <Row style={{ flexWrap: 'wrap' }}>{DOC_KINDS.map(([k, l]) => <Chip key={k} label={l} on={kind === k} onPress={() => setKind(k)} />)}</Row>
       </View>
-      <Field label="Name (optional)" value={title} onChangeText={setTitle} placeholder="e.g. Ada’s passport" />
+      <Field label="Name (optional)" value={title} onChangeText={setTitle} placeholder={`e.g. ${data.people.find((p) => p.id === personId)?.name ?? 'Ada'}’s passport`} />
       {data.people.length > 1 && (
         <View style={{ gap: 8 }}>
           <T v="label">Whose</T>

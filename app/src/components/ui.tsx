@@ -1,6 +1,6 @@
 import * as Haptics from 'expo-haptics';
 import { SymbolView, type SymbolViewProps } from 'expo-symbols';
-import { useEffect, useState, type ReactNode } from 'react';
+import { Fragment, useEffect, useState, type ReactNode } from 'react';
 import {
   ActivityIndicator, Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TextInput, View,
   type PressableProps, type StyleProp, type TextInputProps, type TextProps, type ViewStyle,
@@ -75,28 +75,28 @@ export function Card({ style, children }: { style?: StyleProp<ViewStyle>; childr
   return <View style={[s.card, { backgroundColor: c.card, borderColor: c.line }, style]}>{children}</View>;
 }
 
-export function Screen({ children, onRefresh, refreshing, style }: {
-  children: ReactNode; onRefresh?: () => void; refreshing?: boolean; style?: StyleProp<ViewStyle>;
-}) {
+export function Screen({ children, onRefresh }: { children: ReactNode; onRefresh?: () => unknown }) {
   const c = useColors();
   const insets = useSafeAreaInsets();
+  // Spins only for a pull: background syncs never push the page down.
+  const [pulling, setPulling] = useState(false);
+  const pull = () => { setPulling(true); Promise.resolve(onRefresh?.()).finally(() => setPulling(false)); };
   const scroll = (
     <ScrollView
       style={{ flex: 1, backgroundColor: c.bg }}
       // iOS insets for the status bar and the glass tab bar itself; Android needs them by hand.
       contentInsetAdjustmentBehavior="automatic"
-      contentContainerStyle={[{ paddingTop: ios ? 8 : insets.top + 14, paddingHorizontal: 20, paddingBottom: ios ? 40 : insets.bottom + 100, gap: 16 }, style]}
+      contentContainerStyle={{ paddingTop: ios ? 8 : insets.top + 14, paddingHorizontal: 20, paddingBottom: ios ? 40 : insets.bottom + 100, gap: 16 }}
       keyboardShouldPersistTaps="handled"
-      refreshControl={onRefresh ? <RefreshControl refreshing={!!refreshing} onRefresh={onRefresh} tintColor={c.muted} colors={[c.accent]} progressViewOffset={ios ? undefined : insets.top} /> : undefined}>
+      refreshControl={onRefresh ? <RefreshControl refreshing={pulling} onRefresh={pull} tintColor={c.muted} colors={[c.accent]} progressViewOffset={ios ? undefined : insets.top} /> : undefined}>
       {children}
     </ScrollView>
   );
-  if (ios) return scroll;
-  // Android draws edge to edge: a strip in the page colour keeps scrolled content from running under the status bar.
+  // A strip in the page colour keeps scrolled content from running under the status bar (both platforms draw edge to edge).
   return (
     <View style={{ flex: 1 }}>
       {scroll}
-      <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: insets.top, backgroundColor: c.bg }} />
+      <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: insets.top + 6, backgroundImage: `linear-gradient(180deg, ${c.bg} 75%, ${tint(c.bg, 0)})` }} />
     </View>
   );
 }
@@ -146,6 +146,8 @@ export function Row({ children, style }: { children: ReactNode; style?: StylePro
 
 // ---------- toast ----------
 let pushToast: (text: string) => void = () => {};
+// Android draws modals inside the root view, so only iOS needs the overlay window.
+const Overlay = ios ? FullWindowOverlay : Fragment;
 export const toast = (text: string) => pushToast(text);
 
 export function ToastHost() {
@@ -161,13 +163,13 @@ export function ToastHost() {
   if (!msg) return null;
   // iOS presents modals (the paywall, sheets) above the root view; the overlay window keeps the toast on top of them.
   return (
-    <FullWindowOverlay>
+    <Overlay>
       <Animated.View key={msg.id} entering={FadeInUp.springify().damping(16)} exiting={FadeOutUp}
         pointerEvents="none" accessibilityLiveRegion="polite"
         style={[s.toast, { top: insets.top + 8, backgroundColor: c.text }]}>
         <Text style={{ fontFamily: font.bold, fontSize: 15, color: c.bg }}>{msg.text}</Text>
       </Animated.View>
-    </FullWindowOverlay>
+    </Overlay>
   );
 }
 

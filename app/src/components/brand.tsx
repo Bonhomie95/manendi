@@ -145,9 +145,13 @@ export function Backdrop({ look }: { look: Look }) {
       {look.pattern === 'stamps' && STAMPS.map(([top, port], i) => {
         const size = 96 + r[i] * 56;
         const round = i % 2 === 0;
+        const y = ((i + 0.3) / STAMPS.length) * h - size / 2;
+        // Stamps in the mark-and-tagline band hug the edges so the centre stays readable.
+        const clash = y < cy + 200 && y + (round ? size : size * 0.66) > cy - 120;
+        const left = !clash ? r[i + 7] * (w - size) : i % 2 ? cx + 120 + r[i + 7] * 20 : cx - 120 - size - r[i + 7] * 20;
         return (
           <Animated.View key={i} style={[
-            { position: 'absolute', left: r[i + 7] * (w - size), top: ((i + 0.3) / STAMPS.length) * h - size / 2, width: size, height: round ? size : size * 0.66,
+            { position: 'absolute', left, top: y, width: size, height: round ? size : size * 0.66,
               borderRadius: round ? size / 2 : 14, borderWidth: 2.5, borderColor: tint(look.blobs[i % 3], 0.75), alignItems: 'center', justifyContent: 'center' },
             { animationName: { from: { opacity: 0, transform: [{ rotate: `${(r[i] - 0.5) * 50}deg` }, { scale: 1.8 }] },
               '12%': { opacity: 0.85, transform: [{ rotate: `${(r[i] - 0.5) * 50}deg` }, { scale: 1 }] },
