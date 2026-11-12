@@ -7,7 +7,9 @@
     "development": {
       "developmentClient": false,
       "distribution": "internal",
-      "ios": { "simulator": true }
+      "ios": {
+        "simulator": true
+      }
     },
     "preview": {
       "distribution": "internal",
@@ -19,13 +21,18 @@
       "env": {
         "MANENDI_STORE_BUILD": "1",
         "EXPO_PUBLIC_API_URL": "https://manendi-api.onrender.com",
-        "EXPO_PUBLIC_SITE_URL": "https://manendi.onrender.com"
+        "EXPO_PUBLIC_SITE_URL": "https://manendi.onrender.com",
+        "EXPO_PUBLIC_RC_IOS_KEY": "appl_EvQsHTWJiYHLuoPLlsgCRjXdBoW",
+        "EXPO_PUBLIC_RC_ANDROID_KEY": "goog_slGUjKZNhlnVYhwkpnblwiANybm"
       }
     }
   },
   "submit": {
     "production": {
-      "android": { "serviceAccountKeyPath": "./play-service-account.json", "track": "internal" }
+      "android": {
+        "serviceAccountKeyPath": "./play-service-account.json",
+        "track": "internal"
+      }
     }
   }
 }

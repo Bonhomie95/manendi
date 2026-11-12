@@ -29,10 +29,12 @@ Official path: [developer.uscis.gov → Production access](https://developer.usc
 - USCIS terms: only users' own receipts (with consent) — the app never scans "neighbor" numbers.
 
 ### 3. Subscriptions (Manendi Plus)
-- RevenueCat project "Manendi": entitlement **`plus`**; offering `default` with monthly + annual packages.
+- RevenueCat project **Manendi** (`9f18faf8`, set up 2026-11-12): apps Manendi (App Store) and Manendi (Play Store),
+  entitlement **`plus`**, current offering `default` with `$rc_monthly` + `$rc_annual`. Play IDs are
+  `manendi.plus.monthly:monthly` and `manendi.plus.annual:annual` (subscription:base plan). The App Store app reuses
+  the team's in-app purchase key (M7GJU7NSMS); the Play app still needs the service-account JSON (**you**).
 - Products (both stores): `manendi.plus.monthly` $9.99 · `manendi.plus.annual` $79.99, 1 subscription group.
-- Put the public SDK keys in `app/eas.json` → production env: `EXPO_PUBLIC_RC_IOS_KEY` (appl_…),
-  `EXPO_PUBLIC_RC_ANDROID_KEY` (goog_…). Store builds refuse to build without them (app.config.ts).
+- Public SDK keys are in `app/eas.json` → production env (`EXPO_PUBLIC_RC_IOS_KEY`, `EXPO_PUBLIC_RC_ANDROID_KEY`).
 - Play: add the `play-console-api-access` service account to Manendi under Users and permissions (needed by
   RevenueCat and `eas submit`).
 
