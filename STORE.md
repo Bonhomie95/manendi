@@ -53,6 +53,8 @@ npx eas-cli@latest submit -p android --profile production
 
 ### 6. App Review notes (both stores)
 > No account needed. Tap Start, enter a first name, pick a status (for example H-1B) and add any dates.
+> Sign-in is optional (Family tab → Back up your household, or Restore my household on the welcome screen); delete
+> the account from the Family tab → tap the account → Delete account.
 > Clocks appear on the Status tab; tap one for its official source. Cases: add any receipt number in the format
 > IOE0912345678 (live USCIS status switches on after USCIS grants production API access; until then cases are
 > checked on egov.uscis.gov and logged by hand). Manendi Plus can be bought with a sandbox/test account.
@@ -72,20 +74,26 @@ npx eas-cli@latest submit -p android --profile production
   • Every case, one glance: your family’s USCIS receipt numbers in one place, each step explained in plain English.
   • Radar: new rules, fees and notices that touch your visa, straight from the Federal Register.
   • Travel: log trips and see your citizenship travel budget before you book.
-  • Private by design: no account, and your status, dates, trips and documents stay on your phone.
+  • Private by design: no account needed. Sign in with Apple or Google only if you want a backup for a new phone.
+    Document photos never leave yours.
 
   Manendi Plus adds your whole household, unlimited cases, the citizenship travel budget,
   the H-1B limit and green card queue, a Face ID document vault, and a status report PDF.
 
   Manendi gives information, not legal advice. Every clock links its official source.
-- **Privacy “nutrition” answers:** Data Not Linked to You — User Content › Other (receipt numbers you watch),
-  Identifiers › Device ID (random device key), Purchases. No tracking. No data used for ads.
+- **Privacy “nutrition” answers** (sign-in is optional, but what it can collect must be declared): **Data Linked to
+  You**, all for App Functionality: Contact Info › Name and Email Address (only if you sign in), User Content › Other
+  User Content (receipt numbers you watch, and the household backup if you sign in), Identifiers › User ID (the
+  account) and Device ID (random device key), Purchases › Purchase History. No tracking. Nothing used for ads.
 
 ## Google Play listing
 - **Short description:** Every date that keeps you in status: I-94, OPT, EAD, H-1B, green card, citizenship.
-- **Data safety:** collects Device or other IDs (random key), App activity › Other user-generated content (receipt
-  numbers), Purchase history; all for app functionality, encrypted in transit, not shared, deletable in the app or
-  at https://manendi.onrender.com/erase. No data collected from status, dates, trips or documents (they never leave the device).
+- **Data safety:** collects Personal info › Name, Email address and Other info (the household backup: statuses,
+  dates, trips) — optional, only when someone signs in, for Account management and App functionality; Device or
+  other IDs (random key); App activity › Other user-generated content (receipt numbers); Financial info › Purchase
+  history. Encrypted in transit, not shared, deletable in the app or at https://manendi.onrender.com/erase.
+  Account creation: **yes** (Sign in with Google / Apple), delete-account URL https://manendi.onrender.com/erase.
+  Document photos are never collected.
 - **Content rating:** no objectionable content · **Target audience:** 18+.
 
 ## Store art

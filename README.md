@@ -34,9 +34,17 @@ node --test keepalive/keepalive.test.mjs
   Every clock links its official source. Includes DHS's fixed-admission rule for F/J students (effective
   Sept 15, 2026): 30-day departure period, D/S capped at Sept 15, 2030. Tests: `rules.test.ts`.
 - **Local-first** — people, dates, jobs, trips and vault photos stay on the device (one JSON file + the vault
-  folder; device backups carry them). No accounts: a random device key in the keychain.
-- **Server** — holds only watched receipt numbers, their labels and statuses, a push token and the plan.
-  Erased from the app (Family → Erase my server data); idle devices are dropped after a year.
+  folder; device backups carry them). A random device key in the keychain identifies the phone.
+- **Optional sign-in** — Google (both platforms, native sheet) and Sign in with Apple (iPhone; Apple requires it next
+  to Google). The account keeps a backup of the household (people and case links, never vault photos), so
+  "Restore my household" brings it back on a new phone, and Plus follows the account (one RevenueCat ID across its
+  phones). ID tokens are checked against Google's and Apple's keys in `server/identity.mjs`. OAuth clients live in
+  the Google Cloud project **manendi**: Web + iOS client IDs are in `app.json` → `extra.google` and are the API's
+  default `GOOGLE_CLIENT_IDS`; Android clients are matched by package + SHA-1 (local debug key, EAS upload key, and
+  the Play app-signing key once Play has one).
+- **Server** — holds watched receipt numbers, their labels and statuses, a push token, the plan and, for signed-in
+  people, the account (email, name) and its backup. Erased from the app (Family → Erase my server data, or the
+  account's Delete account); idle devices and accounts are dropped after a year.
 - **Case status** — USCIS's official Case Status API. Sandbox keys work today; production access needs the
   USCIS demo (booked into 2027). Until then the app links egov.uscis.gov and logs updates by hand; watched
   cases light up on their own once production keys are set. In production, sandbox keys only drive an hourly

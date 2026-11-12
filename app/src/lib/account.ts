@@ -33,7 +33,10 @@ export async function appleToken(): Promise<Token | null> {
     const name = [r.fullName?.givenName, r.fullName?.familyName].filter(Boolean).join(' ');
     return { provider: 'apple', idToken: r.identityToken, ...(name ? { name } : {}) };
   } catch (e) {
-    if ((e as { code?: string }).code === 'ERR_REQUEST_CANCELED') return null;
+    const code = (e as { code?: string }).code;
+    if (code === 'ERR_REQUEST_CANCELED') return null;
+    // What Apple reports when the phone isn't signed in to an Apple Account and the person closes its prompt.
+    if (code === 'ERR_REQUEST_UNKNOWN') throw new Error('Sign in with Apple didn’t finish. Check this iPhone is signed in to an Apple Account in Settings.');
     throw e;
   }
 }
