@@ -132,11 +132,18 @@ is false in app.json.
 **You, in App Store Connect:**
 - App Privacy → Get Started (answers above) → Publish.
 - App Information → Content Rights ("No, it doesn't contain third-party content") and Age Rating (all "None"/"No" → 4+).
-- Version 1.0 → upload `store/ios/01–06` (6.9" display) and fill App Review contact (name, phone, email).
+- Version 1.0 → upload `store/ios/01–06` (6.9" display) and fill App Review contact (name, phone, email). App Store
+  Connect won't save review-note edits until that contact is filled, so after it is, replace the Notes with §6
+  (it adds where sign-in and Delete account live).
 - Each subscription → Review Information → Screenshot: upload `store/review/ios-subscription-review.png`.
 - Business → Paid Apps agreement, tax and banking, if not already active (subscriptions can't sell without it).
 - Optional: App Information → App Store Server Notifications → production URL from RevenueCat
   (Manendi → App Store app → "Apple Server to Server notification URL"), for faster renewal updates.
+
+**Sign-in (Google Cloud project `manendi`)**: consent screen "Manendi" is In production (basic scopes, no
+verification needed); OAuth clients: Web (`430359710145-8i6h…`), iOS (`…-liuagfib…`), Android for the local debug
+key (`5E:8F:…:F6:25`) and the EAS upload key (`A7:49:…:C3:2E`). Still needed: an Android client for Play's app
+signing key once the first upload exists.
 
 **Google Play**: app `4974080454506156944` (organization account, so no 12-tester rule). Store listing text is a
 saved draft, category Productivity, contact `support@bonhomieinc.dev` + https://manendi.onrender.com, privacy policy
@@ -147,8 +154,11 @@ URL set, production targets 178 countries.
   Health **none** · Target audience **18+** · Content rating questionnaire (the utility / productivity / "other" category, every
   answer No) · Data safety (answers above) · Trader status **trader**, Terms of Service
   https://manendi.onrender.com/terms.
-- First upload: Test and release → Production → Create new release → upload the `.aab` from EAS (Google requires the
-  first upload by hand; `eas submit` works after that).
+- First upload (for phone testing, before any review): Test and release → Testing → **Internal testing** → Create
+  new release → upload `~/Downloads/manendi-1.0.0-2.aab` (Google requires the first upload by hand; `eas submit`
+  sends later builds) → add yourself under Testers → open the tester link on your phone.
+- Then App integrity → App signing: copy the **app signing key SHA-1** for Claude. Google sign-in in Play-installed
+  builds needs a third Android OAuth client with it (the local debug key and the EAS upload key are registered).
 - Then (Claude): subscriptions `manendi.plus.monthly` (base plan `monthly`) and `manendi.plus.annual` (base plan
   `annual`), a promo code for reviewers, and the Sign in details: "Yes, restricted": the Plus features need the
   subscription (promo code given), the vault opens with the device's own screen lock.
