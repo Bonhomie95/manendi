@@ -1,0 +1,36 @@
+# Manendi API on Render: Dashboard → New → Blueprint → this repo. Render asks for the secrets (sync: false)
+# on first deploy, so nothing secret lives in git. HTTPS is automatic; the app's EXPO_PUBLIC_API_URL points here.
+services:
+  - type: web
+    name: manendi-api
+    runtime: node
+    rootDir: server
+    plan: free # the API pings itself every 10 minutes (RENDER_EXTERNAL_URL) so it doesn't sleep for App Review
+    buildCommand: npm ci --omit=dev
+    startCommand: node index.mjs
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production # also switches off test purchases (BILLING_DEV) and refuses USCIS_MOCK
+      - key: HOST
+        value: 0.0.0.0
+      - key: MONGODB_DB
+        value: manendi_prod
+      - key: NODE_VERSION
+        value: "22"
+      - key: MONGODB_URI
+        sync: false
+      - key: REVENUECAT_SECRET_KEY
+        sync: false
+      - key: SUPPORT_EMAIL
+        sync: false
+      - key: LEGAL_NAME
+        sync: false
+      - key: LEGAL_ADDRESS
+        sync: false
+      - key: USCIS_CLIENT_ID
+        sync: false
+      - key: USCIS_CLIENT_SECRET
+        sync: false
+      - key: USCIS_BASE
+        sync: false # https://api-int.uscis.gov for sandbox; production URL comes after the USCIS demo
