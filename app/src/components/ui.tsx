@@ -14,9 +14,9 @@ const ios = Platform.OS === 'ios';
 
 // ---------- type ----------
 const variants = {
-  hero: { fontFamily: font.display, fontSize: 40, lineHeight: 46, letterSpacing: -0.8 },
-  title: { fontFamily: font.display, fontSize: 30, lineHeight: 36, letterSpacing: -0.4 },
-  h2: { fontFamily: font.display, fontSize: 21, lineHeight: 27 },
+  hero: { fontFamily: font.display, fontSize: 46, lineHeight: 50, letterSpacing: -0.6 },
+  title: { fontFamily: font.display, fontSize: 34, lineHeight: 38, letterSpacing: -0.3 },
+  h2: { fontFamily: font.display, fontSize: 25, lineHeight: 29 },
   label: { fontFamily: font.heavy, fontSize: 12, letterSpacing: 1.1, textTransform: 'uppercase' as const },
   body: { fontFamily: font.body, fontSize: 16, lineHeight: 23 },
   strong: { fontFamily: font.bold, fontSize: 16, lineHeight: 22 },
@@ -59,8 +59,8 @@ export function Button({ title, onPress, kind = 'primary', loading, disabled, ic
   loading?: boolean; disabled?: boolean; icon?: ReactNode; style?: StyleProp<ViewStyle>;
 }) {
   const c = useColors();
-  const bg = { primary: c.text, accent: c.me, ghost: 'transparent', danger: tint(c.danger, 0.12), soft: c.soft }[kind];
-  const fg = { primary: c.bg, accent: '#FFFFFF', ghost: c.text, danger: c.danger, soft: c.text }[kind];
+  const bg = { primary: c.text, accent: c.accent, ghost: 'transparent', danger: tint(c.danger, 0.12), soft: c.soft }[kind];
+  const fg = { primary: c.bg, accent: c.onAccent, ghost: c.text, danger: c.danger, soft: c.text }[kind];
   return (
     <Tap onPress={onPress} disabled={disabled || loading} accessibilityLabel={title}
       style={[s.button, { backgroundColor: bg, borderWidth: kind === 'ghost' ? 1.5 : 0, borderColor: c.line }, style]}>
@@ -87,7 +87,7 @@ export function Screen({ children, onRefresh, refreshing, style }: {
       contentInsetAdjustmentBehavior="automatic"
       contentContainerStyle={[{ paddingTop: ios ? 8 : insets.top + 14, paddingHorizontal: 20, paddingBottom: ios ? 40 : insets.bottom + 100, gap: 16 }, style]}
       keyboardShouldPersistTaps="handled"
-      refreshControl={onRefresh ? <RefreshControl refreshing={!!refreshing} onRefresh={onRefresh} tintColor={c.muted} colors={[c.me]} progressViewOffset={ios ? undefined : insets.top} /> : undefined}>
+      refreshControl={onRefresh ? <RefreshControl refreshing={!!refreshing} onRefresh={onRefresh} tintColor={c.muted} colors={[c.accent]} progressViewOffset={ios ? undefined : insets.top} /> : undefined}>
       {children}
     </ScrollView>
   );
@@ -110,7 +110,7 @@ export function Field({ label, style, ...p }: TextInputProps & { label: string }
       <Animated.View style={[s.field, { borderColor: focus ? c.text : c.line, backgroundColor: c.card, transitionProperty: 'borderColor', transitionDuration: 200 }]}>
         <TextInput
           placeholderTextColor={c.muted}
-          selectionColor={c.me}
+          selectionColor={c.accent}
           accessibilityLabel={label}
           {...p}
           onFocus={(e) => { setFocus(true); p.onFocus?.(e); }}
@@ -174,7 +174,7 @@ export function ToastHost() {
 const s = StyleSheet.create({
   button: { height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, paddingHorizontal: 22 },
   buttonText: { fontFamily: font.bold, fontSize: 16 },
-  card: { borderRadius: 26, padding: 18, borderWidth: StyleSheet.hairlineWidth, gap: 10, boxShadow: '0 8px 28px rgba(20, 26, 51, 0.07)' },
+  card: { borderRadius: 26, padding: 18, borderWidth: StyleSheet.hairlineWidth, gap: 10, boxShadow: '0 8px 28px rgba(15, 27, 45, 0.07)' },
   field: { borderRadius: 18, borderWidth: 1.5 },
   input: { fontFamily: font.semi, fontSize: 17, paddingHorizontal: 16, paddingVertical: 15 },
   chip: { paddingHorizontal: 15, height: 38, borderRadius: 19, justifyContent: 'center' },

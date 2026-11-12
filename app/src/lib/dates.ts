@@ -32,3 +32,6 @@ export function monthGrid(year: number, month: number) {
   const start = monday(ymd(new Date(year, month, 1)));
   return Array.from({ length: 42 }, (_, i) => addDays(start, i));
 }
+
+/** "Oct 31, 2027" — immigration dates always need the year. */
+export const full = (s: string) => fmt(s, { month: 'short', day: 'numeric', year: 'numeric' });
