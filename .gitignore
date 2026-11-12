@@ -6,3 +6,6 @@ node_modules/
 *.aab
 *.ipa
 play-service-account.json
+
+# built by site/build.mjs on Render
+site/public/
