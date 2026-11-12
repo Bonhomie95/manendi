@@ -136,7 +136,7 @@ URL set, production targets 178 countries.
 **You, in Play Console:**
 - Store listing → upload `store/play-icon-512.png`, `store/play-feature-graphic.png`, `store/android/01–06`; Save.
 - App content declarations: Ads **No** · Advertising ID **No** · Government app **No** · Financial features **none** ·
-  Health **none** · Target audience **18+** · Content rating questionnaire (category "All other app types", every
+  Health **none** · Target audience **18+** · Content rating questionnaire (the utility / productivity / "other" category, every
   answer No) · Data safety (answers above) · Trader status **trader**, Terms of Service
   https://manendi.onrender.com/terms.
 - First upload: Test and release → Production → Create new release → upload the `.aab` from EAS (Google requires the
