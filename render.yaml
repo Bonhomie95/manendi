@@ -5,7 +5,8 @@ services:
     name: manendi-api
     runtime: node
     rootDir: server
-    plan: free # the API pings itself every 5–10 minutes so it doesn't sleep; see keepalive/ for the free-hours budget
+    plan: free # pings itself every 5–10 minutes inside KEEPALIVE_HOURS so it doesn't sleep; see keepalive/ for the budget
+    region: frankfurt # next to the Atlas cluster (Paris): each request makes several database round trips
     buildCommand: npm ci --omit=dev
     startCommand: node index.mjs
     healthCheckPath: /health
@@ -21,7 +22,7 @@ services:
       - key: MONGODB_URI
         sync: false # your Atlas cluster's connection string
       - key: KEEPALIVE_HOURS
-        sync: false # optional UTC window like 12-04; leave empty to stay awake 24/7
+        value: "14-01" # UTC, 9am–8pm Eastern; Ambodo uses the same window so both fit the 750 free hours
       - key: REVENUECAT_SECRET_KEY
         sync: false
       - key: SUPPORT_EMAIL

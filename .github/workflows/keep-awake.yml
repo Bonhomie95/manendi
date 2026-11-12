@@ -6,6 +6,8 @@ name: keep-awake
 on:
   schedule:
     - cron: '*/10 * * * *'
+    # The window opens at 14:00 UTC: a few extra tries, since a sleeping server can't wake itself and GitHub runs late.
+    - cron: '0,4,8,15 14 * * *'
   workflow_dispatch:
 jobs:
   ping:
@@ -18,4 +20,5 @@ jobs:
       - run: node keepalive/keepalive.mjs --once
         env:
           KEEPALIVE_URLS: ${{ vars.KEEPALIVE_URLS }}
-          KEEPALIVE_HOURS: ${{ vars.KEEPALIVE_HOURS }}
+          # 14:00–01:00 UTC (9am–8pm Eastern), the window Ambodo shares; a repo variable overrides it.
+          KEEPALIVE_HOURS: ${{ vars.KEEPALIVE_HOURS || '14-01' }}

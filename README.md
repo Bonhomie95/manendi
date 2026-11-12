@@ -53,8 +53,9 @@ node --test keepalive/keepalive.test.mjs
 A free instance sleeps after 15 idle minutes and takes about a minute to wake. The API pings itself every 5–10
 minutes, and `keepalive/` (run anywhere, or by the `keep-awake` GitHub Action) wakes it if it ever falls asleep.
 One free service awake 24/7 uses ~744 of the workspace's 750 free hours a month, and Render suspends **every**
-free service in the workspace when they run out. Set `KEEPALIVE_HOURS` (UTC, e.g. `12-04`) on the service and as a
-repo variable to share the hours with another app, or move the live one to a paid instance (no sleep, no budget).
+free service in the workspace when they run out, so Manendi and Ambodo share one window: `KEEPALIVE_HOURS=14-01`
+(UTC, 9am–8pm Eastern, ~682 h a month for both). Outside it they sleep and the next visitor waits about a minute.
+A paid instance never sleeps and uses no free hours; then delete the self-ping and the workflow.
 
 ## Brand
 
