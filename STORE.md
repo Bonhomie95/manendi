@@ -111,3 +111,36 @@ Those steps are marked **you**.
    (18+), uploading `store/android/*` and the two `store/play-*` graphics.
 4. **Builds:** `eas build -p android --profile production`, then `-p ios` (**you** sign in to Apple once when EAS
    asks), then `eas submit` for both; Claude attaches the builds and submits them for review.
+
+### Where it stands (2026-11-12)
+**App Store Connect**: app `6833923129` (SKU `manendi-ios`), subscription group "Manendi Plus" (`22572258`):
+`manendi.plus.annual` (Apple ID 6833923717, $79.99, level 1) and `manendi.plus.monthly` (6833924804, $9.99, level 2),
+both worldwide with display names, descriptions and review notes. App Information has the subtitle, Productivity /
+Travel categories and the privacy URL. Pricing is Free, in 174 regions (China mainland is off because it needs an ICP
+filing). Mac and Vision Pro distribution are off (the app is iPhone-only and untested there). Version 1.0 has the
+description (with subscription terms and Terms/Privacy links), keywords, promo text, support URL, copyright
+"2026 Bonhomie LLC", the review notes, no sign-in, and automatic release. Export compliance: `ITSAppUsesNonExemptEncryption`
+is false in app.json.
+**You, in App Store Connect:**
+- App Privacy → Get Started (answers above) → Publish.
+- App Information → Content Rights ("No, it doesn't contain third-party content") and Age Rating (all "None"/"No" → 4+).
+- Version 1.0 → upload `store/ios/01–06` (6.9" display) and fill App Review contact (name, phone, email).
+- Each subscription → Review Information → Screenshot: upload `store/review/ios-subscription-review.png`.
+- Business → Paid Apps agreement, tax and banking, if not already active (subscriptions can't sell without it).
+- Optional: App Information → App Store Server Notifications → production URL from RevenueCat
+  (Manendi → App Store app → "Apple Server to Server notification URL"), for faster renewal updates.
+
+**Google Play**: app `4974080454506156944` (organization account, so no 12-tester rule). Store listing text is a
+saved draft, category Productivity, contact `support@bonhomieinc.dev` + https://manendi.onrender.com, privacy policy
+URL set, production targets 178 countries.
+**You, in Play Console:**
+- Store listing → upload `store/play-icon-512.png`, `store/play-feature-graphic.png`, `store/android/01–06`; Save.
+- App content declarations: Ads **No** · Advertising ID **No** · Government app **No** · Financial features **none** ·
+  Health **none** · Target audience **18+** · Content rating questionnaire (category "All other app types", every
+  answer No) · Data safety (answers above) · Trader status **trader**, Terms of Service
+  https://manendi.onrender.com/terms.
+- First upload: Test and release → Production → Create new release → upload the `.aab` from EAS (Google requires the
+  first upload by hand; `eas submit` works after that).
+- Then (Claude): subscriptions `manendi.plus.monthly` (base plan `monthly`) and `manendi.plus.annual` (base plan
+  `annual`), a promo code for reviewers, and the Sign in details: "Yes, restricted": the Plus features need the
+  subscription (promo code given), the vault opens with the device's own screen lock.
