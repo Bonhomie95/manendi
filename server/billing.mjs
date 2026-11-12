@@ -1,5 +1,5 @@
 // Manendi Plus. The stores bill, RevenueCat verifies, and the plan is cached on the device record.
-// There are no accounts: RevenueCat's app user ID is the random ID the app generates on first launch.
+// RevenueCat's app user ID is a random ID the app generates on first launch; a signed-in account shares one ID across phones.
 export const ENTITLEMENT = 'plus';
 export const LIMITS = { free: { watches: 1 }, plus: { watches: 25 } };
 

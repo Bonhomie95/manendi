@@ -23,7 +23,7 @@ const SITE_URL = process.env.EXPO_PUBLIC_SITE_URL ?? API_URL;
 /** The public pages, the same URLs the store listings use. */
 export const openPage = (page: 'privacy' | 'terms' | 'support' | 'erase') => openLink(`${SITE_URL}/${page}`);
 
-// No accounts: the device proves itself with a random key it makes once and keeps in the keychain.
+// The device proves itself with a random key it makes once and keeps in the keychain (signing in is optional, on top).
 // It stays on this device (a restored backup on a new phone makes a new key and re-attaches its cases).
 const KEY = 'manendi.device';
 let deviceKey = SecureStore.getItem(KEY);
@@ -54,7 +54,9 @@ export async function api<T = { ok: true }>(path: string, opts: { method?: strin
   return data as T;
 }
 
-export type PlanView = { plus: boolean; source: 'store' | 'dev' | null; expiresAt: string | null; testMode?: boolean };
+export type PlanView = { plus: boolean; source: 'store' | 'dev' | null; expiresAt: string | null; testMode?: boolean; account?: Account | null };
+/** The optional sign-in, as the API reports it. */
+export type Account = { provider: 'google' | 'apple'; email: string | null; name: string | null; backupAt: string | null };
 export type Watch = {
   receipt: string; label: string; form: string | null; status: string | null; detail: string; modified: string | null;
   history: { status: string; date: string | null }[]; checkedAt: string | null; error: string | null;

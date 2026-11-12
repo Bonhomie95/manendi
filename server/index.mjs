@@ -1,10 +1,12 @@
 // Manendi API — Node stdlib http + MongoDB. Set MONGODB_URI to move from local to Atlas.
-// Local-first: people, dates, trips and documents stay on the phone. The API only watches USCIS cases, serves the
-// policy radar and checks Manendi Plus. There are no accounts: a device proves itself with a random key it made itself.
+// Local-first: people, dates, trips and documents stay on the phone. The API watches USCIS cases, serves the policy
+// radar and checks Manendi Plus. A device proves itself with a random key it made itself. Signing in (Google or Apple)
+// is optional: the account keeps a backup of the household (never document photos) and the Plus purchase ID.
 import http from 'node:http';
 import { createHash } from 'node:crypto';
 import { MongoClient } from 'mongodb';
 import { LIMITS, isPlus, lapsed, planView, revenueCat, storePlan } from './billing.mjs';
+import { identity } from './identity.mjs';
 import { pages } from './pages.mjs';
 import { fetchRadar } from './radar.mjs';
 import { RECEIPT, cleanReceipt, uscis } from './uscis.mjs';
@@ -30,14 +32,21 @@ const practice = () => Promise.allSettled([drill.status('EAC9999103402'), drill.
   .then((r) => console.log('uscis sandbox drill:', r.map((x) => (x.status === 'fulfilled' ? 200 : x.reason.status)).join(' ')));
 if (drill) { setTimeout(practice, 60e3).unref(); setInterval(practice, 3600e3).unref(); }
 const rcSubscriber = revenueCat(REVENUECAT_SECRET_KEY);
+// Public client IDs (they ship inside the app): Google's web client (Android tokens) and iOS client, Apple's bundle ID.
+const {
+  GOOGLE_CLIENT_IDS = '430359710145-8i6h04mv3opb8ss3rm9e7hjvgliksge0.apps.googleusercontent.com,430359710145-liuagfibcq8k7jfg6se47e46jmmrb1gm.apps.googleusercontent.com',
+  APPLE_BUNDLE_ID = 'dev.bonhomieinc.manendi',
+} = process.env;
+const verifyToken = identity({ audiences: { google: GOOGLE_CLIENT_IDS.split(',').filter(Boolean), apple: [APPLE_BUNDLE_ID] } });
 const client = new MongoClient(MONGODB_URI);
 const db = client.db(MONGODB_DB);
-const [devices, watches, cache, attempts] = ['devices', 'watches', 'cache', 'attempts'].map((n) => db.collection(n));
+const [devices, watches, cache, attempts, accounts] = ['devices', 'watches', 'cache', 'attempts', 'accounts'].map((n) => db.collection(n));
 
 // ---------- helpers ----------
 const fail = (status, error) => Object.assign(new Error(error), { status });
 const sha = (s) => createHash('sha256').update(s).digest('hex');
 const wid = (deviceId, receipt) => `${deviceId}:${receipt}`;
+const accountView = (a) => (a ? { provider: a.provider, email: a.email ?? null, name: a.name ?? null, backupAt: a.backup?.at ?? null } : null);
 const watchView = (w) => ({
   receipt: w.receipt, label: w.label ?? '', form: w.form ?? null, status: w.status ?? null, detail: w.detail ?? '',
   modified: w.modified ?? null, history: w.history ?? [], checkedAt: w.checkedAt ?? null, error: w.error ?? null,
@@ -112,13 +121,68 @@ on('POST', '/device', async ({ body, device }) => {
   if (body.pushToken === null || (typeof body.pushToken === 'string' && /^Expo(nent)?PushToken\[[\w-]+\]$/.test(body.pushToken))) set.pushToken = body.pushToken;
   if (Object.keys(set).length) await devices.updateOne({ _id: device._id }, { $set: set });
   const d = { ...device, ...set };
-  return { ...planView(await (set.appUserId && !d.plan ? syncStore(d).catch(() => d) : fresh(d))), testMode: BILLING_DEV && !REVENUECAT_SECRET_KEY };
+  const a = d.accountId ? await accounts.findOneAndUpdate({ _id: d.accountId }, { $set: { lastSeen: new Date() } }, { returnDocument: 'after' }) : null;
+  return {
+    ...planView(await (set.appUserId && !d.plan ? syncStore(d).catch(() => d) : fresh(d))),
+    testMode: BILLING_DEV && !REVENUECAT_SECRET_KEY, account: accountView(a),
+  };
 });
 
-// "Erase my server data": the device record and every watched case, immediately.
+// "Erase my server data": the device record, every watched case and, if this phone is signed in, the account and its
+// backup, immediately.
 on('DELETE', '/device', async ({ device }) => {
+  if (device.accountId) await removeAccount(device.accountId);
   await Promise.all([devices.deleteOne({ _id: device._id }), watches.deleteMany({ deviceId: device._id })]);
 });
+
+// ---------- accounts (optional) ----------
+async function accountOf(device) {
+  const a = device.accountId && (await accounts.findOne({ _id: device.accountId }));
+  if (!a) throw fail(401, 'Sign in first');
+  return a;
+}
+async function removeAccount(_id) {
+  await Promise.all([accounts.deleteOne({ _id }), devices.updateMany({ accountId: _id }, { $unset: { accountId: '' } })]);
+}
+
+// Sign in with the ID token from Google's or Apple's sheet. A new account adopts this phone's Plus purchase ID; a phone
+// joining an existing account takes the account's, so Plus follows the person. The backup comes back for the app to restore.
+on('POST', '/account', async ({ body, device }) => {
+  await guard(`signin:${device._id}`, 20);
+  const provider = ['google', 'apple'].includes(body.provider) ? body.provider : null;
+  if (!provider) throw fail(400, 'Unknown sign-in');
+  const who = await verifyToken(provider, body.idToken);
+  const name = who.name ?? (typeof body.name === 'string' && body.name.trim() ? body.name.trim().slice(0, 80) : null);
+  const userId = typeof body.userId === 'string' && /^[\w-]{8,64}$/.test(body.userId) ? body.userId : device.appUserId ?? null;
+  const a = await accounts.findOneAndUpdate({ _id: `${provider}:${who.sub}` }, {
+    $set: { lastSeen: new Date(), ...(who.email && { email: who.email }), ...(name && { name }) },
+    $setOnInsert: { provider, userId, createdAt: new Date() },
+  }, { upsert: true, returnDocument: 'after' });
+  const set = { accountId: a._id, ...(a.userId && { appUserId: a.userId }) };
+  await devices.updateOne({ _id: device._id }, { $set: set });
+  const d = { ...device, ...set };
+  const plan = await (a.userId && a.userId !== device.appUserId ? syncStore(d).catch(() => d) : fresh(d));
+  return { account: accountView(a), userId: a.userId ?? null, backup: a.backup ?? null, plan: planView(plan) };
+});
+
+// The household as the phone has it: people (with their dates, jobs and trips) and case links. Never document photos.
+on('PUT', '/account/backup', async ({ body, device }) => {
+  const a = await accountOf(device);
+  await guard(`backup:${device._id}`, 300);
+  if (!Array.isArray(body.people) || !Array.isArray(body.cases)) throw fail(400, 'That backup looks incomplete');
+  const backup = { people: body.people, cases: body.cases, at: new Date() };
+  await accounts.updateOne({ _id: a._id }, { $set: { backup, lastSeen: new Date() } });
+  return { at: backup.at };
+});
+
+// ponytail: signing out unlinks this phone but keeps its Plus purchase ID, so Plus stays where it was bought; give the
+// phone a fresh ID here if shared phones must lose Plus on sign-out.
+on('DELETE', '/account/session', async ({ device }) => {
+  await devices.updateOne({ _id: device._id }, { $unset: { accountId: '' } });
+});
+
+// Delete the account: its email, name and backup, unlinked from every phone. Store subscriptions bill until cancelled.
+on('DELETE', '/account', async ({ device }) => removeAccount((await accountOf(device))._id));
 
 on('POST', '/billing/sync', async ({ device }) => planView(await syncStore(device)));
 
@@ -170,7 +234,7 @@ on('DELETE', '/watch/:receipt', async ({ params: [r], device }) => {
 // ---------- server ----------
 async function readJson(req) {
   let raw = '';
-  for await (const chunk of req) { raw += chunk; if (raw.length > 20_000) throw fail(413, 'Too large'); }
+  for await (const chunk of req) { raw += chunk; if (raw.length > 512_000) throw fail(413, 'Too large'); } // a household backup fits
   if (!raw) return {};
   let body;
   try { body = JSON.parse(raw); } catch { throw fail(400, 'Bad JSON'); }
@@ -196,8 +260,10 @@ async function sweep() {
       await new Promise((r) => setTimeout(r, 300)); // USCIS allows 5 requests a second
     }
   }
-  const stale = (await devices.find({ lastSeen: { $lt: new Date(Date.now() - 365 * 864e5) } }, { projection: { _id: 1 } }).toArray()).map((d) => d._id);
+  const yearAgo = new Date(Date.now() - 365 * 864e5);
+  const stale = (await devices.find({ lastSeen: { $lt: yearAgo } }, { projection: { _id: 1 } }).toArray()).map((d) => d._id);
   if (stale.length) await Promise.all([devices.deleteMany({ _id: { $in: stale } }), watches.deleteMany({ deviceId: { $in: stale } })]);
+  await accounts.deleteMany({ lastSeen: { $lt: yearAgo } }); // a year without use: the backup goes too
 }
 
 await client.connect();
@@ -205,6 +271,8 @@ await Promise.all([
   watches.createIndex({ deviceId: 1, createdAt: 1 }),
   watches.createIndex({ checkedAt: 1 }),
   devices.createIndex({ lastSeen: 1 }),
+  devices.createIndex({ accountId: 1 }, { sparse: true }),
+  accounts.createIndex({ lastSeen: 1 }),
   attempts.createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
 ]);
 setInterval(() => sweep().catch((e) => console.error('sweep', e)), 3600e3).unref();
@@ -217,7 +285,7 @@ http.createServer(async (req, res) => {
     const ctx = {
       params: url.pathname.match(route.re).slice(1).map(decodeURIComponent),
       query: Object.fromEntries(url.searchParams),
-      body: ['POST', 'PATCH'].includes(req.method) ? await readJson(req) : {},
+      body: ['POST', 'PUT', 'PATCH'].includes(req.method) ? await readJson(req) : {},
       ...(route.open ? {} : await auth(req)),
     };
     const out = (await route.fn(ctx)) ?? { ok: true };

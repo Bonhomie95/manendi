@@ -4,7 +4,7 @@ import Animated, { interpolate, useAnimatedScrollHandler, useAnimatedStyle, useS
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Mark } from '@/components/brand';
 import { Ring } from '@/components/ring';
-import { Button, Icon, T } from '@/components/ui';
+import { Button, Icon, T, Tap } from '@/components/ui';
 import { font, tint, useColors, type Palette } from '@/lib/theme';
 
 const bob = (ms: number, px: number, delay = 0) => ({
@@ -113,9 +113,12 @@ export default function Welcome() {
           {SLIDES.map((sl, i) => <Dot key={sl.title} x={x} i={i} width={width} color={c.text} />)}
         </View>
         <Button title="Start" kind="accent" onPress={() => router.push('/setup')} />
+        <Tap onPress={() => router.push('/restore')} accessibilityLabel="Restore my household" style={{ alignSelf: 'center', paddingVertical: 4 }}>
+          <T v="strong" color={c.accent}>Restore my household</T>
+        </Tap>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
           <Icon ios="lock.fill" android="lock" size={12} color={c.muted} />
-          <T v="small" muted>No account. Your details stay on this phone.</T>
+          <T v="small" muted>No account needed. Your details stay on this phone.</T>
         </View>
       </View>
     </View>

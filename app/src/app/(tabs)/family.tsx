@@ -1,8 +1,9 @@
 import Constants from 'expo-constants';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, Platform, View } from 'react-native';
 import { headline } from '@/components/clock-card';
+import { SignIn } from '@/components/sign-in';
 import { Appear, Avatar, Card, CountUp, Icon, Row, Screen, T, Tap, toast } from '@/components/ui';
 import { openPage } from '@/lib/api';
 import { full } from '@/lib/dates';
@@ -36,7 +37,7 @@ function Item({ ios, android, title, sub, onPress, plusOnly, danger }: {
 
 export default function Family() {
   const c = useColors();
-  const { data, all, plus, watches, update, eraseServer, eraseAll } = useStore();
+  const { data, all, plus, watches, update, eraseServer, eraseAll, signOut, deleteAccount } = useStore();
   const [busy, setBusy] = useState(false);
   const people = data.people;
   const go = (path: '/vault' | '/plan') => router.push(plus || path === '/plan' ? path : '/plan');
@@ -53,10 +54,24 @@ export default function Family() {
     setBusy(true);
     try { await shareReport(people, all, data.cases, watches); } catch (e) { toast((e as Error).message); } finally { setBusy(false); }
   }
+  const store = Platform.OS === 'ios' ? 'Apple Account' : 'Google Play';
+  const run = (fn: () => Promise<void>, ok: string) => async () => { try { await fn(); toast(ok); } catch (e) { toast((e as Error).message); } };
+  const account = data.account;
+  const manageAccount = () => Alert.alert(account?.email ?? account?.name ?? 'Your account',
+    'Your household backs up here, so a new phone gets it back when you sign in. Document photos stay on this phone.', [
+      { text: 'Sign out', onPress: run(signOut, 'Signed out. Everything stays on this phone.') },
+      { text: 'Delete account', style: 'destructive', onPress: () => Alert.alert('Delete your account?',
+        `Deletes its backup, email and name from Manendi’s server now. This phone keeps its data. Manendi Plus keeps billing until you cancel it in your ${store} settings.`,
+        [{ text: 'Cancel', style: 'cancel' }, { text: 'Delete', style: 'destructive', onPress: run(deleteAccount, 'Account deleted.') }]) },
+      { text: 'Cancel', style: 'cancel' },
+    ]);
+  const backedUp = account?.backupAt
+    ? `Backed up ${new Date(account.backupAt).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}`
+    : 'Backing up…';
   const confirmErase = (all: boolean) => Alert.alert(
     all ? 'Erase everything?' : 'Erase your server data?',
     all ? 'Deletes every person, date, trip, document and case on this phone, plus what Manendi’s server holds. This can’t be undone.'
-      : 'Deletes your watched cases and device record from Manendi’s server now. Your dates on this phone stay.',
+      : `Deletes your watched cases${account ? ', your account and its backup' : ''} and this device’s record from Manendi’s server now. Your dates on this phone stay.`,
     [{ text: 'Cancel', style: 'cancel' }, {
       text: 'Erase', style: 'destructive', onPress: async () => {
         try { await (all ? eraseAll() : eraseServer()); toast(all ? 'Erased.' : 'Server data erased.'); }
@@ -106,16 +121,32 @@ export default function Family() {
       </Appear>
 
       <Appear i={3}>
+        {account ? (
+          <Card style={{ gap: 0, paddingVertical: 8 }}>
+            <Item ios="checkmark.icloud.fill" android="cloud_done" title={account.email ?? account.name ?? 'Signed in'} sub={backedUp} onPress={manageAccount} />
+          </Card>
+        ) : (
+          <Card style={{ gap: 14 }}>
+            <View style={{ gap: 4 }}>
+              <T v="strong">Back up your household</T>
+              <T v="small" muted>Optional. Sign in to get everyone’s dates and cases back on any phone. Document photos never leave this one.</T>
+            </View>
+            <SignIn />
+          </Card>
+        )}
+      </Appear>
+
+      <Appear i={4}>
         <Card style={{ gap: 0, paddingVertical: 8 }}>
-          <Item ios="hand.raised.fill" android="privacy_tip" title="Privacy" sub="Your details stay on this phone" onPress={() => openPage('privacy')} />
+          <Item ios="hand.raised.fill" android="privacy_tip" title="Privacy" sub={account ? 'Backed up to your account; photos stay here' : 'Your details stay on this phone'} onPress={() => openPage('privacy')} />
           <Item ios="doc.plaintext" android="gavel" title="Terms" onPress={() => openPage('terms')} />
           <Item ios="questionmark.bubble.fill" android="support_agent" title="Support" onPress={() => openPage('support')} />
         </Card>
       </Appear>
 
-      <Appear i={4}>
+      <Appear i={5}>
         <Card style={{ gap: 0, paddingVertical: 8 }}>
-          <Item ios="icloud.slash" android="cloud_off" title="Erase my server data" sub="Watched cases and this device’s record" onPress={() => confirmErase(false)} danger />
+          <Item ios="icloud.slash" android="cloud_off" title="Erase my server data" sub={account ? 'Cases, account and backup, device record' : 'Watched cases and this device’s record'} onPress={() => confirmErase(false)} danger />
           <Item ios="trash.fill" android="delete_forever" title="Erase everything" sub="Everything on this phone, too" onPress={() => confirmErase(true)} danger />
         </Card>
       </Appear>

@@ -1,11 +1,13 @@
 // Everything about a person — statuses, dates, jobs, trips, documents — lives in one JSON file on this phone.
-// The API only sees receipt numbers someone chose to watch. Device backups carry the file to a new phone.
+// The API sees receipt numbers someone chose to watch and, only if they sign in, a backup of the household (never
+// document photos) so a new phone gets it back. Device backups carry the file to a new phone too.
 import * as Crypto from 'expo-crypto';
 import { File, Paths } from 'expo-file-system';
 import { createContext, use, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { AppState } from 'react-native';
-import { api, ApiError, type PlanView, type Watch } from './api';
-import { startBilling } from './billing';
+import type { Token } from './account';
+import { api, ApiError, type Account, type PlanView, type Watch } from './api';
+import { startBilling, switchUser } from './billing';
 import { today } from './dates';
 import { scheduleReminders } from './notify';
 import { byUrgency, clocks, type Clock, type Person } from './rules';
@@ -22,10 +24,13 @@ export type Data = {
   docs: Doc[];
   plan: { plus: boolean; until: string | null; source: string | null };
   reminders: boolean;
+  account: Account | null;
 };
+/** What an account keeps: the household as this phone has it, minus documents (their photos never leave the phone). */
+export type Backup = { people: Person[]; cases: CaseLink[]; at: string };
 
 const FILE = new File(Paths.document, 'manendi.json');
-const blank = (): Data => ({ v: 1, userId: Crypto.randomUUID(), people: [], cases: [], docs: [], plan: { plus: false, until: null, source: null }, reminders: false });
+const blank = (): Data => ({ v: 1, userId: Crypto.randomUUID(), people: [], cases: [], docs: [], plan: { plus: false, until: null, source: null }, reminders: false, account: null });
 function load(): Data {
   try { return FILE.exists ? { ...blank(), ...JSON.parse(FILE.textSync()) } : blank(); } catch { return blank(); }
 }
@@ -48,6 +53,10 @@ type Ctx = {
   removePerson: (id: string) => void;
   setPlan: (p: PlanView) => void;
   sync: () => Promise<void>;
+  /** Signs in with a provider token. `choose` decides between an account backup and this phone's data; true = restored. */
+  signIn: (t: Token, choose: (b: Backup) => Promise<boolean>) => Promise<boolean>;
+  signOut: () => Promise<void>;
+  deleteAccount: () => Promise<void>;
   eraseServer: () => Promise<void>;
   eraseAll: () => Promise<void>;
 };
@@ -78,6 +87,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       const plan = await api<PlanView>('/device', { body: { appUserId: d.userId } });
       setPlan(plan);
       setTestMode(!!plan.testMode);
+      // The server knows if the account was deleted or this phone signed out elsewhere.
+      if (plan.account !== undefined) update((x) => ({ ...x, account: plan.account ?? null }));
       let w = await api<{ live: boolean; mock: boolean; watches: Watch[] }>('/watch');
       const missing = d.cases.filter((c) => !w.watches.some((x) => x.receipt === c.receipt));
       if (missing.length) {
@@ -89,7 +100,35 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     } catch (e) {
       if (!(e instanceof ApiError)) throw e; // offline: keep what we have
     }
-  }, [setPlan]);
+  }, [setPlan, update]);
+
+  // Signed in: each change reaches the account's backup a couple of seconds after the last edit.
+  const signedIn = !!data.account;
+  useEffect(() => {
+    if (!signedIn) return;
+    const t = setTimeout(() => {
+      api<{ at: string }>('/account/backup', { method: 'PUT', body: { people: data.people, cases: data.cases } })
+        .then(({ at }) => update((d) => (d.account ? { ...d, account: { ...d.account, backupAt: at } } : d)))
+        .catch(() => {}); // offline: the next change or launch tries again
+    }, 2000);
+    return () => clearTimeout(t);
+  }, [signedIn, data.people, data.cases, update]);
+
+  const signIn = useCallback(async (t: Token, choose: (b: Backup) => Promise<boolean>) => {
+    const d = dataRef.current;
+    const r = await api<{ account: Account; userId: string | null; backup: Backup | null; plan: PlanView }>('/account', { body: { ...t, userId: d.userId } });
+    if (r.userId && r.userId !== d.userId) await switchUser(r.userId);
+    const restore = !!r.backup?.people.length && (!d.people.length || (await choose(r.backup)));
+    const next: Data = {
+      ...dataRef.current, userId: r.userId ?? d.userId, account: r.account,
+      ...(restore && r.backup ? { people: r.backup.people, cases: r.backup.cases } : {}),
+    };
+    dataRef.current = next; // sync below re-attaches restored cases, so it must see them now
+    setData(next);
+    setPlan(r.plan);
+    void sync();
+    return restore;
+  }, [setPlan, sync]);
 
   useEffect(() => {
     void sync();
@@ -108,16 +147,24 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   useEffect(() => { if (data.reminders) scheduleReminders(all, data.people).catch(() => {}); }, [all, data.people, data.reminders]);
 
   const value = useMemo<Ctx>(() => ({
-    data, plus, all, watches, live, testMode, update, setPlan, sync,
+    data, plus, all, watches, live, testMode, update, setPlan, sync, signIn,
+    signOut: async () => {
+      await api('/account/session', { method: 'DELETE' });
+      update((d) => ({ ...d, account: null }));
+    },
+    deleteAccount: async () => {
+      await api('/account', { method: 'DELETE' });
+      update((d) => ({ ...d, account: null }));
+    },
     me: data.people.find((p) => p.relation === 'me') ?? data.people[0],
     savePerson: (p) => update((d) => ({ ...d, people: d.people.some((x) => x.id === p.id) ? d.people.map((x) => (x.id === p.id ? p : x)) : [...d.people, p] })),
     removePerson: (id) => update((d) => ({
       ...d, people: d.people.filter((p) => p.id !== id), cases: d.cases.filter((c) => c.personId !== id), docs: d.docs.filter((x) => x.personId !== id),
     })),
     eraseServer: async () => {
-      await api('/device', { method: 'DELETE' });
+      await api('/device', { method: 'DELETE' }); // the account and its backup go too
       setWatches([]);
-      update((d) => ({ ...d, cases: [] }));
+      update((d) => ({ ...d, cases: [], account: null }));
     },
     eraseAll: async () => {
       await api('/device', { method: 'DELETE' }).catch(() => {});
@@ -125,7 +172,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       setWatches([]);
       update((d) => ({ ...blank(), userId: d.userId }));
     },
-  }), [data, plus, all, watches, live, testMode, update, setPlan, sync]);
+  }), [data, plus, all, watches, live, testMode, update, setPlan, sync, signIn]);
 
   return <StoreContext value={value}>{children}</StoreContext>;
 }

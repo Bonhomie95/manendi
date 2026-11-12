@@ -23,6 +23,11 @@ export async function startBilling(appUserId: string) {
   configured = true;
 }
 
+/** A phone joining an existing account takes the account's purchase ID, so the account's Plus applies here too. */
+export async function switchUser(appUserId: string) {
+  if (KEY && configured) await Purchases.logIn(appUserId).catch(() => {});
+}
+
 export async function getOffers(): Promise<Offer[]> {
   if (!KEY) return FALLBACK;
   try {

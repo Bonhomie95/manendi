@@ -66,7 +66,8 @@
             ]
           }
         ]
-      }
+      },
+      "usesAppleSignIn": true
     },
     "android": {
       "package": "dev.bonhomieinc.manendi",
@@ -130,7 +131,14 @@
           "color": "#17805C"
         }
       ],
-      "expo-sharing"
+      "expo-sharing",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.430359710145-liuagfibcq8k7jfg6se47e46jmmrb1gm"
+        }
+      ],
+      "expo-apple-authentication"
     ],
     "experiments": {
       "typedRoutes": true,
@@ -140,6 +148,10 @@
     "extra": {
       "eas": {
         "projectId": "85919043-dbd5-49bc-ad6f-bbe863b773f8"
+      },
+      "google": {
+        "webClientId": "430359710145-8i6h04mv3opb8ss3rm9e7hjvgliksge0.apps.googleusercontent.com",
+        "iosClientId": "430359710145-liuagfibcq8k7jfg6se47e46jmmrb1gm.apps.googleusercontent.com"
       }
     }
   }

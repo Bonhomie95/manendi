@@ -36,48 +36,57 @@ export function pages({ supportEmail, legalName, address = '' }) {
 <h1>Privacy Policy</h1>
 <p class="muted">Manendi keeps track of the dates that keep you in status. Immigration details are among the most sensitive things a person has, so Manendi is built to keep them on your phone. Here is exactly what stays with you, what reaches us, and why. Manendi is run by ${us} (“we”, “us”). Questions: ${email}.</p>
 
-<h2>What stays on your phone — and never reaches us</h2>
+<h2>What stays on your phone</h2>
 <ul>
 <li>The people you add and their names, relationships, nationality and immigration status.</li>
 <li>Every date you enter (I-94, passport, visa, work permit, OPT, green card and others), your jobs and your trips.</li>
 <li>Photos of documents in the vault, which is locked with Face ID, Touch ID or your device passcode.</li>
 <li>Your green-card queue details (category, chargeability, priority date).</li>
 </ul>
-<p>This data lives in Manendi’s private storage on your device. If you turn on device backups (iCloud or Google), your phone includes it in those backups, under your account. Deleting the app deletes it from the phone.</p>
+<p>This data lives in Manendi’s private storage on your device and reaches us only if you sign in to back it up (below). Document photos never leave your phone, signed in or not. If you turn on device backups (iCloud or Google), your phone includes this data in those backups, under your account. Deleting the app deletes it from the phone.</p>
+
+<h2>If you sign in (optional)</h2>
+<p>Manendi works fully without an account. If you choose to sign in with Google or Apple, so your household comes back on a new phone:</p>
+<ul>
+<li><b>From Google or Apple</b> we receive an account ID, your email address (Apple may give a private relay address) and your name. We never see your password.</li>
+<li><b>We keep a backup</b> of the people you added, their statuses, dates, jobs, trips and green-card queue details, and your case links, updated as you make changes. It is used only to restore your household on your phones.</li>
+<li><b>Manendi Plus follows the account</b>: your phones share one subscription ID with RevenueCat, so Plus works on each of them.</li>
+<li>Sign out or delete the account any time in the app (Family → your account). Deleting it erases the backup immediately.</li>
+</ul>
 
 <h2>What reaches us</h2>
 <ul>
-<li><b>A random device key.</b> Your app makes one on first launch. It is not your name, email or phone number — Manendi has no accounts.</li>
+<li><b>A random device key.</b> Your app makes one on first launch. It is not your name, email or phone number.</li>
 <li><b>Receipt numbers you choose to watch</b>, the label you give each one, and the case status USCIS returns for it. We use them only to look up those cases through USCIS’s official Case Status API on your behalf and to tell you when they change. You can remove a case or erase everything at any time.</li>
 <li><b>A push token</b>, if you allow notifications, so we can alert you when a watched case changes.</li>
-<li><b>Plan status.</b> Whether you have Manendi Plus. Apple or Google take the payment — we never see card details. RevenueCat, our subscription service, receives the same random ID (not your name or email) and the purchase records Apple or Google provide.</li>
+<li><b>Plan status.</b> Whether you have Manendi Plus. Apple or Google take the payment — we never see card details. RevenueCat, our subscription service, receives a random ID (not your name or email) and the purchase records Apple or Google provide.</li>
 <li><b>Technical data.</b> Our servers and hosting providers process your IP address and basic request details to run and protect the service.</li>
 </ul>
 <p>The policy radar is public Federal Register data. Loading it sends nothing about you. We use no analytics or advertising SDKs, and we don’t track you across apps or websites.</p>
 
 <h2>How we use it</h2>
-<ul><li>To check the cases you watch and alert you when they change.</li><li>To provide Manendi Plus.</li>
+<ul><li>To check the cases you watch and alert you when they change.</li><li>To provide Manendi Plus.</li><li>If you sign in, to keep and restore your household backup.</li>
 <li>To keep the service secure (for example, limiting repeated requests) and to answer support requests.</li><li>To meet legal obligations.</li></ul>
 <p>We don’t sell your data, use it for advertising, or use it to train AI models.</p>
 
 <h2>Who can see it</h2>
 <ul>
 <li><b>USCIS</b>, which receives a receipt number when we look it up for you, through its official API.</li>
-<li><b>Service providers</b> that process data for us under contract and only to provide their service: MongoDB Atlas (database), our application host, RevenueCat (subscriptions), Apple and Google (purchases and push notifications), and Expo (push delivery).</li>
-<li><b>Legal requests.</b> We disclose information only when the law, a subpoena or a court order requires it. Because your status, dates, trips and documents never leave your phone, we don’t have them to give. Where allowed, we tell you first.</li>
+<li><b>Service providers</b> that process data for us under contract and only to provide their service: MongoDB Atlas (database), our application host, RevenueCat (subscriptions), Apple and Google (purchases, push notifications and, if you use it, sign-in), and Expo (push delivery).</li>
+<li><b>Legal requests.</b> We disclose information only when the law, a subpoena or a court order requires it. Unless you sign in to back them up, your status, dates and trips never leave your phone, and document photos never do, so we don’t have them to give. Where allowed, we tell you first.</li>
 </ul>
 
 <h2>Keeping and erasing data</h2>
-<p>We keep a watched case until you remove it. Erase everything we hold for your device at any time in the app (Family → Erase my server data) or as described on <a href="/erase">Erase your data</a>. Device records inactive for 12 months are deleted automatically. Residual copies may remain in encrypted backups for a limited time before they are overwritten.</p>
+<p>We keep a watched case until you remove it, and an account backup until you delete the account. Erase everything we hold at any time in the app (Family → Erase my server data, which also deletes your account and its backup) or as described on <a href="/erase">Erase your data</a>. Device records and accounts unused for 12 months are deleted automatically. Residual copies may remain in encrypted database backups for a limited time before they are overwritten.</p>
 
 <h2>Security</h2>
-<p>Data is encrypted in transit (HTTPS) and at rest by our database provider. Your device key is stored hashed on our side and in your phone’s secure keychain or keystore. No system is perfect — if you find a problem, tell us at ${email}.</p>
+<p>Data is encrypted in transit (HTTPS) and at rest by our database provider. Your device key is stored hashed on our side and in your phone’s secure keychain or keystore. A backup can only be read by a phone signed in to its account. No system is perfect — if you find a problem, tell us at ${email}.</p>
 
 <h2>Children</h2>
-<p>Manendi is for adults. Parents can add their children so the family’s dates live in one place; that information stays on the parent’s phone. We don’t knowingly collect personal information from children.</p>
+<p>Manendi is for adults. Parents can add their children so the family’s dates live in one place; that information stays on the parent’s phone, and in the parent’s backup if they sign in. We don’t knowingly collect personal information from children.</p>
 
 <h2>Your rights</h2>
-<p>Depending on where you live (for example under the GDPR in the EU and UK, or the CCPA in California), you can access, correct, export or delete your data, restrict or object to its use, and withdraw consent. Most of it is already in your hands on your phone; for what we hold, use Erase my server data or email ${email} and we will respond within 30 days. You may also complain to your local data-protection authority. Our providers may process data in the United States and other countries with appropriate safeguards.</p>
+<p>Depending on where you live (for example under the GDPR in the EU and UK, or the CCPA in California), you can access, correct, export or delete your data, restrict or object to its use, and withdraw consent. Most of it is already in your hands on your phone; for what we hold, use Erase my server data (or Delete account) or email ${email} and we will respond within 30 days. You may also complain to your local data-protection authority. Our providers may process data in the United States and other countries with appropriate safeguards.</p>
 
 <h2>Changes</h2>
 <p>If we change this policy we will update the date below, and tell you in the app if the change is significant.</p>
@@ -91,7 +100,7 @@ ${contact}`);
 <p>Manendi calculates dates from the information you enter and from published rules, and links the official source for each one. It does not give legal advice, it doesn’t create an attorney–client relationship, and it can’t know everything about your case. Immigration rules change and have exceptions. Check important decisions with your DSO, your employer’s immigration team or a licensed immigration attorney, and rely on official notices from USCIS, CBP and the Department of State.</p>
 
 <h2>2. Your information</h2>
-<p>You are responsible for the accuracy of what you enter. Most of it stays on your device; you are responsible for keeping your device secure and backed up. Only enter receipt numbers that belong to you or to people who have agreed to you tracking their case.</p>
+<p>You are responsible for the accuracy of what you enter. Unless you sign in to back it up, it stays on your device; you are responsible for keeping your device secure and your account sign-ins safe. Only enter receipt numbers that belong to you or to people who have agreed to you tracking their case.</p>
 
 <h2>3. Case status</h2>
 <p>Case statuses come from USCIS’s official Case Status API. We don’t control it, and it may be delayed, incomplete or unavailable. A missing or late alert doesn’t change a USCIS deadline — always read the notices USCIS mails you.</p>
@@ -128,8 +137,8 @@ ${contact}`);
 <h1>We’re here.</h1>
 <p class="muted">Real people answer. Email ${email} — we reply within 1–2 business days.</p>
 <div class="card"><b>Facing a deadline in the next few days?</b> Manendi can’t file anything for you or give legal advice. Contact your DSO, your employer’s immigration team or a licensed immigration attorney now.</div>
-<h2>Where are my details stored?</h2><p>On your phone. Manendi has no accounts. Only receipt numbers you choose to watch reach our servers.</p>
-<h2>Moving to a new phone</h2><p>Restore your old phone’s iCloud or Google backup onto the new one and Manendi comes with it. Watched cases re-attach the first time you open the app.</p>
+<h2>Where are my details stored?</h2><p>On your phone. Signing in is optional: it keeps a backup of your household on our servers so a new phone gets it back. Document photos never leave your phone.</p>
+<h2>Moving to a new phone</h2><p>Signed in? Install Manendi, tap Restore my household and sign in with the same Google or Apple account. Not signed in? Restore your old phone’s iCloud or Google backup onto the new one. Either way, watched cases re-attach the first time you open the app. Document photos come only with a device backup.</p>
 <h2>Why isn’t my case updating?</h2><p>Live case status comes from USCIS’s official API. Until it is switched on for your app version, tap Check on USCIS and log the update — Manendi keeps the history and explains each step.</p>
 <h2>Manendi Plus</h2><p>Plus adds your whole family, unlimited watched cases with change alerts, the citizenship travel budget, the document vault and status reports.</p>
 <h2>Cancel or change your plan</h2><p>iPhone: Settings → your name → Subscriptions → Manendi. Android: Google Play → profile → Payments &amp; subscriptions → Subscriptions → Manendi.</p>
@@ -138,13 +147,13 @@ ${contact}`);
 
   const erase = shell('Erase your data', `
 <h1>Erase your Manendi data</h1>
-<p class="muted">Manendi, by ${us}. Manendi has no accounts, and most of your data never leaves your phone.</p>
+<p class="muted">Manendi, by ${us}. Signing in is optional, and most of your data never leaves your phone.</p>
 <h2>What we hold</h2>
-<p>Only receipt numbers you chose to watch (with their labels and USCIS statuses), a push token if you allowed notifications, a random device key, and your plan status.</p>
+<p>Receipt numbers you chose to watch (with their labels and USCIS statuses), a push token if you allowed notifications, a random device key and your plan status. If you signed in: your account (Google or Apple ID, email and name) and its household backup.</p>
 <h2>Erase it in the app (fastest)</h2>
-<p>Open Manendi → <b>Family</b> → <b>Erase my server data</b>. It happens immediately. To remove everything on the phone too, choose <b>Erase everything</b>, or delete the app.</p>
+<p>Open Manendi → <b>Family</b> → <b>Erase my server data</b>. It happens immediately and also deletes your account and its backup. To delete only the account, tap your account on the Family tab → <b>Delete account</b>. To remove everything on the phone too, choose <b>Erase everything</b>, or delete the app.</p>
 <h2>Can’t open the app?</h2>
-<p>Email ${email} with the subject “Erase my Manendi data” and the receipt numbers you watched. We erase them within 30 days — usually within 2 business days.</p>
+<p>Email ${email} with the subject “Erase my Manendi data”, the email of the account you signed in with (if any) and the receipt numbers you watched. We erase them within 30 days — usually within 2 business days.</p>
 <h2>What isn’t affected</h2>
 <ul><li>Subscriptions are billed by Apple or Google — cancel them in your store account. Their purchase records follow their own policies.</li>
 <li>Your cases at USCIS are untouched. Erasing only stops Manendi from watching them.</li></ul>`);
