@@ -95,7 +95,7 @@ const routes = [];
 const on = (method, path, fn, open = false) =>
   routes.push({ method, re: new RegExp(`^${path.replace(/:\w+/g, '([^/]+)')}$`), fn, open });
 
-on('GET', '/health', async () => ({ ok: true, live: cases.live, mock: cases.mock }), true);
+on('GET', '/health', async () => ({ ok: true, live: cases.live, mock: cases.mock, commit: process.env.RENDER_GIT_COMMIT ?? null }), true);
 for (const [slug, html] of Object.entries(pages({ supportEmail: SUPPORT_EMAIL, legalName: LEGAL_NAME, address: LEGAL_ADDRESS }))) {
   on('GET', `/${slug}`, async () => ({ [RAW]: ['text/html; charset=utf-8', html] }), true);
 }
