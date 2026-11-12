@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import { View } from 'react-native';
-import { Card, Icon, T, Tap } from '@/components/ui';
+import { Card, CountUp, Icon, T, Tap } from '@/components/ui';
 import { full } from '@/lib/dates';
 import { inDays, type Clock } from '@/lib/rules';
 import { levelColor, tint, useColors } from '@/lib/theme';
@@ -11,11 +11,12 @@ const ICON: Record<Clock['kind'], [string, string]> = {
 };
 
 /** The big number on the right: days left, or what's left of a counter. */
-export function headline(c: Clock): { n: string; unit: string } | null {
-  if (c.count) return { n: String(Math.max(0, c.count.limit - c.count.used)), unit: `${c.count.unit} left` };
+export function headline(c: Clock): { value: number; n: string; unit: string } | null {
+  const at = (value: number, unit: string) => ({ value, n: value.toLocaleString(), unit });
+  if (c.count) return at(Math.max(0, c.count.limit - c.count.used), `${c.count.unit} left`);
   if (c.days === undefined || c.kind === 'info') return null;
-  if (c.days < 0) return { n: String(-c.days), unit: 'days ago' };
-  return { n: c.days.toLocaleString(), unit: c.days === 1 ? 'day' : 'days' };
+  if (c.days < 0) return at(-c.days, 'days ago');
+  return at(c.days, c.days === 1 ? 'day' : 'days');
 }
 
 export function ClockCard({ clock, who, locked }: { clock: Clock; who?: string; locked?: boolean }) {
@@ -38,7 +39,7 @@ export function ClockCard({ clock, who, locked }: { clock: Clock; who?: string; 
         </View>
         {big && (
           <View style={{ alignItems: 'flex-end' }}>
-            <T v="title" color={col} style={{ fontSize: 30, lineHeight: 32 }}>{big.n}</T>
+            <CountUp value={big.value} v="title" color={col} style={{ fontSize: 30, lineHeight: 32 }} />
             <T v="small" muted style={{ fontSize: 11 }}>{big.unit}</T>
           </View>
         )}

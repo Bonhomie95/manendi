@@ -221,7 +221,15 @@ http.createServer(async (req, res) => {
   }
 }).listen(Number(PORT), HOST, () => console.log(`manendi api → http://${HOST}:${PORT} (db: ${MONGODB_DB}, cases: ${cases.mock ? 'mock' : cases.live ? 'live' : 'off'})`));
 
-// ponytail: Render's free plan sleeps after 15 idle minutes (~1 min cold start). Pinging our own public URL counts as
-// traffic, so the API stays warm for App Review and early users. Delete this once the service is on a paid instance.
-const { RENDER_EXTERNAL_URL } = process.env;
-if (RENDER_EXTERNAL_URL) setInterval(() => fetch(`${RENDER_EXTERNAL_URL}/health`).catch(() => {}), 10 * 60_000).unref();
+// ponytail: Render's free plan sleeps after 15 idle minutes (~1 min cold start). Pinging our own public URL every 5–10
+// minutes counts as traffic, so the API stays warm. KEEPALIVE_HOURS ("12-04", UTC) limits that to part of the day: a free
+// service awake 24/7 uses ~744 of the workspace's 750 free hours, and Render suspends every free service when they run
+// out. keepalive/ wakes it again when the window opens. Delete this once the service is on a paid instance.
+const { RENDER_EXTERNAL_URL, KEEPALIVE_HOURS } = process.env;
+const inWindow = (h, [a, b] = (KEEPALIVE_HOURS ?? '').split('-').map(Number)) =>
+  !KEEPALIVE_HOURS || (a <= b ? h >= a && h < b : h >= a || h < b);
+const warm = () => setTimeout(() => {
+  if (inWindow(new Date().getUTCHours())) fetch(`${RENDER_EXTERNAL_URL}/health`).catch(() => {});
+  warm();
+}, (5 + Math.random() * 5) * 60_000).unref();
+if (RENDER_EXTERNAL_URL) warm();

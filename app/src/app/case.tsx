@@ -3,7 +3,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert, View } from 'react-native';
 import { Sheet } from '@/components/sheet';
-import { Button, Card, Chip, Field, Icon, Row, T, Tap, toast } from '@/components/ui';
+import { Appear, Button, Card, Chip, Field, Icon, Row, T, Tap, toast } from '@/components/ui';
 import { api, ApiError, needsPlus, openLink, type Watch } from '@/lib/api';
 import { full, today } from '@/lib/dates';
 import { COMMON_STATUSES, FORMS, explain } from '@/lib/meta';
@@ -99,7 +99,7 @@ function CaseView({ receipt }: { receipt: string }) {
       </Row>
     }>
       <Row style={{ justifyContent: 'space-between' }}>
-        <T style={{ fontFamily: font.heavy, letterSpacing: 2, fontSize: 18 }}>{receipt}</T>
+        <T selectable accessibilityHint="Long-press to copy" style={{ fontFamily: font.heavy, letterSpacing: 2, fontSize: 18 }}>{receipt}</T>
         {w?.form && <T v="small" muted>{w.form}{FORMS[w.form] ? ` · ${FORMS[w.form]}` : ''}</T>}
       </Row>
       <Card style={{ gap: 8 }}>
@@ -122,7 +122,7 @@ function CaseView({ receipt }: { receipt: string }) {
         <View style={{ gap: 12 }}>
           <T v="label">History</T>
           {timeline.map((h, i) => (
-            <Row key={i} style={{ alignItems: 'flex-start', gap: 12 }}>
+            <Appear key={i} i={i}><Row style={{ alignItems: 'flex-start', gap: 12 }}>
               <View style={{ alignItems: 'center' }}>
                 <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: i ? c.line : c.accent, marginTop: 5 }} />
                 {i < timeline.length - 1 && <View style={{ width: 2, height: 34, backgroundColor: c.line, marginTop: 2 }} />}
@@ -131,7 +131,7 @@ function CaseView({ receipt }: { receipt: string }) {
                 <T v="strong" style={{ fontSize: 15 }}>{h.status}</T>
                 <T v="small" muted>{h.date ? full(h.date) : 'Earlier'} · {h.by}</T>
               </View>
-            </Row>
+            </Row></Appear>
           ))}
         </View>
       )}

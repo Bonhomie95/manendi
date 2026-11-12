@@ -1,0 +1,21 @@
+# Wakes the Manendi API if Render's free plan put it to sleep (keepalive/keepalive.mjs explains the 750-hour budget).
+# GitHub runs schedules late or skips them under load, often hours apart, so the API's own self-ping does the steady
+# work and this is the backup. Set repo variables KEEPALIVE_URLS / KEEPALIVE_HOURS to change targets or the window.
+# Disable it (Actions → keep-awake → Disable workflow) once the API is on a paid instance.
+name: keep-awake
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: keepalive
+      - run: node keepalive/keepalive.mjs --once
+        env:
+          KEEPALIVE_URLS: ${{ vars.KEEPALIVE_URLS }}
+          KEEPALIVE_HOURS: ${{ vars.KEEPALIVE_HOURS }}

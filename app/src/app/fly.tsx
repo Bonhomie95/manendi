@@ -1,8 +1,9 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { View } from 'react-native';
+import Animated, { ZoomIn } from 'react-native-reanimated';
 import { Sheet } from '@/components/sheet';
-import { Button, Card, Icon, Row, T, Tap } from '@/components/ui';
+import { Appear, Button, Card, Icon, Row, T, Tap } from '@/components/ui';
 import { full, today } from '@/lib/dates';
 import { packing } from '@/lib/meta';
 import { clocks } from '@/lib/rules';
@@ -24,11 +25,11 @@ export default function Fly() {
   return (
     <Sheet title="Before you fly" footer={<Button title="Log this trip" kind="accent" onPress={() => router.replace({ pathname: '/trip', params: { person: p.id } })} />}>
       <T muted>For {p.name} · {p.status}. What people in this status usually carry. Check your own documents and ask your DSO or HR if anything changed.</T>
-      {warnings.map((w) => (
-        <Card key={w.id} style={{ gap: 4, backgroundColor: tint(levelColor(c, w.level), 0.08), borderColor: tint(levelColor(c, w.level), 0.3) }}>
+      {warnings.map((w, i) => (
+        <Appear key={w.id} i={i}><Card style={{ gap: 4, backgroundColor: tint(levelColor(c, w.level), 0.08), borderColor: tint(levelColor(c, w.level), 0.3) }}>
           <Row><Icon ios="exclamationmark.triangle.fill" android="warning" size={16} color={levelColor(c, w.level)} /><T v="strong">{w.title}{w.date ? ` · ${full(w.date)}` : ''}</T></Row>
           <T v="small" muted>{w.note}</T>
-        </Card>
+        </Card></Appear>
       ))}
       <View style={{ gap: 4 }}>
         {list.map((item, i) => {
@@ -38,7 +39,7 @@ export default function Fly() {
               accessibilityRole="checkbox" accessibilityState={{ checked: on }} accessibilityLabel={item}>
               <Row style={{ gap: 12, paddingVertical: 10, alignItems: 'flex-start' }}>
                 <View style={{ width: 24, height: 24, borderRadius: 8, borderWidth: 2, borderColor: on ? c.accent : c.line, backgroundColor: on ? c.accent : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
-                  {on && <Icon ios="checkmark" android="check" size={13} color={c.onAccent} />}
+                  {on && <Animated.View entering={ZoomIn.springify().damping(12)}><Icon ios="checkmark" android="check" size={13} color={c.onAccent} /></Animated.View>}
                 </View>
                 <T style={{ flex: 1, textDecorationLine: on ? 'line-through' : 'none' }} muted={on}>{item}</T>
               </Row>

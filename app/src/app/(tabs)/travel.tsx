@@ -2,7 +2,7 @@ import { router } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { ClockCard } from '@/components/clock-card';
-import { Card, Chip, Icon, Row, Screen, T, Tap } from '@/components/ui';
+import { Appear, Card, Chip, CountUp, Icon, Row, Screen, T, Tap } from '@/components/ui';
 import { full, today } from '@/lib/dates';
 import { daysAbroad, totalAbroad } from '@/lib/rules';
 import { useStore } from '@/lib/store';
@@ -41,12 +41,12 @@ export default function Travel() {
       <Row style={{ gap: 12 }}>
         <Card style={{ flex: 1, gap: 2 }}>
           <T v="label">Abroad in {year}</T>
-          <T v="title">{thisYear}</T>
+          <CountUp v="title" value={thisYear} />
           <T v="small" muted>full days</T>
         </Card>
         <Card style={{ flex: 1, gap: 2 }}>
           <T v="label">Trips logged</T>
-          <T v="title">{p.trips.length}</T>
+          <CountUp v="title" value={p.trips.length} />
           <T v="small" muted>all time</T>
         </Card>
       </Row>
@@ -58,7 +58,7 @@ export default function Travel() {
         </Card>
       )}
 
-      {clocks.map((x) => <ClockCard key={x.id} clock={x} locked={x.plus && !plus} />)}
+      {clocks.map((x, i) => <Appear key={x.id} i={i}><ClockCard clock={x} locked={x.plus && !plus} /></Appear>)}
 
       <Tap onPress={() => router.push({ pathname: '/fly', params: { person: p.id } })} accessibilityLabel="Before you fly checklist">
         <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
@@ -72,19 +72,19 @@ export default function Travel() {
 
       <T v="label" style={{ marginTop: 6 }}>Trips</T>
       {!trips.length && <T muted>No trips yet. Log trips abroad to power the citizenship travel budget and the H-1B day count.</T>}
-      {trips.map((x) => (
-        <Tap key={x.id} onPress={() => router.push({ pathname: '/trip', params: { person: p.id, id: x.id } })} accessibilityLabel={`Trip ${x.place ?? ''}`}>
+      {trips.map((x, i) => (
+        <Appear key={x.id} i={i}><Tap onPress={() => router.push({ pathname: '/trip', params: { person: p.id, id: x.id } })} accessibilityLabel={`Trip ${x.place ?? ''}`}>
           <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
             <View style={{ flex: 1, gap: 2 }}>
               <T v="strong">{x.place || 'Trip abroad'}</T>
               <T v="small" muted>{full(x.depart)} → {x.return ? full(x.return) : 'still away'}</T>
             </View>
             <View style={{ alignItems: 'flex-end' }}>
-              <T v="h2">{daysAbroad(x, x.depart, x.return ?? t)}</T>
+              <CountUp v="h2" value={daysAbroad(x, x.depart, x.return ?? t)} />
               <T v="small" muted style={{ fontSize: 11 }}>days out</T>
             </View>
           </Card>
-        </Tap>
+        </Tap></Appear>
       ))}
       {trips.length > 0 && <T v="small" muted style={{ textAlign: 'center' }}>Departure and return days count as days in the US.</T>}
     </Screen>

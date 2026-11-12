@@ -22,18 +22,20 @@ test('mock statuses are stable per receipt and move weekly', () => {
   assert.match(mockStatus('IOE0912345678', now).detail, /Test data/);
 });
 
-test('live client: token once, retries on 401, maps 404', async () => {
+test('live client: token once, retries on 401, maps 404 and 503', async () => {
   const calls = [];
   let tokens = 0;
   const get = async (u, o) => {
     calls.push(u);
     if (u.endsWith('/oauth/accesstoken')) { tokens++; return { ok: true, json: async () => ({ access_token: `t${tokens}`, expires_in: '1799' }) }; }
     if (u.endsWith('EAC9999103402')) return o.headers.authorization === 'Bearer t1' && tokens === 1 ? { ok: false, status: 401 } : { ok: true, status: 200, json: async () => SAMPLE };
+    if (u.endsWith('EAC1111111111')) return { ok: false, status: 503 };
     return { ok: false, status: 404 };
   };
   const c = uscis({ id: 'id', secret: 's', get });
   assert.equal((await c.status('EAC9999103402')).status, 'Case Approval Was Affirmed');
   assert.equal(tokens, 2);
   await assert.rejects(c.status('EAC0000000000'), { status: 404 });
+  await assert.rejects(c.status('EAC1111111111'), { status: 503, message: /offline/ });
   await assert.rejects(uscis({}).status('EAC9999103402'), { status: 503 });
 });

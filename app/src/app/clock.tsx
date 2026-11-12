@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { headline } from '@/components/clock-card';
 import { Ring } from '@/components/ring';
 import { Sheet } from '@/components/sheet';
-import { Button, Card, Icon, Row, T } from '@/components/ui';
+import { Button, Card, CountUp, Icon, Row, T } from '@/components/ui';
 import { openLink } from '@/lib/api';
 import { full, today } from '@/lib/dates';
 import { clocks, inDays } from '@/lib/rules';
@@ -45,7 +45,7 @@ export default function ClockScreen() {
           <Ring size={230} progress={clock.progress ?? (clock.level === 'ok' ? 1 : 0.5)} color={col} track={c.line}>
             {big ? (
               <>
-                <T v="hero" color={col} style={{ fontSize: 70, lineHeight: 72 }}>{big.n}</T>
+                <CountUp v="hero" color={col} style={{ fontSize: 70, lineHeight: 72 }} value={big.value} />
                 <T v="small" muted>{big.unit}</T>
               </>
             ) : <Icon ios="info.circle.fill" android="info" size={48} color={col} />}

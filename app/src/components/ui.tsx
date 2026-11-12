@@ -1,16 +1,17 @@
 import * as Haptics from 'expo-haptics';
 import { SymbolView, type SymbolViewProps } from 'expo-symbols';
-import { Fragment, useEffect, useState, type ReactNode } from 'react';
+import { Fragment, useEffect, useRef, useState, type ComponentProps, type ReactNode } from 'react';
 import {
   ActivityIndicator, Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TextInput, View,
   type PressableProps, type StyleProp, type TextInputProps, type TextProps, type ViewStyle,
 } from 'react-native';
-import Animated, { FadeInUp, FadeOutUp } from 'react-native-reanimated';
+import Animated, { cubicBezier, FadeInDown, FadeInUp, FadeOut, FadeOutUp, LinearTransition, useReducedMotion } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FullWindowOverlay } from 'react-native-screens';
 import { font, tint, useColors } from '@/lib/theme';
 
 const ios = Platform.OS === 'ios';
+const springy = cubicBezier(0.34, 1.56, 0.64, 1); // overshoots a touch, then settles
 
 // ---------- type ----------
 const variants = {
@@ -47,11 +48,53 @@ export function Tap({ style, onPress, haptic = true, disabled, children, ...p }:
       onPress={(e) => { if (haptic) Haptics.selectionAsync(); onPress?.(e); }}
       style={[style, {
         transform: [{ scale: down ? 0.96 : 1 }], opacity: disabled ? 0.45 : (StyleSheet.flatten(style)?.opacity ?? 1),
-        transitionProperty: ['transform', 'opacity', 'backgroundColor', 'borderColor'], transitionDuration: 160,
+        transitionProperty: ['transform', 'opacity', 'backgroundColor', 'borderColor'], transitionDuration: [260, 160, 200, 200],
+        transitionTimingFunction: [springy, 'ease', 'ease', 'ease'],
       }]}>
       {children}
     </AnimatedPressable>
   );
+}
+
+// ---------- motion ----------
+/** List items rise in one after another; when one is added or removed, the rest glide into place. */
+export function Appear({ i = 0, children, style }: { i?: number; children: ReactNode; style?: StyleProp<ViewStyle> }) {
+  return (
+    <Animated.View style={style} entering={FadeInDown.delay(Math.min(i, 8) * 55).springify().damping(17)}
+      exiting={FadeOut.duration(160)} layout={LinearTransition.springify().damping(18)}>
+      {children}
+    </Animated.View>
+  );
+}
+
+/** A slow bob for icons that would otherwise sit dead still. */
+export function Float({ children, px = 4, ms = 2600 }: { children: ReactNode; px?: number; ms?: number }) {
+  return (
+    <Animated.View style={{
+      animationName: { from: { transform: [{ translateY: -px }] }, to: { transform: [{ translateY: px }] } },
+      animationDuration: ms, animationIterationCount: 'infinite', animationDirection: 'alternate', animationTimingFunction: 'ease-in-out',
+    }}>{children}</Animated.View>
+  );
+}
+
+/** Rolls up to `value` when it first shows and whenever it changes. With Reduce Motion on, it just shows the value. */
+export function CountUp({ value, ms = 900, ...p }: ComponentProps<typeof T> & { value: number; ms?: number }) {
+  const reduce = useReducedMotion();
+  const [n, setN] = useState(0);
+  const shown = useRef(0);
+  useEffect(() => {
+    if (reduce) return;
+    const from = shown.current;
+    const t0 = Date.now();
+    let raf = requestAnimationFrame(function step() {
+      const k = Math.min(1, (Date.now() - t0) / ms);
+      shown.current = Math.round(from + (value - from) * (1 - (1 - k) ** 3));
+      setN(shown.current);
+      if (k < 1) raf = requestAnimationFrame(step);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [value, ms, reduce]);
+  return <T {...p}>{(reduce ? value : n).toLocaleString()}</T>;
 }
 
 export function Button({ title, onPress, kind = 'primary', loading, disabled, icon, style }: {

@@ -3,7 +3,7 @@ import * as LocalAuthentication from 'expo-local-authentication';
 import { Redirect, router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Platform, View } from 'react-native';
-import { Button, Card, Icon, Row, Screen, T, Tap } from '@/components/ui';
+import { Appear, Button, Card, Float, Icon, Row, Screen, T, Tap } from '@/components/ui';
 import { full } from '@/lib/dates';
 import { DOC_KINDS, LOCK } from '@/lib/meta';
 import { useStore, vaultFile } from '@/lib/store';
@@ -42,31 +42,31 @@ export default function Vault() {
 
       {!open ? (
         <Card style={{ alignItems: 'center', gap: 12, paddingVertical: 34, marginTop: 10 }}>
-          <Icon ios="faceid" android="fingerprint" size={40} color={c.accent} />
+          <Float><Icon ios="faceid" android="fingerprint" size={40} color={c.accent} /></Float>
           <T v="h2">{failed ? 'Still locked' : 'Locked'}</T>
           <Button title="Unlock" kind="accent" onPress={unlock} style={{ alignSelf: 'stretch' }} />
         </Card>
       ) : !data.docs.length ? (
         <Card style={{ alignItems: 'center', gap: 10, paddingVertical: 30, marginTop: 10 }}>
-          <Icon ios="doc.viewfinder" android="document_scanner" size={36} color={c.accent} />
+          <Float><Icon ios="doc.viewfinder" android="document_scanner" size={36} color={c.accent} /></Float>
           <T v="h2">Nothing here yet</T>
           <T muted style={{ textAlign: 'center' }}>Snap your passport, I-797s, EAD or green card so they’re there at the airport, the DMV or HR.</T>
           <Button title="Add a document" kind="accent" onPress={() => router.push('/doc')} style={{ alignSelf: 'stretch' }} />
         </Card>
       ) : (
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
-          {data.docs.map((d) => {
+          {data.docs.map((d, i) => {
             const kind = DOC_KINDS.find((k) => k[0] === d.kind);
             const who = data.people.find((p) => p.id === d.personId)?.name;
             return (
-              <Tap key={d.id} onPress={() => router.push({ pathname: '/doc', params: { id: d.id } })} accessibilityLabel={d.title} style={{ width: '47%' }}>
+              <Appear key={d.id} i={i} style={{ width: '47%' }}><Tap onPress={() => router.push({ pathname: '/doc', params: { id: d.id } })} accessibilityLabel={d.title}>
                 <Card style={{ padding: 10, gap: 8 }}>
                   {d.files[0] ? <Image source={{ uri: vaultFile(d.files[0]).uri }} style={{ height: 110, borderRadius: 16 }} contentFit="cover" />
                     : <View style={{ height: 110, borderRadius: 16, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center' }}><Icon ios={kind?.[2] ?? 'doc'} android={kind?.[3] ?? 'description'} size={28} color={c.muted} /></View>}
                   <T v="strong" numberOfLines={1}>{d.title}</T>
                   <T v="small" muted numberOfLines={1}>{[who, d.expires && `exp. ${full(d.expires)}`].filter(Boolean).join(' · ')}</T>
                 </Card>
-              </Tap>
+              </Tap></Appear>
             );
           })}
         </View>

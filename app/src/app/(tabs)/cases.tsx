@@ -1,7 +1,6 @@
 import { router } from 'expo-router';
 import { View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { Card, Icon, Row, Screen, T, Tap } from '@/components/ui';
+import { Appear, Card, Float, Icon, Row, Screen, T, Tap } from '@/components/ui';
 import { full } from '@/lib/dates';
 import { FORMS, explain } from '@/lib/meta';
 import { useStore } from '@/lib/store';
@@ -36,7 +35,7 @@ export default function Cases() {
 
       {items.length === 0 ? (
         <Card style={{ alignItems: 'center', gap: 10, paddingVertical: 30 }}>
-          <Icon ios="tray" android="inbox" size={34} color={c.accent} />
+          <Float><Icon ios="tray" android="inbox" size={34} color={c.accent} /></Float>
           <T v="h2">No cases yet</T>
           <T muted style={{ textAlign: 'center' }}>Add the receipt number from any USCIS notice. It looks like IOE0912345678.</T>
           <Tap onPress={() => router.push('/case')}><T v="strong" color={c.accent}>Add a receipt number</T></Tap>
@@ -45,7 +44,7 @@ export default function Cases() {
         const ex = explain(status);
         const rfe = /evidence was sent|denied/i.test(status ?? '');
         return (
-          <Animated.View key={k.receipt} entering={FadeInDown.delay(i * 60)}>
+          <Appear key={k.receipt} i={i}>
             <Tap onPress={() => router.push({ pathname: '/case', params: { receipt: k.receipt } })} accessibilityLabel={`${k.label || k.receipt}, ${status ?? 'no status yet'}`}>
               <Card style={{ gap: 8 }}>
                 <Row style={{ justifyContent: 'space-between' }}>
@@ -65,7 +64,7 @@ export default function Cases() {
                 {date && <T v="small" muted style={{ fontSize: 11.5 }}>Updated {full(date)}</T>}
               </Card>
             </Tap>
-          </Animated.View>
+          </Appear>
         );
       })}
     </Screen>

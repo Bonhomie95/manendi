@@ -5,6 +5,7 @@ Every date that keeps you in status, counted. A local-first immigration companio
 ```
 app/     Expo (SDK 58) app — Expo Router, Reanimated 4, native tabs. Status data lives on the phone.
 server/  Node API (stdlib http + MongoDB) — USCIS case watch, policy radar, Manendi Plus.
+keepalive/  Zero-dependency pinger that keeps the free Render API awake (5–10 min, random).
 ```
 
 ## Run
@@ -22,6 +23,7 @@ Point devices/production at the API with `EXPO_PUBLIC_API_URL`.
 ```bash
 cd app && npm test && npm run typecheck && npx expo lint
 cd server && npm test && npm run smoke      # smoke needs the API running
+node --test keepalive/keepalive.test.mjs
 ```
 
 ## How it works
@@ -40,6 +42,19 @@ cd server && npm test && npm run smoke      # smoke needs the API running
   cases light up on their own once production keys are set.
 - **Radar** — the Federal Register API (rules, proposed rules, notices, presidential documents), tagged by
   visa type and cached hourly.
+- **Official pages** — USCIS, State, CBP and Federal Register links open over the app (Safari View Controller /
+  a Chrome Custom Tab in Manendi's own task) and close back to where you were.
+- **Motion** — every launch deals one of 13 logo choreographies from a shuffled deck (none repeats until all have
+  played), with 7 letter styles, an occasional motto seal, 8 palettes, 5 backdrops and 8 taglines. Lists glide in
+  and re-flow, numbers roll, and the Status hero is a swipeable deck of your most pressing dates.
+
+## Render's free plan
+
+A free instance sleeps after 15 idle minutes and takes about a minute to wake. The API pings itself every 5–10
+minutes, and `keepalive/` (run anywhere, or by the `keep-awake` GitHub Action) wakes it if it ever falls asleep.
+One free service awake 24/7 uses ~744 of the workspace's 750 free hours a month, and Render suspends **every**
+free service in the workspace when they run out. Set `KEEPALIVE_HOURS` (UTC, e.g. `12-04`) on the service and as a
+repo variable to share the hours with another app, or move the live one to a paid instance (no sleep, no budget).
 
 ## Brand
 

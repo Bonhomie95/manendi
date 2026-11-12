@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { Button, Card, Chip, Icon, Row, Screen, T, Tap } from '@/components/ui';
+import { Appear, Button, Card, Chip, Icon, Row, Screen, T, Tap } from '@/components/ui';
 import { api, openLink, type RadarItem } from '@/lib/api';
 import { full, today } from '@/lib/dates';
 import { useLoad } from '@/lib/load';
@@ -33,12 +32,12 @@ export default function Radar() {
       </Row>
 
       {queue.map((p) => (
-        <Card key={p.id} style={{ gap: 8, backgroundColor: tint(c.accent, 0.08), borderColor: tint(c.accent, 0.3) }}>
+        <Appear key={p.id}><Card style={{ gap: 8, backgroundColor: tint(c.accent, 0.08), borderColor: tint(c.accent, 0.3) }}>
           <Row><Icon ios="person.badge.clock.fill" android="pending_actions" size={18} color={c.accent} /><T v="label" color={c.accent}>{p.name}’s green card queue</T></Row>
           <T v="strong">{[p.category, p.chargeability].filter(Boolean).join(' · ') || 'Priority date'} · {full(p.dates.priorityDate!)}</T>
           <T v="small" muted>Waiting {span(daysBetween(p.dates.priorityDate!, today()))}. Compare with the Final Action Dates in this month’s bulletin.</T>
           <Button title="Open the Visa Bulletin" kind="soft" style={{ height: 44 }} onPress={() => openLink(SOURCES.bulletin)} />
-        </Card>
+        </Card></Appear>
       ))}
 
       {!feed && loading && <ActivityIndicator style={{ marginTop: 30 }} color={c.muted} />}
@@ -53,7 +52,7 @@ export default function Radar() {
       {items.map((i, n) => {
         const closes = i.commentsClose && i.commentsClose >= today() ? i.commentsClose : null;
         return (
-          <Animated.View key={i.id} entering={FadeInDown.delay(Math.min(n, 8) * 50)}>
+          <Appear key={i.id} i={n + 1}>
             <Tap onPress={() => openLink(i.url)} accessibilityLabel={`${KIND[i.type] ?? i.type}: ${i.title}`}>
               <Card style={{ gap: 8 }}>
                 <Row style={{ justifyContent: 'space-between' }}>
@@ -76,7 +75,7 @@ export default function Radar() {
                 )}
               </Card>
             </Tap>
-          </Animated.View>
+          </Appear>
         );
       })}
       {feed && <T v="small" muted style={{ textAlign: 'center' }}>Source: federalregister.gov. Summaries are the agencies’ own words.</T>}

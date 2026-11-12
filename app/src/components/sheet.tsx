@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import type { ReactNode } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon, Row, T, Tap } from '@/components/ui';
 import { useColors } from '@/lib/theme';
@@ -18,7 +19,9 @@ export function Sheet({ title, children, footer }: { title: string; children: Re
           <Icon ios="xmark" android="close" size={15} />
         </Tap>
       </Row>
-      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ padding: 22, gap: 18 }}>{children}</ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ padding: 22 }}>
+        <Animated.View entering={FadeInDown.delay(60).springify().damping(18)} style={{ gap: 18 }}>{children}</Animated.View>
+      </ScrollView>
       <View style={{ paddingHorizontal: 22, paddingTop: 10, paddingBottom: insets.bottom + 14 }}>{footer}</View>
     </KeyboardAvoidingView>
   );

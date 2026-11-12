@@ -72,6 +72,8 @@ export function uscis({ base = 'https://api-int.uscis.gov', id, secret, mock = f
         if (r.status === 401) { token = null; continue; }
         if (r.status === 400 || r.status === 404) throw fail(404, 'USCIS doesn’t recognize that receipt number');
         if (r.status === 429) throw fail(429, 'USCIS is busy — try again in a minute');
+        // Maintenance windows; the sandbox only runs weekdays 7am–8pm Eastern.
+        if (r.status === 503) throw fail(503, 'USCIS case status is offline for now. Manendi will check again soon.');
         if (!r.ok) throw fail(502, 'Couldn’t reach USCIS right now');
         const c = normalize(await r.json());
         if (!c) throw fail(404, 'USCIS doesn’t recognize that receipt number');
