@@ -103,6 +103,16 @@ def shots(raw_dir):
             out = OUT / platform / f'{i:02d}-{name}.jpg'
             frame(raw, size, glow, head, sub, head_px, sub_px, margin, shot_w, radius).save(out, quality=92)
             print('wrote', out.relative_to(OUT.parent))
+            if platform == 'ios':
+                small(out)
+
+
+def small(path):
+    """App Store's required slot is the 6.1"/6.3" iPhone (1206x2622). The 6.9" art has the same aspect within 0.1%."""
+    (OUT / 'ios-6.3').mkdir(parents=True, exist_ok=True)
+    out = OUT / 'ios-6.3' / Path(path).name
+    Image.open(path).convert('RGB').resize((1206, 2622), Image.LANCZOS).save(out, quality=92)
+    print('wrote', out.relative_to(OUT.parent))
 
 
 def play_graphics():

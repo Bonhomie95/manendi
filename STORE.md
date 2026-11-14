@@ -98,7 +98,8 @@ npx eas-cli@latest submit -p android --profile production
 
 ## Store art
 Ready in `store/` (regenerate: `cd app && python3 scripts/store-art.py <raw-shots-dir>`):
-- `store/ios/01–06-*.jpg`: App Store 6.9" (1320×2868). The app is iPhone-only, so no iPad set is needed.
+- `store/ios/01–06-*.jpg`: App Store 6.9" (1320×2868, optional slot) and `store/ios-6.3/` (1206×2622, the required
+  6.1"/6.3" slot). The app is iPhone-only, so no iPad set is needed.
 - `store/android/01–06-*.jpg`: Play phone (1080×1920), `store/play-feature-graphic.png` (1024×500),
   `store/play-icon-512.png`.
 - Order: Status · Family · clock detail · Travel · Cases · Radar. Raw shots come from a demo household (Ada H-1B,
