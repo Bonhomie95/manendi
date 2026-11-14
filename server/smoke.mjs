@@ -29,6 +29,8 @@ const w = await call('/watch', { body: { receipt: 'ioe 0912345678', label: 'Ada 
 ok('watch a case', w.status === 200 && w.data.receipt === 'IOE0912345678');
 if (health.data.live) ok('live status comes back', !!w.data.status);
 ok('second case needs Plus → 402', (await call('/watch', { body: { receipt: 'EAC9999103402' } })).status === 402);
+ok('wrong review code → 400', (await call('/billing/code', { body: { code: 'nope' } })).status === 400);
+if (process.env.REVIEW_CODE) ok('review code → Plus', (await call('/billing/code', { body: { code: process.env.REVIEW_CODE.toLowerCase() } })).data.plus === true);
 if (dev.data.testMode) {
   const plan = await call('/billing/dev-grant', { body: { period: 'annual' } });
   ok('test purchase → Plus', plan.data.plus === true);

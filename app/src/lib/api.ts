@@ -54,7 +54,7 @@ export async function api<T = { ok: true }>(path: string, opts: { method?: strin
   return data as T;
 }
 
-export type PlanView = { plus: boolean; source: 'store' | 'dev' | null; expiresAt: string | null; testMode?: boolean; account?: Account | null };
+export type PlanView = { plus: boolean; source: 'store' | 'dev' | 'code' | null; expiresAt: string | null; testMode?: boolean; account?: Account | null };
 /** The optional sign-in, as the API reports it. */
 export type Account = { provider: 'google' | 'apple'; email: string | null; name: string | null; backupAt: string | null };
 export type Watch = {

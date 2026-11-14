@@ -6,7 +6,7 @@ import { Linking, Platform, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, FadeInDown, interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, ZoomIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Mark } from '@/components/brand';
-import { Button, Icon, Row, T, Tap, toast } from '@/components/ui';
+import { Button, Field, Icon, Row, T, Tap, toast } from '@/components/ui';
 import { api, openPage, type PlanView } from '@/lib/api';
 import { buy, getOffers, manageUrl, restore, testMode, type Offer } from '@/lib/billing';
 import { full } from '@/lib/dates';
@@ -35,7 +35,8 @@ export default function Plan() {
   const { plus, data, live, setPlan, sync } = useStore();
   const [offers, setOffers] = useState<Offer[]>([]);
   const [period, setPeriod] = useState<Offer['period']>('annual');
-  const [busy, setBusy] = useState<'buy' | 'restore' | null>(null);
+  const [busy, setBusy] = useState<'buy' | 'restore' | 'code' | null>(null);
+  const [code, setCode] = useState<string | null>(null); // null = the code field is closed
   const [done, setDone] = useState(false);
   useEffect(() => { Promise.all([getOffers(), sync()]).then(([o]) => setOffers(o)); }, [sync]);
   // Android: a dark strip fades in behind the status bar once the hero scrolls away, so its light icons stay readable.
@@ -48,7 +49,7 @@ export default function Plan() {
   const monthly = offers.find((o) => o.period === 'monthly');
   const save = annual?.amount && monthly?.amount ? Math.round((1 - annual.amount / (monthly.amount * 12)) * 100) : null;
 
-  async function run(kind: 'buy' | 'restore', fn: () => Promise<PlanView | null>, ok: string) {
+  async function run(kind: 'buy' | 'restore' | 'code', fn: () => Promise<PlanView | null>, ok: string) {
     setBusy(kind);
     try {
       const p = await fn();
@@ -159,6 +160,18 @@ export default function Plan() {
           <Tap haptic={false} disabled={!!busy} onPress={() => run('restore', restore, 'No purchases to restore.')} style={{ alignSelf: 'center' }}>
             <T v="small" color={c.text}>{busy === 'restore' ? 'Restoring…' : 'Restore purchases'}</T>
           </Tap>
+          {/* Play reviewers can't buy, so Play Console › Sign in details gives them a code. Android only: Apple bans unlock codes (3.1.1). */}
+          {Platform.OS === 'android' && !plus && (code === null ? (
+            <Tap haptic={false} onPress={() => setCode('')} style={{ alignSelf: 'center' }}>
+              <T v="small" muted>Have a code?</T>
+            </Tap>
+          ) : (
+            <Animated.View entering={FadeInDown} style={{ gap: 10 }}>
+              <Field label="Code" value={code} onChangeText={setCode} autoCapitalize="characters" autoCorrect={false} autoFocus />
+              <Button title="Unlock Plus" kind="soft" style={{ height: 46 }} loading={busy === 'code'} disabled={!code.trim() || !!busy}
+                onPress={() => run('code', () => api<PlanView>('/billing/code', { body: { code } }), 'That code doesn’t work.')} />
+            </Animated.View>
+          ))}
           <T v="small" muted style={{ textAlign: 'center', fontSize: 11, lineHeight: 16 }}>
             Billed to your {store}. Auto-renews at the price above until cancelled. Cancel anytime at least 24 hours before renewal in your {store} settings.{' '}
             <Text style={{ textDecorationLine: 'underline' }} onPress={() => openPage('terms')}>Terms</Text>

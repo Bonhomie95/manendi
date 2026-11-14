@@ -3,7 +3,7 @@
 export const ENTITLEMENT = 'plus';
 export const LIMITS = { free: { watches: 1 }, plus: { watches: 25 } };
 
-/** plan: { source: 'store' | 'dev', expiresAt: Date } */
+/** plan: { source: 'store' | 'dev' | 'code', expiresAt: Date } */
 export const isPlus = (device, now = Date.now()) => !!device?.plan && +new Date(device.plan.expiresAt) > now;
 
 export const planView = (device, now = Date.now()) => ({

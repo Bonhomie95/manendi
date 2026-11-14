@@ -20,6 +20,9 @@ if (prod && missing.length) throw new Error(`Set ${missing.join(', ')} — produ
 if (prod && process.env.USCIS_MOCK === '1') throw new Error('USCIS_MOCK serves fake case statuses — never in production');
 // Test purchases (no real charge) are on outside production unless BILLING_DEV=false.
 const BILLING_DEV = process.env.BILLING_DEV ? process.env.BILLING_DEV === 'true' : !prod;
+// Play reviewers can't buy (Play Console › Sign in details), so a review code unlocks Plus for 30 days. Only the Android
+// app shows the code field: Apple bans unlock codes (guideline 3.1.1), and Apple's reviewers buy in the sandbox.
+const REVIEW_CODE = process.env.REVIEW_CODE?.trim().toUpperCase();
 // USCIS issues sandbox keys first and production keys only after a demo (booked into 2027). The sandbox only knows test
 // cases, so in production sandbox keys never answer users (they get manual mode). Instead the API drills the sandbox
 // hourly, one real test case and one bad receipt, because USCIS wants 5+ consecutive days of 200 and 4xx traffic before
@@ -191,6 +194,13 @@ on('POST', '/billing/dev-grant', async ({ body, device }) => {
   if (!BILLING_DEV) throw fail(404, 'Test purchases are off on this server — use a store build to buy.');
   if (body.period === 'off') await devices.updateOne({ _id: device._id }, { $unset: { plan: '' } });
   else await devices.updateOne({ _id: device._id }, { $set: { plan: { source: 'dev', expiresAt: new Date(Date.now() + (body.period === 'monthly' ? 31 : 366) * 864e5) } } });
+  return planView(await devices.findOne({ _id: device._id }));
+});
+
+on('POST', '/billing/code', async ({ body, device }) => {
+  await guard(`code:${device._id}`, 5);
+  if (!REVIEW_CODE || sha(String(body.code ?? '').trim().toUpperCase()) !== sha(REVIEW_CODE)) throw fail(400, 'That code doesn’t work.');
+  await devices.updateOne({ _id: device._id }, { $set: { plan: { source: 'code', expiresAt: new Date(Date.now() + 30 * 864e5) } } });
   return planView(await devices.findOne({ _id: device._id }));
 });
 

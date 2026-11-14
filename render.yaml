@@ -25,6 +25,8 @@ services:
         value: "14-01" # UTC, 9am–8pm Eastern; Ambodo uses the same window so both fit the 750 free hours
       - key: REVENUECAT_SECRET_KEY
         sync: false
+      - key: REVIEW_CODE
+        sync: false # the code in Play Console › Sign in details (Play reviewers can't buy)
       - key: SUPPORT_EMAIL
         sync: false
       - key: LEGAL_NAME
