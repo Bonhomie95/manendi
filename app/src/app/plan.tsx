@@ -67,6 +67,8 @@ export default function Plan() {
     }
   }
 
+  const unlock = () => { if (code?.trim() && !busy) run('code', () => api<PlanView>('/billing/code', { body: { code } }), 'That code doesn’t work.'); };
+
   const lightBar = Platform.OS === 'android' ? <StatusBar style="light" /> : null;
   if (done) {
     return (
@@ -81,7 +83,7 @@ export default function Plan() {
 
   return (
     <View style={{ flex: 1, backgroundColor: c.bg }}>
-      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}>
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16} keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}>
         {lightBar}
         <View style={[st.hero, { paddingTop: 22 + (Platform.OS === 'android' ? insets.top : 0), backgroundImage: `linear-gradient(160deg, ${brand.ink2}, ${brand.ink})` }]}>
           <View style={[st.glow, { backgroundImage: `radial-gradient(circle, ${tint(brand.gold, 0.35)} 0%, ${tint(brand.gold, 0)} 70%)` }]} />
@@ -167,9 +169,8 @@ export default function Plan() {
             </Tap>
           ) : (
             <Animated.View entering={FadeInDown} style={{ gap: 10 }}>
-              <Field label="Code" value={code} onChangeText={setCode} autoCapitalize="characters" autoCorrect={false} autoFocus />
-              <Button title="Unlock Plus" kind="soft" style={{ height: 46 }} loading={busy === 'code'} disabled={!code.trim() || !!busy}
-                onPress={() => run('code', () => api<PlanView>('/billing/code', { body: { code } }), 'That code doesn’t work.')} />
+              <Field label="Code" value={code} onChangeText={setCode} autoCapitalize="characters" autoCorrect={false} autoFocus returnKeyType="go" onSubmitEditing={unlock} />
+              <Button title="Unlock Plus" kind="soft" style={{ height: 46 }} loading={busy === 'code'} disabled={!code.trim() || !!busy} onPress={unlock} />
             </Animated.View>
           ))}
           <T v="small" muted style={{ textAlign: 'center', fontSize: 11, lineHeight: 16 }}>
