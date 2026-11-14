@@ -175,9 +175,14 @@ reviews usually take up to 7 days.
 **Optional, for testing on your phone:** Internal testing → Testers → create an email list with your Google account
 → roll out the 1.0.0 (5) draft → open the tester link.
 
-### Next update: 1.0.1 (ready in `main`, ships once 1.0 is approved)
-Neither store takes a new version while 1.0 is in review, so this waits for each store's approval. Then:
-`eas build -p ios --profile production`, `eas build -p android --profile production`, and `eas submit` for both.
+### Next update: 1.0.1 (built, ships once 1.0 is approved)
+Built on EAS on 2026-11-14 from `813c5d1`:
+- iOS 1.0.1 (build 12): `64098696-6d2b-4b86-9f87-5286d776739a`
+- Android 1.0.1 (build 6): `bb6f0b7c-c069-4f68-8d30-819742cb75e6`
+
+Neither store takes a new version while 1.0 is in review. Once a store approves 1.0, run `eas submit -p ios --id
+64098696-6d2b-4b86-9f87-5286d776739a` or `eas submit -p android --id bb6f0b7c-c069-4f68-8d30-819742cb75e6`, then do
+that store's steps below.
 - **What's in it:**
   - Right after setup, the app offers a one-time "Back up your household?" sheet, with the Apple and Google buttons
     and "Not now" (`app/src/app/backup.tsx`). Already signed in means no offer.
