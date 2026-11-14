@@ -93,7 +93,13 @@ it, update Render and that field together. iOS never shows the field, because Ap
   account) and Device ID (random device key), Purchases › Purchase History. No tracking. Nothing used for ads.
 
 ## Google Play listing
-- **Short description:** Every date that keeps you in status: I-94, OPT, EAD, H-1B, green card, citizenship.
+- **Short description:** Every date that keeps you in status: I-94, OPT, EAD, H-1B, green card and more.
+- **Full description:** the App Store description with three Android changes:
+  - Google sign-in only.
+  - "Up to 25 watched cases", because the server caps Plus at 25.
+  - A vault "behind your screen lock".
+  It ends with a not-affiliated line and the official sources (uscis.gov, egov.uscis.gov, federalregister.gov,
+  travel.state.gov, i94.cbp.dhs.gov), which Play's policy requires for apps that show government information.
 - **Data safety:** collects Personal info › Name, Email address and Other info (the household backup: statuses,
   dates, trips) — optional, only when someone signs in, for Account management and App functionality; Device or
   other IDs (random key); App activity › Other user-generated content (receipt numbers); Financial info › Purchase
@@ -140,8 +146,8 @@ Those steps are marked **you**.
 
 **Sign-in (Google Cloud project `manendi`)**: consent screen "Manendi" is In production (basic scopes, no
 verification needed); OAuth clients: Web (`430359710145-8i6h…`), iOS (`…-liuagfib…`), Android for the local debug
-key (`5E:8F:…:F6:25`) and the EAS upload key (`A7:49:…:C3:2E`). Still needed: an Android client for Play's app
-signing key once the first upload exists.
+key (`5E:8F:…:F6:25`), the EAS upload key (`A7:49:…:C3:2E`) and Play's app signing key (`15:5A:…:FC:43`,
+added 2026-11-14).
 
 **Google Play: every App content declaration is done (2026-11-14).** App `4974080454506156944` is on an
 organization account, so the 12-tester rule doesn't apply. The store listing text is saved, it targets 178 countries,
@@ -153,18 +159,18 @@ and the answers are:
   everything else No. That gives ESRB Everyone, PEGI 3 and IARC 3+ (Brazil 14+).
 - Data safety: the answers above. Accounts are OAuth, and both deletion links go to https://manendi.onrender.com/erase.
 
-Build 5 (versionCode 5, with the review code) is the one to ship, not build 3.
+Done through the API on 2026-11-14:
+- **Build 5** (versionCode 5) uploaded. A draft release "1.0.0 (5)" sits on internal testing and on production.
+- **Listing:** text, icon, feature graphic and 6 phone screenshots.
+- **Subscriptions** `manendi.plus.monthly:monthly` ($9.99) and `manendi.plus.annual:annual` ($79.99) are active in
+  174 regions. Each has a 3-day grace period and is backwards compatible with older billing libraries.
+- **Sign-in:** Android OAuth client "Manendi Android (Play app signing)" added, for Play's signing SHA-1
+  `15:5A:22:…:FC:43`.
+- **Production release** is saved in Publishing overview, ready to send for review.
 
-**You, in Play Console:**
-- Users and permissions → `play-console-api-access@project-4cd79ecf-00bc-44e1-a78.iam.gserviceaccount.com` → App
-  permissions → Add app → Manendi → tick Admin (all permissions) → Apply → Save. This lets Claude upload builds, graphics and
-  subscriptions through the API (`eas submit` and RevenueCat use it too).
+**You:**
 - App content → Sign in details → edit "Manendi Plus review code" → paste the code into Password → Save.
-
-**Then Claude:**
-1. Build 5 to internal testing, so you can test on your phone.
-2. The graphics: `store/play-icon-512.png`, `store/play-feature-graphic.png` and `store/android/01–06`.
-3. Subscriptions `manendi.plus.monthly` (base plan `monthly`, $9.99) and `manendi.plus.annual` (base plan `annual`,
-   $79.99).
-4. The Android OAuth client for Play's app-signing SHA-1.
-5. A production release → Send for review.
+  Google's reviewer needs it.
+- Optional, for testing on your phone: Internal testing → Testers → create an email list with your Google account
+  → roll out the 1.0.0 (5) draft → open the tester link.
+- Then Claude: Publishing overview → Send changes for review.
