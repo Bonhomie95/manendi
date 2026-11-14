@@ -168,9 +168,9 @@ Done through the API on 2026-11-14:
   `15:5A:22:…:FC:43`.
 - **Production release** is saved in Publishing overview, ready to send for review.
 
-**You:**
-- App content → Sign in details → edit "Manendi Plus review code" → paste the code into Password → Save.
-  Google's reviewer needs it.
-- Optional, for testing on your phone: Internal testing → Testers → create an email list with your Google account
-  → roll out the 1.0.0 (5) draft → open the tester link.
-- Then Claude: Publishing overview → Send changes for review.
+**Sent for review on 2026-11-14:** the production release, the listing and every declaration (12 changes), with the
+review code in Sign in details. Managed publishing is off, so the app goes live by itself once approved; Google says
+reviews usually take up to 7 days.
+
+**Optional, for testing on your phone:** Internal testing → Testers → create an email list with your Google account
+→ roll out the 1.0.0 (5) draft → open the tester link.
