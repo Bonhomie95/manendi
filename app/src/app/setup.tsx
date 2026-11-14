@@ -14,7 +14,7 @@ import { useColors } from '@/lib/theme';
 export default function Setup() {
   const c = useColors();
   const insets = useSafeAreaInsets();
-  const { savePerson } = useStore();
+  const { data, savePerson } = useStore();
   const [step, setStep] = useState(0);
   const [name, setName] = useState('');
   const [status, setStatus] = useState<Status | null>(null);
@@ -33,6 +33,9 @@ export default function Setup() {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     router.dismissAll();
     router.replace('/(tabs)');
+    // Value first, then the ask: the new clock shows for a beat before the backup offer. Already signed in (a restore
+    // that found no backup) means it's backing up, so no offer.
+    if (!data.account) setTimeout(() => router.push('/backup'), 900);
   }
 
   const steps = [

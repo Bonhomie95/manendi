@@ -18,8 +18,8 @@ const store = Platform.OS === 'ios' ? 'Apple Account' : 'Google Play account';
 
 type Perk = [string, string, string, string];
 // Change alerts need live USCIS status (production keys, after USCIS's demo): never promise them before then.
-const CASES: Perk = ['tray.full.fill', 'inbox', 'Every case, in one place', 'Unlimited receipt numbers, every step explained in plain English.'];
-const WATCHED: Perk = ['tray.full.fill', 'inbox', 'Every case, watched', 'Unlimited receipt numbers, and an alert the moment one changes.'];
+const CASES: Perk = ['tray.full.fill', 'inbox', 'Every case, in one place', 'Up to 25 receipt numbers, every step explained in plain English.'];
+const WATCHED: Perk = ['tray.full.fill', 'inbox', 'Every case, watched', 'Up to 25 receipt numbers, and an alert the moment one changes.'];
 const PERKS: Perk[] = [
   ['person.2.fill', 'group', 'Your whole household', 'Spouse, kids, parents: every visa in the house, each with its own clocks.'],
   CASES,

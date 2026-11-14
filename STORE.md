@@ -83,7 +83,7 @@ it, update Render and that field together. iOS never shows the field, because Ap
   • Private by design: no account needed. Sign in with Apple or Google only if you want a backup for a new phone.
     Document photos never leave yours.
 
-  Manendi Plus adds your whole household, unlimited cases, the citizenship travel budget,
+  Manendi Plus adds your whole household, up to 25 watched cases, the citizenship travel budget,
   the H-1B limit and green card queue, a Face ID document vault, and a status report PDF.
 
   Manendi gives information, not legal advice. Every clock links its official source.
@@ -174,3 +174,18 @@ reviews usually take up to 7 days.
 
 **Optional, for testing on your phone:** Internal testing → Testers → create an email list with your Google account
 → roll out the 1.0.0 (5) draft → open the tester link.
+
+### Next update: 1.0.1 (ready in `main`, ships once 1.0 is approved)
+Neither store takes a new version while 1.0 is in review, so this waits for each store's approval. Then:
+`eas build -p ios --profile production`, `eas build -p android --profile production`, and `eas submit` for both.
+- **What's in it:**
+  - Right after setup, the app offers a one-time "Back up your household?" sheet, with the Apple and Google buttons
+    and "Not now" (`app/src/app/backup.tsx`). Already signed in means no offer.
+  - Plus now says "up to 25" cases everywhere, to match the server's cap. The old copy said "unlimited".
+- **Release notes (both stores):** New: right after setup, you can back up your household with Apple or Google in one
+  tap, so a new phone gets everyone back. Still optional. Plus, clearer wording on what Manendi Plus includes.
+- **App Store Connect, with version 1.0.1:**
+  - In the description, change "unlimited cases" to "up to 25 watched cases" (see the listing above).
+  - Set both subscriptions' descriptions to "Household, up to 25 cases, vault and status report." They still say
+    "unlimited"; these can't be edited while 1.0 is in review.
+- **Google Play:** the listing already says "up to 25". The production release just needs the notes above.

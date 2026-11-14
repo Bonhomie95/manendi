@@ -140,7 +140,7 @@ ${contact}`);
 <h2>Where are my details stored?</h2><p>On your phone. Signing in is optional: it keeps a backup of your household on our servers so a new phone gets it back. Document photos never leave your phone.</p>
 <h2>Moving to a new phone</h2><p>Signed in? Install Manendi, tap Restore my household and sign in with the same Google or Apple account. Not signed in? Restore your old phone’s iCloud or Google backup onto the new one. Either way, watched cases re-attach the first time you open the app. Document photos come only with a device backup.</p>
 <h2>Why isn’t my case updating?</h2><p>Live case status comes from USCIS’s official API. Until it is switched on for your app version, tap Check on USCIS and log the update — Manendi keeps the history and explains each step.</p>
-<h2>Manendi Plus</h2><p>Plus adds your whole family, unlimited watched cases with change alerts, the citizenship travel budget, the document vault and status reports.</p>
+<h2>Manendi Plus</h2><p>Plus adds your whole family, up to 25 watched cases with change alerts, the citizenship travel budget, the document vault and status reports.</p>
 <h2>Cancel or change your plan</h2><p>iPhone: Settings → your name → Subscriptions → Manendi. Android: Google Play → profile → Payments &amp; subscriptions → Subscriptions → Manendi.</p>
 <h2>Restore a purchase</h2><p>Family → Manendi Plus → Restore purchases.</p>
 <h2>Erase your data</h2><p>See <a href="/erase">Erase your data</a>.</p>`);

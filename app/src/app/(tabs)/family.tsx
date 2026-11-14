@@ -112,7 +112,7 @@ export default function Family() {
       <Appear i={2}>
         <Card style={{ gap: 0, paddingVertical: 8 }}>
           <Item ios="crown.fill" android="workspace_premium" title={plus ? 'Manendi Plus is on' : 'Manendi Plus'}
-            sub={plus ? (data.plan.until ? `Renews or ends ${full(data.plan.until.slice(0, 10))}` : 'Active') : 'Family, unlimited cases, citizenship budget, vault'} onPress={() => go('/plan')} />
+            sub={plus ? (data.plan.until ? `Renews or ends ${full(data.plan.until.slice(0, 10))}` : 'Active') : 'Family, 25 cases, citizenship budget, vault'} onPress={() => go('/plan')} />
           <Item ios="lock.doc.fill" android="lock" title="Document vault" sub={`Passports, I-797s and cards behind ${LOCK}`} plusOnly={!plus} onPress={() => go('/vault')} />
           <Item ios="doc.richtext" android="picture_as_pdf" title={busy ? 'Preparing…' : 'Status report (PDF)'} sub="Every date and case on one page, for your attorney or HR" plusOnly={!plus} onPress={report} />
           <Item ios={data.reminders ? 'bell.badge.fill' : 'bell.slash'} android={data.reminders ? 'notifications_active' : 'notifications_off'}

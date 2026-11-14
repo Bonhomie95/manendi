@@ -56,6 +56,7 @@ export default function RootLayout() {
           <Stack.Screen name="vault" options={{ animation: 'slide_from_right' }} />
           <Stack.Screen name="plan" options={modal} />
           <Stack.Screen name="restore" options={modal} />
+          <Stack.Screen name="backup" options={modal} />
         </Stack>
         <ToastHost />
       </StoreProvider>
