@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi memakai Face ID untuk mengunci brankas dokumen Anda.",
+    "NSPhotoLibraryUsageDescription": "Pilih foto dokumen Anda untuk disimpan di brankas Manendi.",
+    "NSCameraUsageDescription": "Ambil foto dokumen Anda untuk disimpan di brankas Manendi."
+  }
+}

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, { cubicBezier, type CSSAnimationKeyframes } from 'react-native-reanimated';
-import { t } from '@/lib/i18n';
+import { joined, t } from '@/lib/i18n';
 import { brand, font, tint } from '@/lib/theme';
 
 export type MarkColors = { ring: string; arch: string; dot: string };
@@ -161,8 +161,8 @@ export function Backdrop({ look }: { look: Look }) {
               animationDuration: 7000, animationDelay: 250 + i * 380, animationFillMode: 'both', animationTimingFunction: 'ease-out' },
           ]}>
             <View style={{ position: 'absolute', top: 5, left: 5, right: 5, bottom: 5, borderRadius: round ? size / 2 : 10, borderWidth: 1, borderColor: tint(look.blobs[i % 3], 0.6) }} />
-            <Text style={{ fontFamily: font.heavy, fontSize: 10, letterSpacing: 2, color: tint(look.blobs[i % 3], 0.95) }}>{top}</Text>
-            <Text style={{ fontFamily: font.heavy, fontSize: size * 0.22, letterSpacing: 1, color: tint(look.blobs[i % 3], 0.95) }}>{port}</Text>
+            <Text style={{ fontFamily: font.heavy, fontSize: 10, letterSpacing: joined ? 0 : 2, color: tint(look.blobs[i % 3], 0.95) }}>{top}</Text>
+            <Text style={{ fontFamily: font.heavy, fontSize: size * 0.22, letterSpacing: joined ? 0 : 1, color: tint(look.blobs[i % 3], 0.95) }}>{port}</Text>
           </Animated.View>
         );
       })}

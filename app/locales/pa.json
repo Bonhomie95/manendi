@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi ਤੁਹਾਡੀ ਦਸਤਾਵੇਜ਼ ਤਿਜੋਰੀ ਨੂੰ ਲਾਕ ਕਰਨ ਲਈ Face ID ਵਰਤਦੀ ਹੈ।",
+    "NSPhotoLibraryUsageDescription": "ਆਪਣੀ Manendi ਤਿਜੋਰੀ ਵਿੱਚ ਰੱਖਣ ਲਈ ਆਪਣੇ ਦਸਤਾਵੇਜ਼ਾਂ ਦੀਆਂ ਫੋਟੋਆਂ ਚੁਣੋ।",
+    "NSCameraUsageDescription": "ਆਪਣੀ Manendi ਤਿਜੋਰੀ ਵਿੱਚ ਰੱਖਣ ਲਈ ਆਪਣੇ ਦਸਤਾਵੇਜ਼ਾਂ ਦੀਆਂ ਫੋਟੋਆਂ ਖਿੱਚੋ।"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Jam Status Visa",
+    "subtitle": "Tarikh penting untuk status",
+    "promotionalText": "Peraturan baru berubah untuk pelajar F-1, permit kerja dan yuran H-1B. Manendi mengira semula tarikh anda untuk anda.",
+    "description": "Manendi mengira detik setiap tarikh yang mengekalkan status anda — dan memberitahu anda, dalam bahasa yang mudah, maksud setiap satu.\n\n• Jam status anda: I-94, pasport, cop visa, tempoh pembaharuan permit kerja, hari menganggur OPT, tempoh tangguh, had enam tahun H-1B, pembaharuan kad hijau, pengalihan syarat dan tarikh pemfailan kewarganegaraan anda.\n• Setiap kes, sekali pandang: nombor resit USCIS keluarga anda di satu tempat, setiap langkah dijelaskan dalam bahasa yang mudah.\n• Radar: peraturan, yuran dan notis baharu yang menyentuh visa anda, terus dari Federal Register.\n• Perjalanan: rekod perjalanan dan lihat belanjawan perjalanan kewarganegaraan anda sebelum menempah.\n• Peribadi sejak reka bentuk: tiada akaun diperlukan. Log masuk dengan Apple atau Google hanya jika anda mahu sandaran untuk telefon baharu. Foto dokumen tidak pernah meninggalkan telefon anda.\n\nManendi Plus menambah seluruh isi rumah anda, sehingga 25 kes yang dipantau, belanjawan perjalanan kewarganegaraan, had H-1B dan giliran kad hijau, peti simpanan dokumen dengan Face ID, dan laporan status PDF.\n\nManendi Plus ialah langganan yang diperbaharui secara automatik: $9.99 sebulan atau $79.99 setahun (harga berbeza mengikut negara). Bayaran dikenakan pada Akaun Apple anda apabila anda mengesahkan. Ia diperbaharui secara automatik melainkan anda membatalkannya sekurang-kurangnya 24 jam sebelum tamat tempoh semasa; urus atau batalkan pada bila-bila masa dalam tetapan Akaun Apple anda.\n\nManendi memberi maklumat, bukan nasihat undang-undang, dan tidak bergabung dengan USCIS atau mana-mana agensi kerajaan. Setiap jam memaut ke sumber rasminya.\n\nTerma Penggunaan: https://manendi.onrender.com/terms\nDasar Privasi: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,permit kerja,kad hijau,USCIS,penjejak,kewarganegaraan,N-400,imigresen",
+    "whatsNew": "Manendi kini bertutur dalam bahasa anda: seluruh aplikasi tersedia dalam 46 bahasa dan mengikut bahasa telefon anda. Baharu: sebaik sahaja persediaan selesai, anda boleh menyandarkan isi rumah anda dengan Apple atau Google dalam satu ketikan. Juga, perkataan yang lebih jelas tentang apa yang disertakan dalam Manendi Plus.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus Bulanan",
+    "subscriptionAnnualName": "Manendi Plus Tahunan",
+    "subscriptionDescription": "Isi rumah, 25 kes, peti simpanan dan laporan status."
+  },
+  "play": {
+    "title": "Manendi: Jam Status Visa",
+    "shortDescription": "Tarikh yang mengekalkan status anda: I-94, OPT, EAD, H-1B, kad hijau dan lagi.",
+    "fullDescription": "Manendi mengira detik setiap tarikh yang mengekalkan status anda, dan memberitahu anda dalam bahasa yang mudah maksud setiap satu.\n\n• Jam status anda: I-94, pasport, cop visa, tempoh pembaharuan permit kerja, hari menganggur OPT, tempoh tangguh, had enam tahun H-1B, pembaharuan kad hijau, pengalihan syarat dan tarikh pemfailan kewarganegaraan anda.\n• Setiap kes, sekali pandang: nombor resit USCIS keluarga anda di satu tempat, setiap langkah dijelaskan dalam bahasa yang mudah.\n• Radar: peraturan, yuran dan notis baharu yang menyentuh visa anda, terus dari Federal Register.\n• Perjalanan: rekod perjalanan dan lihat belanjawan perjalanan kewarganegaraan anda sebelum menempah.\n• Peribadi sejak reka bentuk: tiada akaun diperlukan. Log masuk dengan Google hanya jika anda mahu sandaran untuk telefon baharu. Foto dokumen tidak pernah meninggalkan telefon anda.\n\nManendi Plus (langganan bulanan atau tahunan) menambah seluruh isi rumah anda, sehingga 25 kes yang dipantau, belanjawan perjalanan kewarganegaraan, had H-1B dan giliran kad hijau, peti simpanan dokumen di sebalik kunci skrin anda, dan laporan status PDF.\n\nManendi memberi maklumat, bukan nasihat undang-undang. Ia tidak bergabung dengan, disokong oleh atau mewakili USCIS, U.S. Department of State, U.S. Customs and Border Protection atau mana-mana agensi kerajaan, dan ia tidak memfailkan apa-apa bagi pihak anda. Setiap jam memaut ke sumber rasminya. Maklumat datang daripada sumber rasmi, termasuk uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov dan i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi kini bertutur dalam bahasa anda: seluruh aplikasi tersedia dalam 46 bahasa dan mengikut bahasa telefon anda. Baharu: sebaik sahaja persediaan selesai, anda boleh menyandarkan isi rumah anda dengan Google dalam satu ketikan. Juga, perkataan yang lebih jelas tentang apa yang disertakan dalam Manendi Plus.",
+    "subscriptionMonthlyTitle": "Manendi Plus Bulanan",
+    "subscriptionAnnualTitle": "Manendi Plus Tahunan",
+    "subscriptionBenefits": [
+      "Setiap visa dalam isi rumah anda",
+      "Jejak sehingga 25 kes USCIS",
+      "Belanjawan perjalanan kewarganegaraan",
+      "Peti simpanan dokumen dan laporan status"
+    ],
+    "subscriptionDescription": "Tarikh, kes dan perjalanan seluruh isi rumah anda, dikira untuk anda."
+  }
+}

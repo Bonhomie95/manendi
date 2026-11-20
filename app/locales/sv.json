@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi använder Face ID för att låsa ditt dokumentvalv.",
+    "NSPhotoLibraryUsageDescription": "Välj foton av dina dokument att spara i ditt Manendi-valv.",
+    "NSCameraUsageDescription": "Ta foton av dina dokument att spara i ditt Manendi-valv."
+  }
+}

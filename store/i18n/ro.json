@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Ceas statut viză",
+    "subtitle": "Fiecare dată care te ține aici",
+    "promotionalText": "S-au schimbat regulile pentru studenții F-1, permisele de muncă și taxele H-1B. Manendi îți recalculează datele.",
+    "description": "Manendi numără invers fiecare dată care îți păstrează statutul și îți explică, în limbaj simplu, ce înseamnă fiecare.\n\n• Ceasul tău de statut: I-94, pașaport, ștampila de viză, ferestrele de reînnoire a permisului de muncă, zilele de șomaj în OPT, perioadele de grație, limita de șase ani H-1B, reînnoirea green card-ului, eliminarea condițiilor și data depunerii pentru cetățenie.\n• Fiecare dosar, dintr-o privire: numerele de recipisă USCIS ale familiei tale într-un singur loc, fiecare pas explicat în limbaj simplu.\n• Radar: reguli, taxe și notificări noi care îți afectează viza, direct din Federal Register.\n• Călătorii: notează-ți călătoriile și vezi bugetul de călătorie pentru cetățenie înainte să rezervi.\n• Privată prin concepție: nu ai nevoie de cont. Conectează-te cu Apple sau Google doar dacă vrei o copie de rezervă pentru un telefon nou. Pozele documentelor nu părăsesc niciodată telefonul tău.\n\nManendi Plus adaugă toată familia, până la 25 de dosare urmărite, bugetul de călătorie pentru cetățenie, limita H-1B și coada pentru green card, un seif de documente cu Face ID și un raport de statut în PDF.\n\nManendi Plus este un abonament cu reînnoire automată: $9.99 pe lună sau $79.99 pe an (prețurile variază în funcție de țară). Plata se debitează din contul tău Apple la confirmare. Se reînnoiește automat dacă nu îl anulezi cu cel puțin 24 de ore înainte de sfârșitul perioadei curente; îl poți gestiona sau anula oricând din setările contului tău Apple.\n\nManendi oferă informații, nu consultanță juridică, și nu este afiliată la USCIS sau la vreo instituție guvernamentală. Fiecare ceas trimite la sursa sa oficială.\n\nTermeni de utilizare: https://manendi.onrender.com/terms\nPolitica de confidențialitate: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,permis de muncă,green card,USCIS,cetățenie,N-400,imigrare,viză",
+    "whatsNew": "Manendi vorbește acum limba ta: întreaga aplicație este disponibilă în 46 de limbi și o urmează pe cea a telefonului tău. Nou: imediat după configurare, îți poți salva familia cu Apple sau Google dintr-o atingere. În plus, am clarificat ce include Manendi Plus.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus lunar",
+    "subscriptionAnnualName": "Manendi Plus anual",
+    "subscriptionDescription": "Familie, până la 25 dosare, seif și raport."
+  },
+  "play": {
+    "title": "Manendi: Ceas statut viză",
+    "shortDescription": "Fiecare dată a statutului tău: I-94, OPT, EAD, H-1B, green card și altele.",
+    "fullDescription": "Manendi numără invers fiecare dată care îți păstrează statutul și îți explică, în limbaj simplu, ce înseamnă fiecare.\n\n• Ceasul tău de statut: I-94, pașaport, ștampila de viză, ferestrele de reînnoire a permisului de muncă, zilele de șomaj în OPT, perioadele de grație, limita de șase ani H-1B, reînnoirea green card-ului, eliminarea condițiilor și data depunerii pentru cetățenie.\n• Fiecare dosar, dintr-o privire: numerele de recipisă USCIS ale familiei tale într-un singur loc, fiecare pas explicat în limbaj simplu.\n• Radar: reguli, taxe și notificări noi care îți afectează viza, direct din Federal Register.\n• Călătorii: notează-ți călătoriile și vezi bugetul de călătorie pentru cetățenie înainte să rezervi.\n• Privată prin concepție: nu ai nevoie de cont. Conectează-te cu Google doar dacă vrei o copie de rezervă pentru un telefon nou. Pozele documentelor nu părăsesc niciodată telefonul tău.\n\nManendi Plus (un abonament lunar sau anual) adaugă toată familia, până la 25 de dosare urmărite, bugetul de călătorie pentru cetățenie, limita H-1B și coada pentru green card, un seif de documente protejat de blocarea ecranului și un raport de statut în PDF.\n\nManendi oferă informații, nu consultanță juridică. Nu este afiliată cu, susținută de și nu reprezintă USCIS, Departamentul de Stat al SUA, U.S. Customs and Border Protection sau vreo instituție guvernamentală și nu depune nimic în numele tău. Fiecare ceas trimite la sursa sa oficială. Informațiile provin din surse oficiale, printre care uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov și i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi vorbește acum limba ta: întreaga aplicație este disponibilă în 46 de limbi și o urmează pe cea a telefonului tău. Nou: imediat după configurare, îți poți salva familia cu Google dintr-o atingere. În plus, am clarificat ce include Manendi Plus.",
+    "subscriptionMonthlyTitle": "Manendi Plus lunar",
+    "subscriptionAnnualTitle": "Manendi Plus anual",
+    "subscriptionBenefits": [
+      "Toate vizele din familia ta",
+      "Urmărește până la 25 dosare USCIS",
+      "Buget de călătorie pt. cetățenie",
+      "Seif de documente și raport"
+    ],
+    "subscriptionDescription": "Datele, dosarele și călătoriile întregii familii, numărate invers."
+  }
+}

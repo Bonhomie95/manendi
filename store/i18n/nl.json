@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Visumstatus-klok",
+    "subtitle": "Elke datum voor je verblijf",
+    "promotionalText": "De regels zijn net veranderd voor F-1-studenten, werkvergunningen en H-1B-tarieven. Manendi rekent je data opnieuw voor je door.",
+    "description": "Manendi telt elke datum af die je in status houdt, en legt je in gewone taal uit wat elke datum betekent.\n\n• Je statusklok: I-94, paspoort, visumstempel, verlengingsvensters voor je werkvergunning, OPT-werkloosheidsdagen, respijtperiodes, de H-1B-limiet van zes jaar, verlenging van je green card, het opheffen van voorwaarden en de datum waarop je je naturalisatie kunt aanvragen.\n• Elke zaak in één oogopslag: de USCIS-receipt-nummers van je gezin op één plek, elke stap uitgelegd in gewone taal.\n• Radar: nieuwe regels, tarieven en berichten die je visum raken, rechtstreeks uit het Federal Register.\n• Reizen: log reizen en zie je reisbudget voor het staatsburgerschap voordat je boekt.\n• Privé door ontwerp: geen account nodig. Log alleen in met Apple of Google als je een back-up voor een nieuwe telefoon wilt. Foto’s van documenten verlaten nooit je telefoon.\n\nManendi Plus voegt je hele huishouden toe, tot 25 gevolgde zaken, het reisbudget voor het staatsburgerschap, de H-1B-limiet en de green card-wachtrij, een documentenkluis achter Face ID en een statusrapport als pdf.\n\nManendi Plus is een abonnement dat automatisch verlengt: $9.99 per maand of $79.99 per jaar (prijzen verschillen per land). De betaling wordt bij bevestiging in rekening gebracht op je Apple Account. Het abonnement verlengt automatisch, tenzij je minstens 24 uur voor het einde van de lopende periode opzegt; beheer of zeg het op elk moment op in de instellingen van je Apple Account.\n\nManendi geeft informatie, geen juridisch advies, en is niet verbonden aan USCIS of een andere overheidsinstantie. Elke klok linkt naar de officiële bron.\n\nGebruiksvoorwaarden: https://manendi.onrender.com/terms\nPrivacybeleid: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,USCIS,N-400,werkvergunning,green card,naturalisatie,immigratie,USA",
+    "whatsNew": "Manendi spreekt nu jouw taal: de hele app is er in 46 talen en volgt de taal van je telefoon. Nieuw: direct na de installatie maak je met één tik een back-up van je huishouden met Apple of Google. Ook duidelijkere uitleg over wat Manendi Plus bevat.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus maandelijks",
+    "subscriptionAnnualName": "Manendi Plus jaarlijks",
+    "subscriptionDescription": "Huishouden, tot 25 zaken, kluis en statusrapport."
+  },
+  "play": {
+    "title": "Manendi: Visumstatus-klok",
+    "shortDescription": "Elke datum die je in status houdt: I-94, OPT, EAD, H-1B, green card en meer.",
+    "fullDescription": "Manendi telt elke datum af die je in status houdt, en legt je in gewone taal uit wat elke datum betekent.\n\n• Je statusklok: I-94, paspoort, visumstempel, verlengingsvensters voor je werkvergunning, OPT-werkloosheidsdagen, respijtperiodes, de H-1B-limiet van zes jaar, verlenging van je green card, het opheffen van voorwaarden en de datum waarop je je naturalisatie kunt aanvragen.\n• Elke zaak in één oogopslag: de USCIS-receipt-nummers van je gezin op één plek, elke stap uitgelegd in gewone taal.\n• Radar: nieuwe regels, tarieven en berichten die je visum raken, rechtstreeks uit het Federal Register.\n• Reizen: log reizen en zie je reisbudget voor het staatsburgerschap voordat je boekt.\n• Privé door ontwerp: geen account nodig. Log alleen in met Google als je een back-up voor een nieuwe telefoon wilt. Foto’s van documenten verlaten nooit je telefoon.\n\nManendi Plus (een maand- of jaarabonnement) voegt je hele huishouden toe, tot 25 gevolgde zaken, het reisbudget voor het staatsburgerschap, de H-1B-limiet en de green card-wachtrij, een documentenkluis achter je schermvergrendeling en een statusrapport als pdf.\n\nManendi geeft informatie, geen juridisch advies. De app is niet verbonden aan, niet goedgekeurd door en vertegenwoordigt niet USCIS, het U.S. Department of State, U.S. Customs and Border Protection of een andere overheidsinstantie, en dient niets namens jou in. Elke klok linkt naar de officiële bron. De informatie komt uit officiële bronnen, waaronder uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov en i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi spreekt nu jouw taal: de hele app is er in 46 talen en volgt de taal van je telefoon. Nieuw: direct na de installatie maak je met één tik een back-up van je huishouden met Google. Ook duidelijkere uitleg over wat Manendi Plus bevat.",
+    "subscriptionMonthlyTitle": "Manendi Plus maandelijks",
+    "subscriptionAnnualTitle": "Manendi Plus jaarlijks",
+    "subscriptionBenefits": [
+      "Elk visum in je huishouden",
+      "Volg tot 25 USCIS-zaken",
+      "Reisbudget voor staatsburgerschap",
+      "Documentenkluis en statusrapport"
+    ],
+    "subscriptionDescription": "De data, zaken en reizen van je hele huishouden, afgeteld."
+  }
+}

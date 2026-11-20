@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Viisumistatuskello",
+    "subtitle": "Kaikki statuksesi päivät",
+    "promotionalText": "Säännöt muuttuivat juuri F-1-opiskelijoille, työluville ja H-1B-maksuille. Manendi laskee päiväsi uudelleen puolestasi.",
+    "description": "Manendi laskee alaspäin jokaista päivää, joka pitää sinut statuksessa, ja kertoo selkeästi, mitä kukin niistä tarkoittaa.\n\n• Statuskellosi: I-94, passi, viisumileima, työluvan uusimisikkunat, OPT-työttömyyspäivät, siirtymäajat, H-1B:n kuuden vuoden raja, green cardin uusiminen, ehtojen poistaminen ja kansalaisuushakemuksesi jättöpäivä.\n• Jokainen hakemus yhdellä silmäyksellä: perheesi USCIS-kuittinumerot yhdessä paikassa, jokainen vaihe selitettynä selkeästi.\n• Tutka: uudet säännöt, maksut ja ilmoitukset, jotka koskevat viisumiasi, suoraan Federal Registeristä.\n• Matkat: kirjaa matkat ja katso kansalaisuuden matkabudjettisi ennen varaamista.\n• Yksityisyys suunnittelun lähtökohtana: tiliä ei tarvita. Kirjaudu Applella tai Googlella vain, jos haluat varmuuskopion uutta puhelinta varten. Asiakirjojen kuvat eivät koskaan poistu puhelimestasi.\n\nManendi Plus lisää koko perheesi, jopa 25 seurattua hakemusta, kansalaisuuden matkabudjetin, H-1B-rajan ja green card -jonon, Face ID:n takana olevan asiakirjaholvin sekä statusraportin PDF-tiedostona.\n\nManendi Plus on automaattisesti uusiutuva tilaus: $9.99 kuukaudessa tai $79.99 vuodessa (hinnat vaihtelevat maittain). Maksu veloitetaan Apple-tililtäsi vahvistaessasi. Tilaus uusiutuu automaattisesti, ellet peruuta sitä vähintään 24 tuntia ennen nykyisen jakson päättymistä; voit hallita tai peruuttaa sen milloin tahansa Apple-tilisi asetuksissa.\n\nManendi antaa tietoa, ei oikeudellista neuvontaa, eikä sillä ole yhteyttä USCIS:iin tai mihinkään muuhun viranomaiseen. Jokainen kello linkittää virallisen lähteensä.\n\nKäyttöehdot: https://manendi.onrender.com/terms\nTietosuojakäytäntö: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,USCIS,N-400,työlupa,green card,kansalaisuus,maahanmuutto,USA",
+    "whatsNew": "Manendi puhuu nyt kieltäsi: koko sovellus on saatavilla 46 kielellä ja seuraa puhelimesi kieltä. Uutta: heti käyttöönoton jälkeen voit varmuuskopioida perheesi tiedot Applella tai Googlella yhdellä napautuksella. Lisäksi selkeämmät tiedot siitä, mitä Manendi Plus sisältää.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus kuukausi",
+    "subscriptionAnnualName": "Manendi Plus vuosi",
+    "subscriptionDescription": "Perhe, jopa 25 hakemusta, holvi ja statusraportti."
+  },
+  "play": {
+    "title": "Manendi: Viisumistatuskello",
+    "shortDescription": "Jokainen status-päivä: I-94, OPT, EAD, H-1B, green card ja paljon muuta.",
+    "fullDescription": "Manendi laskee alaspäin jokaista päivää, joka pitää sinut statuksessa, ja kertoo selkeästi, mitä kukin niistä tarkoittaa.\n\n• Statuskellosi: I-94, passi, viisumileima, työluvan uusimisikkunat, OPT-työttömyyspäivät, siirtymäajat, H-1B:n kuuden vuoden raja, green cardin uusiminen, ehtojen poistaminen ja kansalaisuushakemuksesi jättöpäivä.\n• Jokainen hakemus yhdellä silmäyksellä: perheesi USCIS-kuittinumerot yhdessä paikassa, jokainen vaihe selitettynä selkeästi.\n• Tutka: uudet säännöt, maksut ja ilmoitukset, jotka koskevat viisumiasi, suoraan Federal Registeristä.\n• Matkat: kirjaa matkat ja katso kansalaisuuden matkabudjettisi ennen varaamista.\n• Yksityisyys suunnittelun lähtökohtana: tiliä ei tarvita. Kirjaudu Googlella vain, jos haluat varmuuskopion uutta puhelinta varten. Asiakirjojen kuvat eivät koskaan poistu puhelimestasi.\n\nManendi Plus (kuukausi- tai vuositilaus) lisää koko perheesi, jopa 25 seurattua hakemusta, kansalaisuuden matkabudjetin, H-1B-rajan ja green card -jonon, näytön lukituksen takana olevan asiakirjaholvin sekä statusraportin PDF-tiedostona.\n\nManendi antaa tietoa, ei oikeudellista neuvontaa. Sillä ei ole yhteyttä USCIS:iin, U.S. Department of Stateen, U.S. Customs and Border Protectioniin tai mihinkään muuhun viranomaiseen, ne eivät ole hyväksyneet sitä, se ei edusta niitä, eikä se jätä mitään puolestasi. Jokainen kello linkittää virallisen lähteensä. Tiedot tulevat virallisista lähteistä, kuten uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov ja i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi puhuu nyt kieltäsi: koko sovellus on saatavilla 46 kielellä ja seuraa puhelimesi kieltä. Uutta: heti käyttöönoton jälkeen voit varmuuskopioida perheesi tiedot Googlella yhdellä napautuksella. Lisäksi selkeämmät tiedot siitä, mitä Manendi Plus sisältää.",
+    "subscriptionMonthlyTitle": "Manendi Plus kuukausitilaus",
+    "subscriptionAnnualTitle": "Manendi Plus vuositilaus",
+    "subscriptionBenefits": [
+      "Jokainen perheesi viisumi",
+      "Seuraa jopa 25 USCIS-hakemusta",
+      "Kansalaisuuden matkabudjetti",
+      "Asiakirjaholvi ja statusraportti"
+    ],
+    "subscriptionDescription": "Koko perheesi päivät, hakemukset ja matkat, laskettuina."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "O Manendi usa o Face ID para bloquear o seu cofre de documentos.",
+    "NSPhotoLibraryUsageDescription": "Escolha fotografias dos seus documentos para guardar no seu cofre do Manendi.",
+    "NSCameraUsageDescription": "Tire fotografias dos seus documentos para guardar no seu cofre do Manendi."
+  }
+}

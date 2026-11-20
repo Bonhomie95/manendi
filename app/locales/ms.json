@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi menggunakan Face ID untuk mengunci peti simpanan dokumen anda.",
+    "NSPhotoLibraryUsageDescription": "Pilih foto dokumen anda untuk disimpan dalam peti simpanan Manendi anda.",
+    "NSCameraUsageDescription": "Ambil foto dokumen anda untuk disimpan dalam peti simpanan Manendi anda."
+  }
+}

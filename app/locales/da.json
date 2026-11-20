@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi bruger Face ID til at låse din dokumentboks.",
+    "NSPhotoLibraryUsageDescription": "Vælg billeder af dine dokumenter, som du vil gemme i din Manendi-boks.",
+    "NSCameraUsageDescription": "Tag billeder af dine dokumenter, som du vil gemme i din Manendi-boks."
+  }
+}

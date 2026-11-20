@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Το Manendi χρησιμοποιεί Face ID για να κλειδώνει το θησαυροφυλάκιο εγγράφων σας.",
+    "NSPhotoLibraryUsageDescription": "Επιλέξτε φωτογραφίες των εγγράφων σας για να τις φυλάξετε στο θησαυροφυλάκιο του Manendi.",
+    "NSCameraUsageDescription": "Τραβήξτε φωτογραφίες των εγγράφων σας για να τις φυλάξετε στο θησαυροφυλάκιο του Manendi."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi 使用 Face ID 来锁定你的证件保险箱。",
+    "NSPhotoLibraryUsageDescription": "选择证件照片，保存到你的 Manendi 保险箱。",
+    "NSCameraUsageDescription": "拍摄证件照片，保存到你的 Manendi 保险箱。"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi folosește Face ID pentru a-ți bloca seiful de documente.",
+    "NSPhotoLibraryUsageDescription": "Alege fotografii cu documentele tale pentru a le păstra în seiful Manendi.",
+    "NSCameraUsageDescription": "Fotografiază-ți documentele pentru a le păstra în seiful Manendi."
+  }
+}

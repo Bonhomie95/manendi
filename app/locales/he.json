@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi משתמש ב-Face ID כדי לנעול את כספת המסמכים שלך.",
+    "NSPhotoLibraryUsageDescription": "בחר תמונות של המסמכים שלך כדי לשמור אותן בכספת של Manendi.",
+    "NSCameraUsageDescription": "צלם את המסמכים שלך כדי לשמור אותם בכספת של Manendi."
+  }
+}

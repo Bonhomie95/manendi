@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "ನಿಮ್ಮ ದಾಖಲೆ ವಾಲ್ಟ್ ಅನ್ನು ಲಾಕ್ ಮಾಡಲು Manendi Face ID ಬಳಸುತ್ತದೆ.",
+    "NSPhotoLibraryUsageDescription": "ನಿಮ್ಮ Manendi ವಾಲ್ಟ್‌ನಲ್ಲಿ ಇರಿಸಲು ನಿಮ್ಮ ದಾಖಲೆಗಳ ಫೋಟೋಗಳನ್ನು ಆರಿಸಿ.",
+    "NSCameraUsageDescription": "ನಿಮ್ಮ Manendi ವಾಲ್ಟ್‌ನಲ್ಲಿ ಇರಿಸಲು ನಿಮ್ಮ ದಾಖಲೆಗಳ ಫೋಟೋ ತೆಗೆಯಿರಿ."
+  }
+}

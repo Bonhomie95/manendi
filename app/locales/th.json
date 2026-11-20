@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi ใช้ Face ID เพื่อล็อกคลังเอกสารของคุณ",
+    "NSPhotoLibraryUsageDescription": "เลือกรูปเอกสารของคุณเพื่อเก็บไว้ในคลังของ Manendi",
+    "NSCameraUsageDescription": "ถ่ายรูปเอกสารของคุณเพื่อเก็บไว้ในคลังของ Manendi"
+  }
+}

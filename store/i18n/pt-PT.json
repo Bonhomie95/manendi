@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Relógio do Visto",
+    "subtitle": "Todas as datas do seu status",
+    "promotionalText": "As regras mudaram para estudantes F-1, autorizações de trabalho e taxas H-1B. O Manendi volta a contar as suas datas por si.",
+    "description": "O Manendi conta, dia a dia, todas as datas que o mantêm em status — e diz-lhe, em linguagem simples, o que cada uma significa.\n\n• O relógio do seu status: I-94, passaporte, carimbo do visto, janelas de renovação da autorização de trabalho, dias de desemprego do OPT, períodos de tolerância, limite de seis anos do H-1B, renovação do green card, remoção de condições e a data do seu pedido de cidadania.\n• Todos os processos, num relance: os números de recibo da USCIS da sua família num só lugar, cada passo explicado em linguagem simples.\n• Radar: novas regras, taxas e avisos que afetam o seu visto, diretamente do Federal Register.\n• Viagens: registe viagens e veja a sua margem de viagem para a cidadania antes de reservar.\n• Privado por conceção: sem conta. Inicie sessão com a Apple ou o Google só se quiser uma cópia de segurança para um telemóvel novo. As fotografias dos documentos nunca saem do seu.\n\nO Manendi Plus acrescenta todo o seu agregado, até 25 processos acompanhados, a margem de viagem para a cidadania, o limite do H-1B e a fila do green card, um cofre de documentos com Face ID e um relatório de status em PDF.\n\nO Manendi Plus é uma subscrição com renovação automática: $9.99 por mês ou $79.99 por ano (os preços variam consoante o país). O pagamento é cobrado na sua Conta Apple quando confirmar. Renova automaticamente, a menos que cancele pelo menos 24 horas antes do fim do período em curso; gira ou cancele a qualquer momento nas definições da sua Conta Apple.\n\nO Manendi dá informação, não aconselhamento jurídico, e não é afiliado da USCIS nem de qualquer organismo governamental. Cada contagem liga à sua fonte oficial.\n\nTermos de Utilização: https://manendi.onrender.com/terms\nPolítica de Privacidade: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,autorização de trabalho,green card,USCIS,cidadania,N-400,imigração",
+    "whatsNew": "O Manendi agora fala a sua língua: toda a app está disponível em 46 idiomas e segue o idioma do seu telemóvel. Novidade: logo após a configuração, pode fazer a cópia de segurança do seu agregado com a Apple ou o Google num só toque. E uma redação mais clara sobre o que o Manendi Plus inclui.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus Mensal",
+    "subscriptionAnnualName": "Manendi Plus Anual",
+    "subscriptionDescription": "Agregado, 25 processos, cofre e relatório."
+  },
+  "play": {
+    "title": "Manendi: Relógio do Visto",
+    "shortDescription": "Todas as datas do seu status: I-94, OPT, EAD, H-1B, green card e mais.",
+    "fullDescription": "O Manendi conta, dia a dia, todas as datas que o mantêm em status e diz-lhe, em linguagem simples, o que cada uma significa.\n\n• O relógio do seu status: I-94, passaporte, carimbo do visto, janelas de renovação da autorização de trabalho, dias de desemprego do OPT, períodos de tolerância, o limite de seis anos do H-1B, renovação do green card, remoção de condições e a data do seu pedido de cidadania.\n• Todos os processos, num relance: os números de recibo da USCIS da sua família num só lugar, cada passo explicado em linguagem simples.\n• Radar: novas regras, taxas e avisos que afetam o seu visto, diretamente do Federal Register.\n• Viagens: registe viagens e veja a sua margem de viagem para a cidadania antes de reservar.\n• Privado por conceção: sem conta. Inicie sessão com o Google só se quiser uma cópia de segurança para um telemóvel novo. As fotografias dos documentos nunca saem do seu.\n\nO Manendi Plus (uma subscrição mensal ou anual) acrescenta todo o seu agregado, até 25 processos acompanhados, a margem de viagem para a cidadania, o limite do H-1B e a fila do green card, um cofre de documentos protegido pelo bloqueio do ecrã e um relatório de status em PDF.\n\nO Manendi dá informação, não aconselhamento jurídico. Não é afiliado, não tem o aval nem representa a USCIS, o U.S. Department of State, a U.S. Customs and Border Protection ou qualquer organismo governamental, e não entrega nada em seu nome. Cada contagem liga à sua fonte oficial. A informação vem de fontes oficiais, incluindo uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov e i94.cbp.dhs.gov.",
+    "releaseNotes": "O Manendi agora fala a sua língua: toda a app está disponível em 46 idiomas e segue o idioma do seu telemóvel. Novidade: logo após a configuração, pode fazer a cópia de segurança do seu agregado com o Google num só toque. E uma redação mais clara sobre o que o Manendi Plus inclui.",
+    "subscriptionMonthlyTitle": "Manendi Plus Mensal",
+    "subscriptionAnnualTitle": "Manendi Plus Anual",
+    "subscriptionBenefits": [
+      "Todos os vistos do seu agregado",
+      "Até 25 processos da USCIS",
+      "Margem de viagem p/ cidadania",
+      "Cofre de documentos e relatório"
+    ],
+    "subscriptionDescription": "Datas, processos e viagens de todo o agregado, em contagem."
+  }
+}

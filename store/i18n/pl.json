@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Zegar statusu wizy",
+    "subtitle": "Każda data dla Twojego pobytu",
+    "promotionalText": "Przepisy właśnie się zmieniły dla studentów F-1, pozwoleń na pracę i opłat H-1B. Manendi przelicza Twoje daty za Ciebie.",
+    "description": "Manendi odlicza każdą datę, która utrzymuje Cię w statusie — i wyjaśnia prostym językiem, co każda z nich oznacza.\n\n• Twój zegar statusu: I-94, paszport, stempel wizy, okna odnowienia pozwolenia na pracę, dni bezrobocia na OPT, okresy ochronne, sześcioletni limit H-1B, odnowienie green card, zdjęcie warunków i data złożenia wniosku o obywatelstwo.\n• Każda sprawa w jednym rzucie oka: numery potwierdzenia USCIS Twojej rodziny w jednym miejscu, każdy krok wyjaśniony prostym językiem.\n• Radar: nowe przepisy, opłaty i zawiadomienia dotyczące Twojej wizy, prosto z Federal Register.\n• Podróże: zapisuj wyjazdy i sprawdzaj budżet podróży do obywatelstwa, zanim kupisz bilet.\n• Prywatność od początku: konto nie jest potrzebne. Zaloguj się przez Apple lub Google tylko wtedy, gdy chcesz mieć kopię na nowy telefon. Zdjęcia dokumentów nigdy nie opuszczają Twojego telefonu.\n\nManendi Plus dodaje całą rodzinę, do 25 obserwowanych spraw, budżet podróży do obywatelstwa, limit H-1B i kolejkę na green card, sejf dokumentów za Face ID oraz raport statusu w PDF.\n\nManendi Plus to subskrypcja z automatycznym odnawianiem: $9.99 miesięcznie lub $79.99 rocznie (ceny różnią się w zależności od kraju). Opłata jest pobierana z Twojego konta Apple po potwierdzeniu. Subskrypcja odnawia się automatycznie, chyba że anulujesz ją co najmniej 24 godziny przed końcem bieżącego okresu; możesz nią zarządzać lub ją anulować w dowolnym momencie w ustawieniach konta Apple.\n\nManendi podaje informacje, nie porady prawne, i nie jest powiązane z USCIS ani żadną agencją rządową. Każdy zegar wskazuje oficjalne źródło.\n\nRegulamin: https://manendi.onrender.com/terms\nPolityka prywatności: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,pozwolenie na pracę,green card,USCIS,obywatelstwo,N-400,imigracja",
+    "whatsNew": "Manendi mówi teraz w Twoim języku: cała aplikacja jest dostępna w 46 językach i dostosowuje się do języka telefonu. Nowość: zaraz po konfiguracji możesz jednym dotknięciem zrobić kopię rodziny przez Apple lub Google. Do tego jaśniejszy opis tego, co obejmuje Manendi Plus.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus miesięcznie",
+    "subscriptionAnnualName": "Manendi Plus rocznie",
+    "subscriptionDescription": "Rodzina, do 25 spraw, sejf i raport statusu."
+  },
+  "play": {
+    "title": "Manendi: Zegar statusu wizy",
+    "shortDescription": "Każda data Twojego pobytu: I-94, OPT, EAD, H-1B, green card i więcej.",
+    "fullDescription": "Manendi odlicza każdą datę, która utrzymuje Cię w statusie, i wyjaśnia prostym językiem, co każda z nich oznacza.\n\n• Twój zegar statusu: I-94, paszport, stempel wizy, okna odnowienia pozwolenia na pracę, dni bezrobocia na OPT, okresy ochronne, sześcioletni limit H-1B, odnowienie green card, zdjęcie warunków i data złożenia wniosku o obywatelstwo.\n• Każda sprawa w jednym rzucie oka: numery potwierdzenia USCIS Twojej rodziny w jednym miejscu, każdy krok wyjaśniony prostym językiem.\n• Radar: nowe przepisy, opłaty i zawiadomienia dotyczące Twojej wizy, prosto z Federal Register.\n• Podróże: zapisuj wyjazdy i sprawdzaj budżet podróży do obywatelstwa, zanim kupisz bilet.\n• Prywatność od początku: konto nie jest potrzebne. Zaloguj się przez Google tylko wtedy, gdy chcesz mieć kopię na nowy telefon. Zdjęcia dokumentów nigdy nie opuszczają Twojego telefonu.\n\nManendi Plus (subskrypcja miesięczna lub roczna) dodaje całą rodzinę, do 25 obserwowanych spraw, budżet podróży do obywatelstwa, limit H-1B i kolejkę na green card, sejf dokumentów za blokadą ekranu oraz raport statusu w PDF.\n\nManendi podaje informacje, nie porady prawne. Nie jest powiązane z USCIS, Departamentem Stanu USA, U.S. Customs and Border Protection ani żadną agencją rządową, nie jest przez nie wspierane i nie je reprezentuje, a w Twoim imieniu niczego nie składa. Każdy zegar wskazuje oficjalne źródło. Informacje pochodzą z oficjalnych źródeł, w tym uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov i i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi mówi teraz w Twoim języku: cała aplikacja jest dostępna w 46 językach i dostosowuje się do języka telefonu. Nowość: zaraz po konfiguracji możesz jednym dotknięciem zrobić kopię rodziny przez Google. Do tego jaśniejszy opis tego, co obejmuje Manendi Plus.",
+    "subscriptionMonthlyTitle": "Manendi Plus miesięcznie",
+    "subscriptionAnnualTitle": "Manendi Plus rocznie",
+    "subscriptionBenefits": [
+      "Każda wiza w Twojej rodzinie",
+      "Do 25 spraw USCIS pod obserwacją",
+      "Budżet podróży do obywatelstwa",
+      "Sejf dokumentów i raport statusu"
+    ],
+    "subscriptionDescription": "Daty, sprawy i podróże całej rodziny, odliczane za Ciebie."
+  }
+}

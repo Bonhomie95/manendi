@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi використовує Face ID, щоб заблокувати ваш сейф документів.",
+    "NSPhotoLibraryUsageDescription": "Виберіть фото документів, щоб зберігати їх у сейфі Manendi.",
+    "NSCameraUsageDescription": "Сфотографуйте документи, щоб зберігати їх у сейфі Manendi."
+  }
+}

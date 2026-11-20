@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Visumstatusklocka",
+    "subtitle": "Varje datum som håller dig här",
+    "promotionalText": "Reglerna har just ändrats för F-1-studenter, arbetstillstånd och H-1B-avgifter. Manendi räknar om dina datum åt dig.",
+    "description": "Manendi räknar ner varje datum som håller dig i status, och berättar på ett enkelt språk vad vart och ett betyder.\n\n• Din statusklocka: I-94, pass, visumstämpel, förnyelsefönster för arbetstillstånd, OPT-arbetslöshetsdagar, respitperioder, H-1B:s sexårsgräns, förnyelse av green card, borttagning av villkor och ditt ansökningsdatum för medborgarskap.\n• Alla ärenden, en blick: din familjs USCIS-kvittonummer på ett ställe, varje steg förklarat på ett enkelt språk.\n• Radar: nya regler, avgifter och meddelanden som rör ditt visum, direkt från Federal Register.\n• Resor: logga resor och se din resebudget för medborgarskap innan du bokar.\n• Privat från grunden: inget konto behövs. Logga in med Apple eller Google bara om du vill ha en säkerhetskopia till en ny telefon. Dokumentfoton lämnar aldrig din telefon.\n\nManendi Plus lägger till hela ditt hushåll, upp till 25 bevakade ärenden, resebudgeten för medborgarskap, H-1B-gränsen och green card-kön, ett dokumentvalv med Face ID och en statusrapport som PDF.\n\nManendi Plus är en prenumeration som förnyas automatiskt: $9.99 per månad eller $79.99 per år (priserna varierar mellan länder). Betalningen debiteras ditt Apple-konto när du bekräftar. Den förnyas automatiskt om du inte avbryter minst 24 timmar före slutet av den aktuella perioden; hantera eller avbryt när som helst i inställningarna för ditt Apple-konto.\n\nManendi ger information, inte juridisk rådgivning, och är inte knutet till USCIS eller någon annan myndighet. Varje klocka länkar till sin officiella källa.\n\nTerms of Use: https://manendi.onrender.com/terms\nPrivacy Policy: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,arbetstillstånd,green card,USCIS,medborgarskap,N-400,immigration",
+    "whatsNew": "Manendi talar nu ditt språk: hela appen finns på 46 språk och följer telefonens språk. Nytt: direkt efter inställningen kan du säkerhetskopiera ditt hushåll med Apple eller Google med ett tryck. Dessutom tydligare formuleringar om vad Manendi Plus innehåller.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus månadsvis",
+    "subscriptionAnnualName": "Manendi Plus årsvis",
+    "subscriptionDescription": "Hushåll, upp till 25 ärenden, valv och statusrapport."
+  },
+  "play": {
+    "title": "Manendi: Visumstatusklocka",
+    "shortDescription": "Varje datum som håller dig i status: I-94, OPT, EAD, H-1B, green card m.m.",
+    "fullDescription": "Manendi räknar ner varje datum som håller dig i status, och berättar på ett enkelt språk vad vart och ett betyder.\n\n• Din statusklocka: I-94, pass, visumstämpel, förnyelsefönster för arbetstillstånd, OPT-arbetslöshetsdagar, respitperioder, H-1B:s sexårsgräns, förnyelse av green card, borttagning av villkor och ditt ansökningsdatum för medborgarskap.\n• Alla ärenden, en blick: din familjs USCIS-kvittonummer på ett ställe, varje steg förklarat på ett enkelt språk.\n• Radar: nya regler, avgifter och meddelanden som rör ditt visum, direkt från Federal Register.\n• Resor: logga resor och se din resebudget för medborgarskap innan du bokar.\n• Privat från grunden: inget konto behövs. Logga in med Google bara om du vill ha en säkerhetskopia till en ny telefon. Dokumentfoton lämnar aldrig din telefon.\n\nManendi Plus (en månads- eller årsprenumeration) lägger till hela ditt hushåll, upp till 25 bevakade ärenden, resebudgeten för medborgarskap, H-1B-gränsen och green card-kön, ett dokumentvalv bakom din skärmlåsning och en statusrapport som PDF.\n\nManendi ger information, inte juridisk rådgivning. Det är inte knutet till, godkänt av eller företräder USCIS, U.S. Department of State, U.S. Customs and Border Protection eller någon annan myndighet, och det lämnar inte in något för din räkning. Varje klocka länkar till sin officiella källa. Informationen kommer från officiella källor, bland annat uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov och i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi talar nu ditt språk: hela appen finns på 46 språk och följer telefonens språk. Nytt: direkt efter inställningen kan du säkerhetskopiera ditt hushåll med Google med ett tryck. Dessutom tydligare formuleringar om vad Manendi Plus innehåller.",
+    "subscriptionMonthlyTitle": "Manendi Plus månadsvis",
+    "subscriptionAnnualTitle": "Manendi Plus årsvis",
+    "subscriptionBenefits": [
+      "Alla visum i ditt hushåll",
+      "Följ upp till 25 USCIS-ärenden",
+      "Resebudget för medborgarskap",
+      "Dokumentvalv och statusrapport"
+    ],
+    "subscriptionDescription": "Hela hushållets datum, ärenden och resor, nedräknade."
+  }
+}

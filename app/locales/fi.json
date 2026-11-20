@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi käyttää Face ID:tä asiakirjaholvisi lukitsemiseen.",
+    "NSPhotoLibraryUsageDescription": "Valitse asiakirjojesi kuvia säilytettäväksi Manendi-holvissa.",
+    "NSCameraUsageDescription": "Ota asiakirjoistasi kuvia säilytettäväksi Manendi-holvissa."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi использует Face ID, чтобы защитить ваше хранилище документов.",
+    "NSPhotoLibraryUsageDescription": "Выберите фото документов, чтобы хранить их в хранилище Manendi.",
+    "NSCameraUsageDescription": "Сфотографируйте документы, чтобы хранить их в хранилище Manendi."
+  }
+}

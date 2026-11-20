@@ -2,7 +2,7 @@
   "expo": {
     "name": "Manendi",
     "slug": "manendi",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "manendi",
@@ -15,7 +15,8 @@
       "icon": "./assets/manendi.icon",
       "supportsTablet": false,
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleAllowMixedLocalizations": true
       },
       "privacyManifests": {
         "NSPrivacyTracking": false,
@@ -138,7 +139,60 @@
           "iosUrlScheme": "com.googleusercontent.apps.430359710145-liuagfibcq8k7jfg6se47e46jmmrb1gm"
         }
       ],
-      "expo-apple-authentication"
+      "expo-apple-authentication",
+      [
+        "expo-localization",
+        {
+          "supportedLocales": [
+            "en",
+            "ar",
+            "bn",
+            "ca",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "es",
+            "es-ES",
+            "fi",
+            "fr",
+            "gu",
+            "he",
+            "hi",
+            "hr",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "kn",
+            "ko",
+            "ml",
+            "mr",
+            "ms",
+            "nl",
+            "nb",
+            "or",
+            "pa",
+            "pl",
+            "pt-BR",
+            "pt-PT",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sv",
+            "ta",
+            "te",
+            "th",
+            "tr",
+            "uk",
+            "ur",
+            "vi",
+            "zh-Hans",
+            "zh-Hant"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
@@ -153,6 +207,53 @@
         "webClientId": "430359710145-8i6h04mv3opb8ss3rm9e7hjvgliksge0.apps.googleusercontent.com",
         "iosClientId": "430359710145-liuagfibcq8k7jfg6se47e46jmmrb1gm.apps.googleusercontent.com"
       }
+    },
+    "locales": {
+      "ar": "./locales/ar.json",
+      "bn": "./locales/bn.json",
+      "ca": "./locales/ca.json",
+      "cs": "./locales/cs.json",
+      "da": "./locales/da.json",
+      "de": "./locales/de.json",
+      "el": "./locales/el.json",
+      "es": "./locales/es.json",
+      "es-ES": "./locales/es-ES.json",
+      "fi": "./locales/fi.json",
+      "fr": "./locales/fr.json",
+      "gu": "./locales/gu.json",
+      "he": "./locales/he.json",
+      "hi": "./locales/hi.json",
+      "hr": "./locales/hr.json",
+      "hu": "./locales/hu.json",
+      "id": "./locales/id.json",
+      "it": "./locales/it.json",
+      "ja": "./locales/ja.json",
+      "kn": "./locales/kn.json",
+      "ko": "./locales/ko.json",
+      "ml": "./locales/ml.json",
+      "mr": "./locales/mr.json",
+      "ms": "./locales/ms.json",
+      "nl": "./locales/nl.json",
+      "nb": "./locales/nb.json",
+      "or": "./locales/or.json",
+      "pa": "./locales/pa.json",
+      "pl": "./locales/pl.json",
+      "pt-BR": "./locales/pt-BR.json",
+      "pt-PT": "./locales/pt-PT.json",
+      "ro": "./locales/ro.json",
+      "ru": "./locales/ru.json",
+      "sk": "./locales/sk.json",
+      "sl": "./locales/sl.json",
+      "sv": "./locales/sv.json",
+      "ta": "./locales/ta.json",
+      "te": "./locales/te.json",
+      "th": "./locales/th.json",
+      "tr": "./locales/tr.json",
+      "uk": "./locales/uk.json",
+      "ur": "./locales/ur.json",
+      "vi": "./locales/vi.json",
+      "zh-Hans": "./locales/zh-Hans.json",
+      "zh-Hant": "./locales/zh-Hant.json"
     }
   }
 }

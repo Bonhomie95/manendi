@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi dùng Face ID để khóa kho giấy tờ của bạn.",
+    "NSPhotoLibraryUsageDescription": "Chọn ảnh giấy tờ để lưu trong kho Manendi của bạn.",
+    "NSCameraUsageDescription": "Chụp ảnh giấy tờ để lưu trong kho Manendi của bạn."
+  }
+}

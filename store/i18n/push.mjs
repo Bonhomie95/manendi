@@ -118,6 +118,8 @@ export const playReleaseNotes = () => [
   ...tags.flatMap((t) => LANGS[t].play.map((language) => ({ language, text: listing(t).play.releaseNotes }))),
 ];
 
-if (store === 'apple') await apple();
-else if (store === 'play') await playStore();
-else if (store) throw new Error('usage: push.mjs apple <version> | play [--dry]');
+if (import.meta.main) {
+  if (store === 'apple') await apple();
+  else if (store === 'play') await playStore();
+  else throw new Error('usage: push.mjs apple <version> | play [--dry]');
+}

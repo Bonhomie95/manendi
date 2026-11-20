@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Suivi statut visa",
+    "subtitle": "Chaque date qui vous garde ici",
+    "promotionalText": "Les règles viennent de changer pour les étudiants F-1, les permis de travail et les frais H-1B. Manendi recalcule vos dates pour vous.",
+    "description": "Manendi décompte chaque date qui maintient votre statut, et vous explique en langage clair ce que chacune signifie.\n\n• Votre horloge de statut : I-94, passeport, visa, fenêtres de renouvellement du permis de travail, jours de chômage OPT, périodes de grâce, limite de six ans du H-1B, renouvellement de la green card, levée des conditions et date de dépôt de votre demande de citoyenneté.\n• Chaque dossier, en un coup d’œil : les numéros de reçu USCIS de votre famille au même endroit, chaque étape expliquée en langage clair.\n• Radar : les nouvelles règles, frais et avis qui touchent votre visa, directement du Federal Register.\n• Voyages : notez vos voyages et voyez votre budget de voyage pour la citoyenneté avant de réserver.\n• Confidentialité dès la conception : aucun compte requis. Connectez-vous avec Apple ou Google uniquement si vous voulez une sauvegarde pour un nouveau téléphone. Les photos de documents ne quittent jamais le vôtre.\n\nManendi Plus ajoute tout votre foyer, jusqu’à 25 dossiers suivis, le budget de voyage pour la citoyenneté, la limite H-1B et la file d’attente de la green card, un coffre de documents protégé par Face ID et un rapport de statut en PDF.\n\nManendi Plus est un abonnement à renouvellement automatique : $9.99 par mois ou $79.99 par an (les prix varient selon les pays). Le paiement est débité sur votre compte Apple à la confirmation. L’abonnement se renouvelle automatiquement sauf si vous le résiliez au moins 24 heures avant la fin de la période en cours ; gérez-le ou résiliez-le à tout moment dans les réglages de votre compte Apple.\n\nManendi donne des informations, pas des conseils juridiques, et n’est affilié ni à l’USCIS ni à aucune agence gouvernementale. Chaque compte à rebours renvoie à sa source officielle.\n\nConditions d’utilisation : https://manendi.onrender.com/terms\nPolitique de confidentialité : https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,permis de travail,carte verte,USCIS,citoyenneté,N-400,immigration",
+    "whatsNew": "Manendi parle maintenant votre langue : toute l’application est disponible en 46 langues et suit celle de votre téléphone. Nouveau : juste après la configuration, sauvegardez votre foyer avec Apple ou Google en un geste. Et une formulation plus claire de ce que comprend Manendi Plus.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus mensuel",
+    "subscriptionAnnualName": "Manendi Plus annuel",
+    "subscriptionDescription": "Foyer, 25 dossiers, coffre et rapport."
+  },
+  "play": {
+    "title": "Manendi: Suivi statut visa",
+    "shortDescription": "Chaque date de votre statut : I-94, OPT, EAD, H-1B, green card et plus.",
+    "fullDescription": "Manendi décompte chaque date qui maintient votre statut, et vous explique en langage clair ce que chacune signifie.\n\n• Votre horloge de statut : I-94, passeport, visa, fenêtres de renouvellement du permis de travail, jours de chômage OPT, périodes de grâce, limite de six ans du H-1B, renouvellement de la green card, levée des conditions et date de dépôt de votre demande de citoyenneté.\n• Chaque dossier, en un coup d’œil : les numéros de reçu USCIS de votre famille au même endroit, chaque étape expliquée en langage clair.\n• Radar : les nouvelles règles, frais et avis qui touchent votre visa, directement du Federal Register.\n• Voyages : notez vos voyages et voyez votre budget de voyage pour la citoyenneté avant de réserver.\n• Confidentialité dès la conception : aucun compte requis. Connectez-vous avec Google uniquement si vous voulez une sauvegarde pour un nouveau téléphone. Les photos de documents ne quittent jamais le vôtre.\n\nManendi Plus (un abonnement mensuel ou annuel) ajoute tout votre foyer, jusqu’à 25 dossiers suivis, le budget de voyage pour la citoyenneté, la limite H-1B et la file d’attente de la green card, un coffre de documents protégé par le verrouillage de votre écran et un rapport de statut en PDF.\n\nManendi donne des informations, pas des conseils juridiques. Il n’est ni affilié à, ni approuvé par, ni représentant de l’USCIS, du département d’État américain, de U.S. Customs and Border Protection ou de toute agence gouvernementale, et ne dépose rien en votre nom. Chaque compte à rebours renvoie à sa source officielle. Les informations proviennent de sources officielles, dont uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov et i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi parle maintenant votre langue : toute l’application est disponible en 46 langues et suit celle de votre téléphone. Nouveau : juste après la configuration, sauvegardez votre foyer avec Google en un geste. Et une formulation plus claire de ce que comprend Manendi Plus.",
+    "subscriptionMonthlyTitle": "Manendi Plus mensuel",
+    "subscriptionAnnualTitle": "Manendi Plus annuel",
+    "subscriptionBenefits": [
+      "Tous les visas de votre foyer",
+      "Suivez jusqu’à 25 dossiers USCIS",
+      "Budget de voyage citoyenneté",
+      "Coffre de documents et rapport"
+    ],
+    "subscriptionDescription": "Dates, dossiers et voyages de tout votre foyer, décomptés."
+  }
+}

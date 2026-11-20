@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi 使用 Face ID 來鎖定你的文件保險箱。",
+    "NSPhotoLibraryUsageDescription": "選擇文件照片，存放到你的 Manendi 保險箱。",
+    "NSCameraUsageDescription": "拍攝文件照片，存放到你的 Manendi 保險箱。"
+  }
+}

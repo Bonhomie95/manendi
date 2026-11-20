@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi ଆପଣଙ୍କ ଡକ୍ୟୁମେଣ୍ଟ ଭଲ୍ଟକୁ ଲକ୍ କରିବା ପାଇଁ Face ID ବ୍ୟବହାର କରେ।",
+    "NSPhotoLibraryUsageDescription": "ଆପଣଙ୍କ Manendi ଭଲ୍ଟରେ ରଖିବା ପାଇଁ ଡକ୍ୟୁମେଣ୍ଟର ଫଟୋ ବାଛନ୍ତୁ।",
+    "NSCameraUsageDescription": "ଆପଣଙ୍କ Manendi ଭଲ୍ଟରେ ରଖିବା ପାଇଁ ଡକ୍ୟୁମେଣ୍ଟର ଫଟୋ ଉଠାନ୍ତୁ।"
+  }
+}

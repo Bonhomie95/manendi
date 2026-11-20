@@ -8,7 +8,7 @@ import {
 import Animated, { cubicBezier, FadeInDown, FadeInUp, FadeOut, FadeOutUp, LinearTransition, useReducedMotion } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FullWindowOverlay } from 'react-native-screens';
-import { num, rtl } from '@/lib/i18n';
+import { joined, num, rtl } from '@/lib/i18n';
 import { font, tint, useColors } from '@/lib/theme';
 
 const ios = Platform.OS === 'ios';
@@ -24,10 +24,12 @@ const variants = {
   strong: { fontFamily: font.bold, fontSize: 16, lineHeight: 22 },
   small: { fontFamily: font.semi, fontSize: 13, lineHeight: 18 },
 };
+// Joined and tall scripts: spacing tears letters apart, and a tight line height clips marks above the line (रि).
+const JOINED = { letterSpacing: 0, lineHeight: undefined };
 export function T({ v = 'body', muted, color, style, ...p }: TextProps & { v?: keyof typeof variants; muted?: boolean; color?: string }) {
   const c = useColors();
   // In RTL, React Native only flips text that sets an alignment: 'left' means the start of the line.
-  return <Text maxFontSizeMultiplier={1.6} {...p} style={[variants[v], { color: color ?? (muted || v === 'label' ? c.muted : c.text) }, rtl && { textAlign: 'left' }, style]} />;
+  return <Text maxFontSizeMultiplier={1.6} {...p} style={[variants[v], { color: color ?? (muted || v === 'label' ? c.muted : c.text) }, rtl && { textAlign: 'left' }, style, joined && JOINED]} />;
 }
 
 // ---------- icons: SF Symbols on iOS, Material Symbols on Android ----------

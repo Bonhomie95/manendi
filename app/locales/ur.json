@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi آپ کے دستاویزی والٹ کو مقفل کرنے کے لیے Face ID استعمال کرتا ہے۔",
+    "NSPhotoLibraryUsageDescription": "اپنے Manendi والٹ میں رکھنے کے لیے اپنی دستاویزات کی تصاویر منتخب کریں۔",
+    "NSCameraUsageDescription": "اپنے Manendi والٹ میں رکھنے کے لیے اپنی دستاویزات کی تصاویر لیں۔"
+  }
+}

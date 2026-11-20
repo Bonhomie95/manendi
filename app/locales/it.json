@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi usa Face ID per bloccare il tuo archivio documenti.",
+    "NSPhotoLibraryUsageDescription": "Scegli le foto dei tuoi documenti da conservare nel tuo archivio Manendi.",
+    "NSCameraUsageDescription": "Scatta foto dei tuoi documenti da conservare nel tuo archivio Manendi."
+  }
+}

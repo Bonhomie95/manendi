@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "നിങ്ങളുടെ ഡോക്യുമെന്റ് വോൾട്ട് ലോക്ക് ചെയ്യാൻ Manendi Face ID ഉപയോഗിക്കുന്നു.",
+    "NSPhotoLibraryUsageDescription": "നിങ്ങളുടെ Manendi വോൾട്ടിൽ സൂക്ഷിക്കാൻ രേഖകളുടെ ഫോട്ടോകൾ തിരഞ്ഞെടുക്കുക.",
+    "NSCameraUsageDescription": "നിങ്ങളുടെ Manendi വോൾട്ടിൽ സൂക്ഷിക്കാൻ രേഖകളുടെ ഫോട്ടോ എടുക്കുക."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi używa Face ID do blokady Twojego sejfu dokumentów.",
+    "NSPhotoLibraryUsageDescription": "Wybierz zdjęcia dokumentów, aby przechowywać je w sejfie Manendi.",
+    "NSCameraUsageDescription": "Zrób zdjęcia dokumentów, aby przechowywać je w sejfie Manendi."
+  }
+}

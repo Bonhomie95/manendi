@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi gebruikt Face ID om je documentenkluis te vergrendelen.",
+    "NSPhotoLibraryUsageDescription": "Kies foto’s van je documenten om in je Manendi-kluis te bewaren.",
+    "NSCameraUsageDescription": "Maak foto’s van je documenten om in je Manendi-kluis te bewaren."
+  }
+}

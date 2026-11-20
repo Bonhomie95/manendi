@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi, belge kasanızı kilitlemek için Face ID kullanır.",
+    "NSPhotoLibraryUsageDescription": "Manendi kasanızda saklamak üzere belgelerinizin fotoğraflarını seçin.",
+    "NSCameraUsageDescription": "Manendi kasanızda saklamak üzere belgelerinizin fotoğraflarını çekin."
+  }
+}

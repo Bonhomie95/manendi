@@ -133,7 +133,38 @@ Those steps are marked **you**.
 4. **Builds:** `eas build -p android --profile production`, then `-p ios` (**you** sign in to Apple once when EAS
    asks), then `eas submit` for both; Claude attaches the builds and submits them for review.
 
-### Where it stands (2026-11-14)
+### Where it stands (2026-11-20)
+- **Live:** 1.0 on the App Store, 1.0.1 (6) on Google Play.
+- **In review:** App Store 1.0.1 (build 12). It releases by itself once approved.
+- **Next: 1.1.0, the app and both store listings in 46 languages.** That's every App Store language in our 174
+  storefronts, plus English. See "1.1.0" below.
+- **Backend, yours to do:**
+  - Render `manendi-api`: move to Starter ($7/mo) so it never sleeps, then set Settings → Health Check Path to
+    `/health`. On the free plan it sleeps outside 14:00–01:00 UTC, so the first call after that waits for a cold start.
+  - MongoDB Atlas: confirm the cluster tier includes backups.
+  - USCIS: the sandbox drill completes five weekdays on Fri 2026-11-20. After that, send the production-access email
+    (§2, step 3).
+
+### 1.1.0: every language
+- **Where the text lives:**
+  - `app/src/i18n/<tag>.json` holds the app strings: 637 keys, with `en.json` as the source.
+  - `store/i18n/<tag>.json` holds the listing text.
+  - `store/i18n/languages.json` maps each language to its App Store and Play locales.
+  - `store/i18n/TRANSLATING.md` has the rules.
+- **After changing any text:** from `app/`, run `node scripts/i18n-check.mjs` (it must report 0 errors), then
+  `node scripts/i18n-sync.mjs`. The sync writes the language index, the iOS permission texts, the app.json locales
+  and `server/i18n.json`.
+- **Google Play** (1.0.1 is live, so this can ship now):
+  - Upload the build to production with release notes in every language (`playReleaseNotes()` in
+    `store/i18n/push.mjs`).
+  - Then run `node store/i18n/push.mjs play` for the 48 listings and both subscriptions' text.
+- **App Store** (only one version can be in review):
+  - Once 1.0.1 is approved, create version 1.1.0 with the new build.
+  - Run `node store/i18n/push.mjs apple 1.1.0`. It covers names, subtitles, descriptions, keywords, What's New and
+    the subscription text, in 50 locales.
+  - Submit for review.
+
+### Launch record (2026-11-14)
 **App Store: submitted 2026-11-14, Waiting for Review.** Version 1.0 (build 11) went in together with the
 "Manendi Plus" group and both subscriptions: `manendi.plus.annual` (6833923717, $79.99) and `manendi.plus.monthly`
 (6833924804, $9.99). Apple requires a first subscription to be submitted with a version.
@@ -175,7 +206,7 @@ reviews usually take up to 7 days.
 **Optional, for testing on your phone:** Internal testing → Testers → create an email list with your Google account
 → roll out the 1.0.0 (5) draft → open the tester link.
 
-### Next update: 1.0.1 (built, ships once 1.0 is approved)
+### 1.0.1 (live on Play; in App Store review since 2026-11-19)
 Built on EAS on 2026-11-14 from `813c5d1`:
 - iOS 1.0.1 (build 12): `64098696-6d2b-4b86-9f87-5286d776739a`
 - Android 1.0.1 (build 6): `bb6f0b7c-c069-4f68-8d30-819742cb75e6`

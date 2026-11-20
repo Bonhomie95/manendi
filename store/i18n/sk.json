@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Hodiny statusu víz",
+    "subtitle": "Každý dátum, ktorý vás tu drží",
+    "promotionalText": "Pravidlá sa práve zmenili pre študentov F-1, pracovné povolenia a poplatky H-1B. Manendi vaše termíny prepočíta za vás.",
+    "description": "Manendi odpočítava každý dátum, ktorý vás drží v statuse — a jasným jazykom vám povie, čo každý z nich znamená.\n\n• Vaše hodiny statusu: I-94, pas, vízum v pase, lehoty na predĺženie pracovného povolenia, dni nezamestnanosti na OPT, ochranné lehoty, šesťročný limit H-1B, obnova green card, zrušenie podmienok a dátum podania žiadosti o občianstvo.\n• Každý prípad na prvý pohľad: čísla potvrdenia USCIS vašej rodiny na jednom mieste, každý krok vysvetlený jasným jazykom.\n• Radar: nové pravidlá, poplatky a oznámenia, ktoré sa týkajú vášho víza, rovno z Federal Register.\n• Cesty: zaznamenávajte cesty a pred rezerváciou uvidíte svoj cestovný rozpočet pre občianstvo.\n• Súkromie od základu: účet nie je potrebný. Prihláste sa cez Apple alebo Google, len ak chcete zálohu pre nový telefón. Fotky dokladov váš telefón nikdy neopustia.\n\nManendi Plus pridáva celú vašu domácnosť, až 25 sledovaných prípadov, cestovný rozpočet pre občianstvo, limit H-1B a rad na green card, trezor dokladov za Face ID a správu o statuse v PDF.\n\nManendi Plus je automaticky sa obnovujúce predplatné: $9.99 mesačne alebo $79.99 ročne (ceny sa v jednotlivých krajinách líšia). Platba sa stiahne z vášho Apple Account po potvrdení. Predplatné sa automaticky obnovuje, ak ho nezrušíte aspoň 24 hodín pred koncom aktuálneho obdobia; spravovať alebo zrušiť ho môžete kedykoľvek v nastaveniach svojho Apple Account.\n\nManendi poskytuje informácie, nie právne poradenstvo, a nie je nijako spojené s USCIS ani iným vládnym úradom. Pri každom odpočte je odkaz na oficiálny zdroj.\n\nPodmienky používania: https://manendi.onrender.com/terms\nZásady ochrany osobných údajov: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,pracovné povolenie,green card,USCIS,občianstvo,N-400,imigrácia",
+    "whatsNew": "Manendi teraz hovorí vaším jazykom: celá aplikácia je dostupná v 46 jazykoch a riadi sa jazykom vášho telefónu. Novinka: hneď po nastavení môžete jedným ťuknutím zálohovať svoju domácnosť cez Apple alebo Google. Navyše jasnejší popis toho, čo Manendi Plus obsahuje.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus mesačne",
+    "subscriptionAnnualName": "Manendi Plus ročne",
+    "subscriptionDescription": "Domácnosť, až 25 prípadov, trezor a správa o statuse."
+  },
+  "play": {
+    "title": "Manendi: Hodiny statusu víz",
+    "shortDescription": "Každý dátum, ktorý vás drží vo statuse: I-94, OPT, EAD, H-1B, green card.",
+    "fullDescription": "Manendi odpočítava každý dátum, ktorý vás drží v statuse, a jasným jazykom vám povie, čo každý z nich znamená.\n\n• Vaše hodiny statusu: I-94, pas, vízum v pase, lehoty na predĺženie pracovného povolenia, dni nezamestnanosti na OPT, ochranné lehoty, šesťročný limit H-1B, obnova green card, zrušenie podmienok a dátum podania žiadosti o občianstvo.\n• Každý prípad na prvý pohľad: čísla potvrdenia USCIS vašej rodiny na jednom mieste, každý krok vysvetlený jasným jazykom.\n• Radar: nové pravidlá, poplatky a oznámenia, ktoré sa týkajú vášho víza, rovno z Federal Register.\n• Cesty: zaznamenávajte cesty a pred rezerváciou uvidíte svoj cestovný rozpočet pre občianstvo.\n• Súkromie od základu: účet nie je potrebný. Prihláste sa cez Google, len ak chcete zálohu pre nový telefón. Fotky dokladov váš telefón nikdy neopustia.\n\nManendi Plus (mesačné alebo ročné predplatné) pridáva celú vašu domácnosť, až 25 sledovaných prípadov, cestovný rozpočet pre občianstvo, limit H-1B a rad na green card, trezor dokladov za zámkom obrazovky a správu o statuse v PDF.\n\nManendi poskytuje informácie, nie právne poradenstvo. Nie je spojené s USCIS, americkým ministerstvom zahraničia (U.S. Department of State), úradom U.S. Customs and Border Protection ani iným vládnym úradom, nemá ich podporu ani ich nezastupuje a nič za vás nepodáva. Pri každom odpočte je odkaz na oficiálny zdroj. Informácie pochádzajú z oficiálnych zdrojov, vrátane uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov a i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi teraz hovorí vaším jazykom: celá aplikácia je dostupná v 46 jazykoch a riadi sa jazykom vášho telefónu. Novinka: hneď po nastavení môžete jedným ťuknutím zálohovať svoju domácnosť cez Google. Navyše jasnejší popis toho, čo Manendi Plus obsahuje.",
+    "subscriptionMonthlyTitle": "Manendi Plus mesačne",
+    "subscriptionAnnualTitle": "Manendi Plus ročne",
+    "subscriptionBenefits": [
+      "Všetky víza vo vašej domácnosti",
+      "Sledujte až 25 prípadov USCIS",
+      "Cestovný rozpočet pre občianstvo",
+      "Trezor dokladov a správa o statuse"
+    ],
+    "subscriptionDescription": "Dátumy, prípady a cesty celej vašej domácnosti, odpočítavané."
+  }
+}

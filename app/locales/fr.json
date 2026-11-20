@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi utilise Face ID pour verrouiller votre coffre de documents.",
+    "NSPhotoLibraryUsageDescription": "Choisissez des photos de vos documents à conserver dans votre coffre Manendi.",
+    "NSCameraUsageDescription": "Prenez vos documents en photo pour les conserver dans votre coffre Manendi."
+  }
+}

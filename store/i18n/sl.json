@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Ura za vizum",
+    "subtitle": "Vsak datum, ki vas drži tu",
+    "promotionalText": "Pravila so se pravkar spremenila za študente F-1, delovna dovoljenja in pristojbine H-1B. Manendi vam datume preračuna znova.",
+    "description": "Manendi odšteva vsak datum, ki vas drži v statusu, in vam v preprostem jeziku pove, kaj pomeni posamezen.\n\n• Vaša ura statusa: I-94, potni list, vizumski žig, okna za podaljšanje delovnega dovoljenja, dnevi brez zaposlitve pri OPT, prehodna obdobja, šestletna omejitev H-1B, podaljšanje zelene karte, odprava pogojev in datum vloge za državljanstvo.\n• Vsak primer na prvi pogled: številke potrdil USCIS vaše družine na enem mestu, vsak korak razložen v preprostem jeziku.\n• Radar: nova pravila, pristojbine in obvestila, ki zadevajo vaš vizum, naravnost iz Federal Register.\n• Potovanja: beležite potovanja in pred rezervacijo preverite svoj potovalni proračun za državljanstvo.\n• Zasebno že v zasnovi: račun ni potreben. Prijavite se z Applom ali Googlom le, če želite varnostno kopijo za nov telefon. Fotografije dokumentov nikoli ne zapustijo vašega telefona.\n\nManendi Plus doda vse vaše gospodinjstvo, do 25 spremljanih primerov, potovalni proračun za državljanstvo, omejitev H-1B in vrsto za zeleno karto, trezor dokumentov za Face ID ter poročilo o statusu v PDF.\n\nManendi Plus je naročnina, ki se samodejno obnavlja: $9.99 na mesec ali $79.99 na leto (cene se razlikujejo po državah). Plačilo se ob potrditvi obračuna na vaš Apple Account. Naročnina se samodejno obnovi, razen če jo prekličete vsaj 24 ur pred koncem tekočega obdobja; upravljate ali prekličete jo lahko kadar koli v nastavitvah svojega Apple Accounta.\n\nManendi nudi informacije, ne pravnega svetovanja, in ni povezan z USCIS ali katerim koli drugim vladnim organom. Vsaka ura vsebuje povezavo do uradnega vira.\n\nPogoji uporabe: https://manendi.onrender.com/terms\nPravilnik o zasebnosti: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,USCIS,N-400,delovno dovoljenje,zelena karta,državljanstvo,imigracija",
+    "whatsNew": "Manendi zdaj govori vaš jezik: celotna aplikacija je na voljo v 46 jezikih in sledi jeziku vašega telefona. Novo: takoj po nastavitvi lahko gospodinjstvo z enim dotikom varnostno kopirate z Applom ali Googlom. Poleg tega jasnejši opis, kaj vključuje Manendi Plus.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus mesečno",
+    "subscriptionAnnualName": "Manendi Plus letno",
+    "subscriptionDescription": "Gospodinjstvo, do 25 primerov, trezor, poročilo."
+  },
+  "play": {
+    "title": "Manendi: Ura za vizum",
+    "shortDescription": "Vsak datum, ki vas drži v statusu: I-94, OPT, EAD, H-1B, zelena karta in več.",
+    "fullDescription": "Manendi odšteva vsak datum, ki vas drži v statusu, in vam v preprostem jeziku pove, kaj pomeni posamezen.\n\n• Vaša ura statusa: I-94, potni list, vizumski žig, okna za podaljšanje delovnega dovoljenja, dnevi brez zaposlitve pri OPT, prehodna obdobja, šestletna omejitev H-1B, podaljšanje zelene karte, odprava pogojev in datum vloge za državljanstvo.\n• Vsak primer na prvi pogled: številke potrdil USCIS vaše družine na enem mestu, vsak korak razložen v preprostem jeziku.\n• Radar: nova pravila, pristojbine in obvestila, ki zadevajo vaš vizum, naravnost iz Federal Register.\n• Potovanja: beležite potovanja in pred rezervacijo preverite svoj potovalni proračun za državljanstvo.\n• Zasebno že v zasnovi: račun ni potreben. Prijavite se z Googlom le, če želite varnostno kopijo za nov telefon. Fotografije dokumentov nikoli ne zapustijo vašega telefona.\n\nManendi Plus (mesečna ali letna naročnina) doda vse vaše gospodinjstvo, do 25 spremljanih primerov, potovalni proračun za državljanstvo, omejitev H-1B in vrsto za zeleno karto, trezor dokumentov za zaklepom zaslona ter poročilo o statusu v PDF.\n\nManendi nudi informacije, ne pravnega svetovanja. Ni povezan z USCIS, ameriškim State Departmentom, U.S. Customs and Border Protection ali katerim koli drugim vladnim organom, ti ga ne podpirajo in jih ne zastopa, v vašem imenu pa ničesar ne vloži. Vsaka ura vsebuje povezavo do uradnega vira. Informacije izvirajo iz uradnih virov, med drugim uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov in i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi zdaj govori vaš jezik: celotna aplikacija je na voljo v 46 jezikih in sledi jeziku vašega telefona. Novo: takoj po nastavitvi lahko gospodinjstvo z enim dotikom varnostno kopirate z Googlom. Poleg tega jasnejši opis, kaj vključuje Manendi Plus.",
+    "subscriptionMonthlyTitle": "Manendi Plus mesečno",
+    "subscriptionAnnualTitle": "Manendi Plus letno",
+    "subscriptionBenefits": [
+      "Vsak vizum v vašem gospodinjstvu",
+      "Spremljajte do 25 primerov USCIS",
+      "Potovalni proračun za državljanstvo",
+      "Trezor dokumentov in poročilo"
+    ],
+    "subscriptionDescription": "Datumi, primeri in potovanja vašega gospodinjstva, odšteti."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Rellotge del Visat",
+    "subtitle": "Cada data del teu status",
+    "promotionalText": "Les regles han canviat per als estudiants F-1, els permisos de treball i les taxes H-1B. Manendi recompta les teves dates per tu.",
+    "description": "Manendi compta enrere cada data que et manté en estatus — i t’explica, en llenguatge clar, què vol dir cadascuna.\n\n• El rellotge del teu estatus: I-94, passaport, segell del visat, finestres de renovació del permís de treball, dies d’atur de l’OPT, períodes de gràcia, límit de sis anys de l’H-1B, renovació de la green card, eliminació de condicions i la data de la teva sol·licitud de ciutadania.\n• Cada cas, d’un cop d’ull: els números de rebut de l’USCIS de la teva família en un sol lloc, cada pas explicat en llenguatge clar.\n• Radar: noves regles, taxes i avisos que afecten el teu visat, directament del Federal Register.\n• Viatges: registra viatges i mira el teu marge de viatge per a la ciutadania abans de reservar.\n• Privat des del disseny: no cal compte. Inicia la sessió amb Apple o Google només si vols una còpia de seguretat per a un telèfon nou. Les fotos dels documents no surten mai del teu.\n\nManendi Plus afegeix tota la teva llar, fins a 25 casos seguits, el marge de viatge per a la ciutadania, el límit de l’H-1B i la cua de la green card, una caixa forta de documents amb Face ID i un informe d’estatus en PDF.\n\nManendi Plus és una subscripció amb renovació automàtica: $9.99 al mes o $79.99 a l’any (els preus varien segons el país). El pagament es carrega al teu compte d’Apple quan ho confirmes. Es renova automàticament tret que el cancel·lis com a mínim 24 hores abans que acabi el període en curs; gestiona’l o cancel·la’l quan vulguis a la configuració del teu compte d’Apple.\n\nManendi dona informació, no assessorament jurídic, i no està afiliat a l’USCIS ni a cap organisme governamental. Cada rellotge enllaça la seva font oficial.\n\nCondicions d’ús: https://manendi.onrender.com/terms\nPolítica de privadesa: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,permís de treball,green card,USCIS,ciutadania,N-400,immigració",
+    "whatsNew": "Manendi ara parla el teu idioma: tota l’app està disponible en 46 idiomes i segueix l’idioma del teu telèfon. Novetat: just després de la configuració, pots fer la còpia de seguretat de la teva llar amb Apple o Google en un sol toc. A més, una redacció més clara del que inclou Manendi Plus.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus Mensual",
+    "subscriptionAnnualName": "Manendi Plus Anual",
+    "subscriptionDescription": "Llar, 25 casos, caixa forta i informe."
+  },
+  "play": {
+    "title": "Manendi: Rellotge del Visat",
+    "shortDescription": "Cada data del teu status: I-94, OPT, EAD, H-1B, green card i més.",
+    "fullDescription": "Manendi compta enrere cada data que et manté en estatus i t’explica, en llenguatge clar, què vol dir cadascuna.\n\n• El rellotge del teu estatus: I-94, passaport, segell del visat, finestres de renovació del permís de treball, dies d’atur de l’OPT, períodes de gràcia, el límit de sis anys de l’H-1B, renovació de la green card, eliminació de condicions i la data de la teva sol·licitud de ciutadania.\n• Cada cas, d’un cop d’ull: els números de rebut de l’USCIS de la teva família en un sol lloc, cada pas explicat en llenguatge clar.\n• Radar: noves regles, taxes i avisos que afecten el teu visat, directament del Federal Register.\n• Viatges: registra viatges i mira el teu marge de viatge per a la ciutadania abans de reservar.\n• Privat des del disseny: no cal compte. Inicia la sessió amb Google només si vols una còpia de seguretat per a un telèfon nou. Les fotos dels documents no surten mai del teu.\n\nManendi Plus (una subscripció mensual o anual) afegeix tota la teva llar, fins a 25 casos seguits, el marge de viatge per a la ciutadania, el límit de l’H-1B i la cua de la green card, una caixa forta de documents darrere del bloqueig de pantalla i un informe d’estatus en PDF.\n\nManendi dona informació, no assessorament jurídic. No està afiliat a, ni avalat per, ni representa l’USCIS, el U.S. Department of State, la U.S. Customs and Border Protection ni cap organisme governamental, i no presenta res en nom teu. Cada rellotge enllaça la seva font oficial. La informació prové de fonts oficials, com ara uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov i i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi ara parla el teu idioma: tota l’app està disponible en 46 idiomes i segueix l’idioma del teu telèfon. Novetat: just després de la configuració, pots fer la còpia de seguretat de la teva llar amb Google en un sol toc. A més, una redacció més clara del que inclou Manendi Plus.",
+    "subscriptionMonthlyTitle": "Manendi Plus Mensual",
+    "subscriptionAnnualTitle": "Manendi Plus Anual",
+    "subscriptionBenefits": [
+      "Tots els visats de la teva llar",
+      "Segueix fins a 25 casos de l’USCIS",
+      "Marge de viatge per a ciutadania",
+      "Caixa forta i informe d’estatus"
+    ],
+    "subscriptionDescription": "Dates, casos i viatges de tota la llar, comptats enrere."
+  }
+}

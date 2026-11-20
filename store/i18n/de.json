@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Visa-Status-Uhr",
+    "subtitle": "Jedes Datum für Ihren Status",
+    "promotionalText": "Neue Regeln für F-1-Studierende, Arbeitserlaubnisse und H-1B-Gebühren. Manendi zählt Ihre Fristen für Sie neu.",
+    "description": "Manendi zählt jedes Datum herunter, das Sie im Status hält, und erklärt Ihnen in einfacher Sprache, was es jeweils bedeutet.\n\n• Ihre Status-Uhr: I-94, Reisepass, Visumstempel, Verlängerungsfenster für die Arbeitserlaubnis, OPT-Tage ohne Job, Übergangsfristen, die H-1B-Höchstdauer von sechs Jahren, Verlängerung der Green Card, Aufhebung der Bedingungen und das Datum Ihres Einbürgerungsantrags.\n• Jeder Fall auf einen Blick: die USCIS-Receipt-Nummern Ihrer Familie an einem Ort, jeder Schritt in einfacher Sprache erklärt.\n• Radar: neue Regeln, Gebühren und Mitteilungen, die Ihr Visum betreffen, direkt aus dem Federal Register.\n• Reisen: Reisen erfassen und das Reisebudget für die Einbürgerung sehen, bevor Sie buchen.\n• Privat von Grund auf: kein Konto nötig. Melden Sie sich nur mit Apple oder Google an, wenn Sie ein Backup für ein neues Telefon möchten. Fotos Ihrer Dokumente verlassen nie Ihr Telefon.\n\nManendi Plus bietet zusätzlich Ihren ganzen Haushalt, bis zu 25 beobachtete Fälle, das Reisebudget für die Einbürgerung, das H-1B-Limit und die Green-Card-Warteschlange, einen Dokumententresor hinter Face ID und einen Statusbericht als PDF.\n\nManendi Plus ist ein automatisch verlängerndes Abonnement: $9.99 pro Monat oder $79.99 pro Jahr (die Preise variieren je nach Land). Die Zahlung wird bei Bestätigung Ihrem Apple-Account belastet. Das Abonnement verlängert sich automatisch, es sei denn, Sie kündigen mindestens 24 Stunden vor Ende des laufenden Zeitraums; verwalten oder kündigen können Sie es jederzeit in den Einstellungen Ihres Apple-Accounts.\n\nManendi liefert Informationen, keine Rechtsberatung, und ist weder mit USCIS noch mit einer anderen Behörde verbunden. Jede Uhr verlinkt ihre offizielle Quelle.\n\nNutzungsbedingungen: https://manendi.onrender.com/terms\nDatenschutzerklärung: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,USCIS,N-400,Arbeitserlaubnis,Green Card,Einbürgerung,Einwanderung,USA",
+    "whatsNew": "Manendi spricht jetzt Ihre Sprache: Die ganze App gibt es in 46 Sprachen, passend zur Sprache Ihres Telefons. Neu: Direkt nach der Einrichtung sichern Sie Ihren Haushalt mit einem Tipp per Apple oder Google. Außerdem klarere Angaben dazu, was Manendi Plus enthält.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus monatlich",
+    "subscriptionAnnualName": "Manendi Plus jährlich",
+    "subscriptionDescription": "Haushalt, bis zu 25 Fälle, Tresor, Statusbericht."
+  },
+  "play": {
+    "title": "Manendi: Visa-Status-Uhr",
+    "shortDescription": "Jedes Datum für Ihren Status: I-94, OPT, EAD, H-1B, Green Card und mehr.",
+    "fullDescription": "Manendi zählt jedes Datum herunter, das Sie im Status hält, und erklärt Ihnen in einfacher Sprache, was es jeweils bedeutet.\n\n• Ihre Status-Uhr: I-94, Reisepass, Visumstempel, Verlängerungsfenster für die Arbeitserlaubnis, OPT-Tage ohne Job, Übergangsfristen, die H-1B-Höchstdauer von sechs Jahren, Verlängerung der Green Card, Aufhebung der Bedingungen und das Datum Ihres Einbürgerungsantrags.\n• Jeder Fall auf einen Blick: die USCIS-Receipt-Nummern Ihrer Familie an einem Ort, jeder Schritt in einfacher Sprache erklärt.\n• Radar: neue Regeln, Gebühren und Mitteilungen, die Ihr Visum betreffen, direkt aus dem Federal Register.\n• Reisen: Reisen erfassen und das Reisebudget für die Einbürgerung sehen, bevor Sie buchen.\n• Privat von Grund auf: kein Konto nötig. Melden Sie sich nur mit Google an, wenn Sie ein Backup für ein neues Telefon möchten. Fotos Ihrer Dokumente verlassen nie Ihr Telefon.\n\nManendi Plus (ein Monats- oder Jahresabonnement) bietet zusätzlich Ihren ganzen Haushalt, bis zu 25 beobachtete Fälle, das Reisebudget für die Einbürgerung, das H-1B-Limit und die Green-Card-Warteschlange, einen Dokumententresor hinter Ihrer Bildschirmsperre und einen Statusbericht als PDF.\n\nManendi liefert Informationen, keine Rechtsberatung. Die App ist weder mit USCIS, dem U.S. Department of State, U.S. Customs and Border Protection noch mit einer anderen Behörde verbunden, wird von ihnen nicht unterstützt und vertritt sie nicht; sie reicht in Ihrem Namen nichts ein. Jede Uhr verlinkt ihre offizielle Quelle. Die Informationen stammen aus offiziellen Quellen, darunter uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov und i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi spricht jetzt Ihre Sprache: Die ganze App gibt es in 46 Sprachen, passend zur Sprache Ihres Telefons. Neu: Direkt nach der Einrichtung sichern Sie Ihren Haushalt mit einem Tipp per Google. Außerdem klarere Angaben dazu, was Manendi Plus enthält.",
+    "subscriptionMonthlyTitle": "Manendi Plus monatlich",
+    "subscriptionAnnualTitle": "Manendi Plus jährlich",
+    "subscriptionBenefits": [
+      "Jedes Visum Ihres Haushalts",
+      "Bis zu 25 USCIS-Fälle verfolgen",
+      "Reisebudget für die Einbürgerung",
+      "Dokumententresor und Statusbericht"
+    ],
+    "subscriptionDescription": "Alle Fristen, Fälle und Reisen Ihres Haushalts, heruntergezählt."
+  }
+}

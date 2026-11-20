@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi আপনার ডকুমেন্ট ভল্ট লক করতে Face ID ব্যবহার করে।",
+    "NSPhotoLibraryUsageDescription": "আপনার Manendi ভল্টে রাখার জন্য ডকুমেন্টের ছবি বেছে নিন।",
+    "NSCameraUsageDescription": "আপনার Manendi ভল্টে রাখার জন্য ডকুমেন্টের ছবি তুলুন।"
+  }
+}

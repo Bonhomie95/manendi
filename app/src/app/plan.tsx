@@ -10,7 +10,7 @@ import { Button, Field, Icon, Row, T, Tap, toast } from '@/components/ui';
 import { api, openPage, type PlanView } from '@/lib/api';
 import { buy, getOffers, manageUrl, restore, testMode, type Offer } from '@/lib/billing';
 import { full } from '@/lib/dates';
-import { t } from '@/lib/i18n';
+import { joined, t } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 import { brand, font, tint, useColors } from '@/lib/theme';
 
@@ -195,17 +195,17 @@ const st = StyleSheet.create({
   scrim: { position: 'absolute', top: 0, left: 0, right: 0, backgroundColor: brand.ink },
   close: { width: 36, height: 36, borderRadius: 18, backgroundColor: 'rgba(255,255,255,0.14)', alignItems: 'center', justifyContent: 'center' },
   kicker: { fontFamily: font.heavy, fontSize: 12, letterSpacing: 1.6, color: brand.gold, marginTop: 10 },
-  title: { fontFamily: font.display, fontSize: 50, lineHeight: 52, color: '#FFFFFF', letterSpacing: -0.5 },
-  sub: { fontFamily: font.semi, fontSize: 15, lineHeight: 22, color: 'rgba(255,255,255,0.78)' },
+  title: { fontFamily: font.display, fontSize: 50, lineHeight: joined ? undefined : 52, color: '#FFFFFF', letterSpacing: joined ? 0 : -0.5 },
+  sub: { fontFamily: font.semi, fontSize: 15, lineHeight: joined ? undefined : 22, color: 'rgba(255,255,255,0.78)' },
   perk: { width: 40, height: 40, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   option: { flexDirection: 'row', alignItems: 'center', gap: 14, padding: 16, borderRadius: 20 },
   radio: { width: 22, height: 22, borderRadius: 11, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
   dot: { width: 10, height: 10, borderRadius: 5 },
   save: { paddingHorizontal: 9, paddingVertical: 5, borderRadius: 10 },
-  saveText: { fontFamily: font.heavy, fontSize: 11, letterSpacing: 0.6 },
+  saveText: { fontFamily: font.heavy, fontSize: 11, letterSpacing: joined ? 0 : 0.6 },
   active: { borderRadius: 22, borderWidth: 1.5, padding: 16, gap: 8 },
   test: { flexDirection: 'row', alignItems: 'center', gap: 10, padding: 12, borderRadius: 14 },
   done: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 18, padding: 24 },
-  doneTitle: { fontFamily: font.display, fontSize: 40, lineHeight: 44, color: '#FFFFFF', textAlign: 'center' },
+  doneTitle: { fontFamily: font.display, fontSize: 40, lineHeight: joined ? undefined : 44, color: '#FFFFFF', textAlign: 'center' },
   doneSub: { fontFamily: font.semi, fontSize: 16, color: 'rgba(255,255,255,0.8)' },
 });

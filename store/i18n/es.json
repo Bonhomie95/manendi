@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Reloj migratorio",
+    "subtitle": "Cada fecha de su estatus",
+    "promotionalText": "Cambiaron las reglas para estudiantes F-1, permisos de trabajo y tarifas H-1B. Manendi vuelve a contar sus fechas por usted.",
+    "description": "Manendi cuenta los días de cada fecha que mantiene su estatus y le explica en lenguaje sencillo qué significa cada una.\n\n• Su reloj de estatus: I-94, pasaporte, sello de la visa, plazos para renovar el permiso de trabajo, días de desempleo en OPT, períodos de gracia, el límite de seis años de H-1B, renovación de la green card, eliminación de condiciones y la fecha para solicitar la ciudadanía.\n• Cada caso, de un vistazo: los números de recibo de USCIS de su familia en un solo lugar, con cada paso explicado en lenguaje sencillo.\n• Radar: reglas, tarifas y avisos nuevos que afectan su visa, directo del Federal Register.\n• Viajes: registre sus viajes y vea su presupuesto de viaje para la ciudadanía antes de reservar.\n• Privada por diseño: no necesita cuenta. Inicie sesión con Apple o Google solo si quiere una copia de seguridad para un teléfono nuevo. Las fotos de sus documentos nunca salen del suyo.\n\nManendi Plus agrega a todo su hogar, hasta 25 casos vigilados, el presupuesto de viaje para la ciudadanía, el límite de H-1B y la fila de la green card, una bóveda de documentos con Face ID y un informe de estatus en PDF.\n\nManendi Plus es una suscripción con renovación automática: $9.99 al mes o $79.99 al año (los precios varían según el país). El pago se carga a su cuenta de Apple al confirmar. Se renueva automáticamente a menos que la cancele al menos 24 horas antes de que termine el período actual; puede administrarla o cancelarla en cualquier momento en los ajustes de su cuenta de Apple.\n\nManendi ofrece información, no asesoría legal, y no está afiliada a USCIS ni a ninguna agencia del gobierno. Cada reloj enlaza su fuente oficial.\n\nTérminos de uso: https://manendi.onrender.com/terms\nPolítica de privacidad: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,permiso de trabajo,green card,USCIS,ciudadanía,N-400,inmigración,visa",
+    "whatsNew": "Manendi ahora habla su idioma: toda la app está disponible en 46 idiomas y sigue el idioma de su teléfono. Novedad: justo después de configurar, puede respaldar su hogar con Apple o Google con un solo toque. Además, una redacción más clara de lo que incluye Manendi Plus.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus mensual",
+    "subscriptionAnnualName": "Manendi Plus anual",
+    "subscriptionDescription": "Hogar, hasta 25 casos, bóveda e informe."
+  },
+  "play": {
+    "title": "Manendi: Reloj migratorio",
+    "shortDescription": "Cada fecha de su estatus: I-94, OPT, EAD, H-1B, green card y más.",
+    "fullDescription": "Manendi cuenta los días de cada fecha que mantiene su estatus y le explica en lenguaje sencillo qué significa cada una.\n\n• Su reloj de estatus: I-94, pasaporte, sello de la visa, plazos para renovar el permiso de trabajo, días de desempleo en OPT, períodos de gracia, el límite de seis años de H-1B, renovación de la green card, eliminación de condiciones y la fecha para solicitar la ciudadanía.\n• Cada caso, de un vistazo: los números de recibo de USCIS de su familia en un solo lugar, con cada paso explicado en lenguaje sencillo.\n• Radar: reglas, tarifas y avisos nuevos que afectan su visa, directo del Federal Register.\n• Viajes: registre sus viajes y vea su presupuesto de viaje para la ciudadanía antes de reservar.\n• Privada por diseño: no necesita cuenta. Inicie sesión con Google solo si quiere una copia de seguridad para un teléfono nuevo. Las fotos de sus documentos nunca salen del suyo.\n\nManendi Plus (una suscripción mensual o anual) agrega a todo su hogar, hasta 25 casos vigilados, el presupuesto de viaje para la ciudadanía, el límite de H-1B y la fila de la green card, una bóveda de documentos protegida con el bloqueo de su pantalla y un informe de estatus en PDF.\n\nManendi ofrece información, no asesoría legal. No está afiliada a, avalada por ni representa a USCIS, el Departamento de Estado de EE. UU., la Oficina de Aduanas y Protección Fronteriza de EE. UU. ni ninguna agencia del gobierno, y no presenta nada en su nombre. Cada reloj enlaza su fuente oficial. La información proviene de fuentes oficiales, entre ellas uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov e i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi ahora habla su idioma: toda la app está disponible en 46 idiomas y sigue el idioma de su teléfono. Novedad: justo después de configurar, puede respaldar su hogar con Google con un solo toque. Además, una redacción más clara de lo que incluye Manendi Plus.",
+    "subscriptionMonthlyTitle": "Manendi Plus mensual",
+    "subscriptionAnnualTitle": "Manendi Plus anual",
+    "subscriptionBenefits": [
+      "Todas las visas de su hogar",
+      "Hasta 25 casos de USCIS",
+      "Presupuesto de viaje ciudadanía",
+      "Bóveda de documentos e informe"
+    ],
+    "subscriptionDescription": "Las fechas, casos y viajes de todo su hogar, en cuenta regresiva."
+  }
+}

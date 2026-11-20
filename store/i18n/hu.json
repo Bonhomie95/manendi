@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Vízumstátusz-óra",
+    "subtitle": "Minden dátum, ami itt tart",
+    "promotionalText": "Most változtak a szabályok az F-1-es diákoknak, a munkavállalási engedélyeknek és az H-1B-díjaknak. A Manendi újraszámolja a dátumaidat.",
+    "description": "A Manendi visszaszámlál minden dátumot, ami a státuszodban tart, és érthetően elmagyarázza, mit jelent mindegyik.\n\n• A státuszórád: I-94, útlevél, vízumbélyegző, a munkavállalási engedély megújítási időszakai, az OPT munka nélküli napjai, türelmi idők, a H-1B hatéves korlátja, a green card megújítása, a feltételek feloldása és az állampolgársági kérelmed benyújtási dátuma.\n• Minden ügy egy pillantásra: a családod USCIS-átvételi számai egy helyen, minden lépés érthetően elmagyarázva.\n• Radar: új szabályok, díjak és értesítések, amelyek a vízumodat érintik, egyenesen a Federal Registerből.\n• Utazás: rögzítsd az utakat, és foglalás előtt nézd meg az állampolgársághoz tartozó utazási keretedet.\n• Alapból privát: nincs szükség fiókra. Csak akkor jelentkezz be Apple-lel vagy Google-lel, ha új telefonra szeretnél biztonsági mentést. A dokumentumfotók soha nem hagyják el a telefonodat.\n\nA Manendi Plus hozzáadja az egész háztartásodat, akár 25 figyelt ügyet, az állampolgársághoz tartozó utazási keretet, az H-1B-korlátot és a green card-sort, Face ID mögötti dokumentumtárat és státuszjelentést PDF-ben.\n\nA Manendi Plus automatikusan megújuló előfizetés: $9.99 havonta vagy $79.99 évente (az árak országonként eltérhetnek). A díjat a megerősítéskor terheljük az Apple-fiókodra. Az előfizetés automatikusan megújul, hacsak legalább 24 órával az aktuális időszak vége előtt le nem mondod; az Apple-fiókod beállításaiban bármikor kezelheted vagy lemondhatod.\n\nA Manendi információt ad, nem jogi tanácsot, és nem áll kapcsolatban az USCIS-szel vagy más kormányzati szervvel. Minden óra a hivatalos forrására hivatkozik.\n\nFelhasználási feltételek: https://manendi.onrender.com/terms\nAdatvédelmi szabályzat: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,USCIS,N-400,munkavállalási engedély,green card,állampolgárság,USA",
+    "whatsNew": "A Manendi mostantól a te nyelveden szól: az egész app 46 nyelven elérhető, és a telefonod nyelvét követi. Újdonság: a beállítás után egyetlen koppintással mentheted a háztartásodat Apple-lel vagy Google-lel. Emellett érthetőbb leírás arról, mit tartalmaz a Manendi Plus.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus havi",
+    "subscriptionAnnualName": "Manendi Plus éves",
+    "subscriptionDescription": "Háztartás, akár 25 ügy, dokumentumtár, jelentés."
+  },
+  "play": {
+    "title": "Manendi: Vízumstátusz-óra",
+    "shortDescription": "Minden dátum, ami a státuszodban tart: I-94, OPT, EAD, H-1B, green card és más.",
+    "fullDescription": "A Manendi visszaszámlál minden dátumot, ami a státuszodban tart, és érthetően elmagyarázza, mit jelent mindegyik.\n\n• A státuszórád: I-94, útlevél, vízumbélyegző, a munkavállalási engedély megújítási időszakai, az OPT munka nélküli napjai, türelmi idők, a H-1B hatéves korlátja, a green card megújítása, a feltételek feloldása és az állampolgársági kérelmed benyújtási dátuma.\n• Minden ügy egy pillantásra: a családod USCIS-átvételi számai egy helyen, minden lépés érthetően elmagyarázva.\n• Radar: új szabályok, díjak és értesítések, amelyek a vízumodat érintik, egyenesen a Federal Registerből.\n• Utazás: rögzítsd az utakat, és foglalás előtt nézd meg az állampolgársághoz tartozó utazási keretedet.\n• Alapból privát: nincs szükség fiókra. Csak akkor jelentkezz be Google-lel, ha új telefonra szeretnél biztonsági mentést. A dokumentumfotók soha nem hagyják el a telefonodat.\n\nA Manendi Plus (havi vagy éves előfizetés) hozzáadja az egész háztartásodat, akár 25 figyelt ügyet, az állampolgársághoz tartozó utazási keretet, az H-1B-korlátot és a green card-sort, képernyőzár mögötti dokumentumtárat és státuszjelentést PDF-ben.\n\nA Manendi információt ad, nem jogi tanácsot. Nem áll kapcsolatban az USCIS-szel, az U.S. Department of State-tel, az U.S. Customs and Border Protectionnel vagy más kormányzati szervvel, nem támogatja és nem képviseli őket, és semmit nem nyújt be a nevedben. Minden óra a hivatalos forrására hivatkozik. Az információk hivatalos forrásokból származnak, például: uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov és i94.cbp.dhs.gov.",
+    "releaseNotes": "A Manendi mostantól a te nyelveden szól: az egész app 46 nyelven elérhető, és a telefonod nyelvét követi. Újdonság: a beállítás után egyetlen koppintással mentheted a háztartásodat Google-lel. Emellett érthetőbb leírás arról, mit tartalmaz a Manendi Plus.",
+    "subscriptionMonthlyTitle": "Manendi Plus havi",
+    "subscriptionAnnualTitle": "Manendi Plus éves",
+    "subscriptionBenefits": [
+      "A háztartásod minden vízuma",
+      "Akár 25 USCIS-ügy követése",
+      "Utazási keret az állampolgársághoz",
+      "Dokumentumtár és státuszjelentés"
+    ],
+    "subscriptionDescription": "A háztartásod dátumai, ügyei és utazásai, visszaszámlálva."
+  }
+}

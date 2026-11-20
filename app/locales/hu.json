@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "A Manendi Face ID-t használ a dokumentumtár zárolásához.",
+    "NSPhotoLibraryUsageDescription": "Válaszd ki a dokumentumaid fotóit, hogy a Manendi-tárban tárolhasd őket.",
+    "NSCameraUsageDescription": "Fotózd le a dokumentumaidat, hogy a Manendi-tárban tárolhasd őket."
+  }
+}

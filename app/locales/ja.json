@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi は Face ID を使って書類ボールトをロックします。",
+    "NSPhotoLibraryUsageDescription": "書類の写真を選んで、Manendi のボールトに保存します。",
+    "NSCameraUsageDescription": "書類の写真を撮って、Manendi のボールトに保存します。"
+  }
+}

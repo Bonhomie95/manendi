@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi usa Face ID para bloquear tu caja fuerte de documentos.",
+    "NSPhotoLibraryUsageDescription": "Elige fotos de tus documentos para guardarlas en tu caja fuerte de Manendi.",
+    "NSCameraUsageDescription": "Haz fotos de tus documentos para guardarlas en tu caja fuerte de Manendi."
+  }
+}

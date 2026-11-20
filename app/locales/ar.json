@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "يستخدم Manendi ميزة Face ID لقفل خزنة مستنداتك.",
+    "NSPhotoLibraryUsageDescription": "اختر صور مستنداتك لحفظها في خزنة Manendi.",
+    "NSCameraUsageDescription": "التقط صورًا لمستنداتك لحفظها في خزنة Manendi."
+  }
+}

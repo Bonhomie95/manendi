@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Stato del visto",
+    "subtitle": "Ogni data che ti tiene qui",
+    "promotionalText": "Le regole sono appena cambiate per studenti F-1, permessi di lavoro e tariffe H-1B. Manendi ricalcola le tue date per te.",
+    "description": "Manendi conta alla rovescia ogni data che ti mantiene in status e ti spiega in modo semplice cosa significa ciascuna.\n\n• Il tuo orologio dello status: I-94, passaporto, timbro del visto, finestre di rinnovo del permesso di lavoro, giorni di disoccupazione OPT, periodi di grazia, limite di sei anni dell’H-1B, rinnovo della green card, rimozione delle condizioni e data per chiedere la cittadinanza.\n• Ogni pratica, a colpo d’occhio: i numeri di ricevuta USCIS della tua famiglia in un unico posto, ogni passaggio spiegato in modo semplice.\n• Radar: nuove regole, tariffe e avvisi che riguardano il tuo visto, direttamente dal Federal Register.\n• Viaggi: registra i viaggi e vedi il tuo budget di viaggio per la cittadinanza prima di prenotare.\n• Privato per progetto: nessun account necessario. Accedi con Apple o Google solo se vuoi un backup per un nuovo telefono. Le foto dei documenti non lasciano mai il tuo.\n\nManendi Plus aggiunge tutta la tua famiglia, fino a 25 pratiche seguite, il budget di viaggio per la cittadinanza, il limite H-1B e la coda della green card, un archivio documenti protetto da Face ID e un rapporto sullo status in PDF.\n\nManendi Plus è un abbonamento con rinnovo automatico: $9.99 al mese o $79.99 all’anno (i prezzi variano da paese a paese). Il pagamento viene addebitato sul tuo Apple Account alla conferma. Si rinnova automaticamente, a meno che tu non lo disdica almeno 24 ore prima della fine del periodo in corso; puoi gestirlo o disdirlo in qualsiasi momento nelle impostazioni del tuo Apple Account.\n\nManendi offre informazioni, non consulenza legale, e non è affiliato all’USCIS né ad alcuna agenzia governativa. Ogni conto alla rovescia rimanda alla sua fonte ufficiale.\n\nCondizioni d’uso: https://manendi.onrender.com/terms\nInformativa sulla privacy: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,permesso di lavoro,green card,USCIS,cittadinanza,N-400,immigrazione",
+    "whatsNew": "Manendi ora parla la tua lingua: tutta l’app è disponibile in 46 lingue e segue quella del tuo telefono. Novità: subito dopo la configurazione puoi fare il backup della tua famiglia con Apple o Google con un tocco. Inoltre, parole più chiare su cosa include Manendi Plus.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus mensile",
+    "subscriptionAnnualName": "Manendi Plus annuale",
+    "subscriptionDescription": "Famiglia, 25 pratiche, archivio e rapporto."
+  },
+  "play": {
+    "title": "Manendi: Stato del visto",
+    "shortDescription": "Ogni data del tuo status: I-94, OPT, EAD, H-1B, green card e altro.",
+    "fullDescription": "Manendi conta alla rovescia ogni data che ti mantiene in status e ti spiega in modo semplice cosa significa ciascuna.\n\n• Il tuo orologio dello status: I-94, passaporto, timbro del visto, finestre di rinnovo del permesso di lavoro, giorni di disoccupazione OPT, periodi di grazia, limite di sei anni dell’H-1B, rinnovo della green card, rimozione delle condizioni e data per chiedere la cittadinanza.\n• Ogni pratica, a colpo d'occhio: i numeri di ricevuta USCIS della tua famiglia in un unico posto, ogni passaggio spiegato in modo semplice.\n• Radar: nuove regole, tariffe e avvisi che riguardano il tuo visto, direttamente dal Federal Register.\n• Viaggi: registra i viaggi e vedi il tuo budget di viaggio per la cittadinanza prima di prenotare.\n• Privato per progetto: nessun account necessario. Accedi con Google solo se vuoi un backup per un nuovo telefono. Le foto dei documenti non lasciano mai il tuo.\n\nManendi Plus (un abbonamento mensile o annuale) aggiunge tutta la tua famiglia, fino a 25 pratiche seguite, il budget di viaggio per la cittadinanza, il limite H-1B e la coda della green card, un archivio documenti protetto dal blocco schermo e un rapporto sullo status in PDF.\n\nManendi offre informazioni, non consulenza legale. Non è affiliato a, approvato da né rappresentante di USCIS, del Dipartimento di Stato USA, di U.S. Customs and Border Protection o di alcuna agenzia governativa, e non presenta nulla per tuo conto. Ogni conto alla rovescia rimanda alla sua fonte ufficiale. Le informazioni provengono da fonti ufficiali, tra cui uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov e i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi ora parla la tua lingua: tutta l’app è disponibile in 46 lingue e segue quella del tuo telefono. Novità: subito dopo la configurazione puoi fare il backup della tua famiglia con Google con un tocco. Inoltre, parole più chiare su cosa include Manendi Plus.",
+    "subscriptionMonthlyTitle": "Manendi Plus mensile",
+    "subscriptionAnnualTitle": "Manendi Plus annuale",
+    "subscriptionBenefits": [
+      "Ogni visto della tua famiglia",
+      "Segui fino a 25 pratiche USCIS",
+      "Budget di viaggio cittadinanza",
+      "Archivio documenti e rapporto"
+    ],
+    "subscriptionDescription": "Date, pratiche e viaggi di tutta la famiglia, conteggiati."
+  }
+}

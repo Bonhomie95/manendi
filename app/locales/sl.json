@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi uporablja Face ID za zaklepanje vašega trezorja dokumentov.",
+    "NSPhotoLibraryUsageDescription": "Izberite fotografije svojih dokumentov, ki jih želite hraniti v trezorju Manendi.",
+    "NSCameraUsageDescription": "Fotografirajte svoje dokumente, da jih shranite v trezorju Manendi."
+  }
+}

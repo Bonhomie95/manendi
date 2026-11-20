@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "உங்கள் ஆவணப் பெட்டகத்தைப் பூட்ட Manendi, Face ID-ஐப் பயன்படுத்துகிறது.",
+    "NSPhotoLibraryUsageDescription": "உங்கள் Manendi பெட்டகத்தில் வைக்க, ஆவணங்களின் புகைப்படங்களைத் தேர்ந்தெடுங்கள்.",
+    "NSCameraUsageDescription": "உங்கள் Manendi பெட்டகத்தில் வைக்க, ஆவணங்களைப் புகைப்படம் எடுங்கள்."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi usa Face ID para bloquear su bóveda de documentos.",
+    "NSPhotoLibraryUsageDescription": "Elija fotos de sus documentos para guardarlas en su bóveda de Manendi.",
+    "NSCameraUsageDescription": "Tome fotos de sus documentos para guardarlas en su bóveda de Manendi."
+  }
+}

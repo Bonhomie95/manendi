@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Jam Status Visa",
+    "subtitle": "Setiap tanggal penjaga status",
+    "promotionalText": "Aturan baru untuk pelajar F-1, izin kerja, dan biaya H-1B. Manendi menghitung ulang tanggal Anda untuk Anda.",
+    "description": "Manendi menghitung mundur setiap tanggal yang menjaga status Anda, dan menjelaskan dengan bahasa yang mudah dipahami artinya masing-masing.\n\n• Jam status Anda: I-94, paspor, stempel visa, jendela perpanjangan izin kerja, hari menganggur OPT, masa tenggang, batas enam tahun H-1B, perpanjangan green card, penghapusan persyaratan, dan tanggal pengajuan kewarganegaraan Anda.\n• Semua kasus, sekali lihat: nomor receipt USCIS keluarga Anda di satu tempat, setiap tahap dijelaskan dengan bahasa yang mudah dipahami.\n• Radar: aturan, biaya, dan pemberitahuan baru yang menyangkut visa Anda, langsung dari Federal Register.\n• Perjalanan: catat perjalanan dan lihat jatah perjalanan kewarganegaraan Anda sebelum memesan tiket.\n• Privat sejak awal: tanpa akun. Masuk dengan Apple atau Google hanya jika Anda ingin cadangan untuk ponsel baru. Foto dokumen tidak pernah keluar dari ponsel Anda.\n\nManendi Plus menambahkan seluruh keluarga Anda, hingga 25 kasus yang dipantau, jatah perjalanan kewarganegaraan, batas H-1B dan antrean green card, brankas dokumen dengan Face ID, dan laporan status PDF.\n\nManendi Plus adalah langganan yang diperpanjang otomatis: $9.99 per bulan atau $79.99 per tahun (harga berbeda di tiap negara). Pembayaran ditagihkan ke Apple Account Anda saat Anda mengonfirmasi. Langganan diperpanjang otomatis kecuali Anda membatalkannya paling lambat 24 jam sebelum akhir periode berjalan; kelola atau batalkan kapan saja di pengaturan Apple Account Anda.\n\nManendi memberi informasi, bukan nasihat hukum, dan tidak berafiliasi dengan USCIS atau lembaga pemerintah mana pun. Setiap hitungan menautkan sumber resminya.\n\nKetentuan Penggunaan: https://manendi.onrender.com/terms\nKebijakan Privasi: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,izin kerja,green card,USCIS,pelacak,kewarganegaraan,N-400,imigrasi",
+    "whatsNew": "Manendi kini berbahasa Anda: seluruh aplikasi tersedia dalam 46 bahasa dan mengikuti bahasa ponsel Anda. Baru: setelah penyiapan, Anda bisa mencadangkan keluarga dengan Apple atau Google sekali ketuk. Plus, penjelasan yang lebih jelas tentang isi Manendi Plus.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus Bulanan",
+    "subscriptionAnnualName": "Manendi Plus Tahunan",
+    "subscriptionDescription": "Keluarga, hingga 25 kasus, brankas, dan laporan status."
+  },
+  "play": {
+    "title": "Manendi: Jam Status Visa",
+    "shortDescription": "Tanggal penjaga status Anda: I-94, OPT, EAD, H-1B, green card, dan lainnya.",
+    "fullDescription": "Manendi menghitung mundur setiap tanggal yang menjaga status Anda, dan menjelaskan dengan bahasa yang mudah dipahami artinya masing-masing.\n\n• Jam status Anda: I-94, paspor, stempel visa, jendela perpanjangan izin kerja, hari menganggur OPT, masa tenggang, batas enam tahun H-1B, perpanjangan green card, penghapusan persyaratan, dan tanggal pengajuan kewarganegaraan Anda.\n• Semua kasus, sekali lihat: nomor receipt USCIS keluarga Anda di satu tempat, setiap tahap dijelaskan dengan bahasa yang mudah dipahami.\n• Radar: aturan, biaya, dan pemberitahuan baru yang menyangkut visa Anda, langsung dari Federal Register.\n• Perjalanan: catat perjalanan dan lihat jatah perjalanan kewarganegaraan Anda sebelum memesan tiket.\n• Privat sejak awal: tanpa akun. Masuk dengan Google hanya jika Anda ingin cadangan untuk ponsel baru. Foto dokumen tidak pernah keluar dari ponsel Anda.\n\nManendi Plus (langganan bulanan atau tahunan) menambahkan seluruh keluarga Anda, hingga 25 kasus yang dipantau, jatah perjalanan kewarganegaraan, batas H-1B dan antrean green card, brankas dokumen yang dilindungi kunci layar, dan laporan status PDF.\n\nManendi memberi informasi, bukan nasihat hukum. Aplikasi ini tidak berafiliasi dengan, tidak didukung oleh, dan tidak mewakili USCIS, Departemen Luar Negeri AS, Bea Cukai dan Perlindungan Perbatasan AS, atau lembaga pemerintah mana pun, dan tidak mengajukan apa pun atas nama Anda. Setiap hitungan menautkan sumber resminya. Informasi berasal dari sumber resmi, termasuk uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov, dan i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi kini berbahasa Anda: seluruh aplikasi tersedia dalam 46 bahasa dan mengikuti bahasa ponsel Anda. Baru: setelah penyiapan, Anda bisa mencadangkan keluarga dengan Google sekali ketuk. Plus, penjelasan yang lebih jelas tentang isi Manendi Plus.",
+    "subscriptionMonthlyTitle": "Manendi Plus Bulanan",
+    "subscriptionAnnualTitle": "Manendi Plus Tahunan",
+    "subscriptionBenefits": [
+      "Setiap visa di keluarga Anda",
+      "Pantau hingga 25 kasus USCIS",
+      "Jatah perjalanan kewarganegaraan",
+      "Brankas dokumen dan laporan status"
+    ],
+    "subscriptionDescription": "Tanggal, kasus, dan perjalanan seluruh keluarga Anda, dihitung mundur."
+  }
+}

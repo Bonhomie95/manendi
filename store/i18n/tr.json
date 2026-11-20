@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Vize Statü Saati",
+    "subtitle": "Sizi burada tutan her tarih",
+    "promotionalText": "F-1 öğrencileri, çalışma izinleri ve H-1B ücretleri için kurallar yeni değişti. Manendi tarihlerinizi sizin için yeniden hesaplar.",
+    "description": "Manendi, statünüzü koruyan her tarihi geri sayar — ve her birinin ne anlama geldiğini sade bir dille anlatır.\n\n• Statü saatiniz: I-94, pasaport, vize damgası, çalışma izni yenileme pencereleri, OPT işsizlik günleri, tolerans süreleri, H-1B altı yıl sınırı, green card yenileme, şartları kaldırma ve vatandaşlık başvuru tarihiniz.\n• Her dosya, tek bakışta: ailenizin USCIS receipt numaraları tek yerde, her adım sade bir dille açıklanmış.\n• Radar: vizanızı ilgilendiren yeni kurallar, ücretler ve bildirimler, doğrudan Federal Register’dan.\n• Seyahat: seyahatlerinizi kaydedin, bilet almadan önce vatandaşlık seyahat bütçenizi görün.\n• Tasarımdan gizli: hesap gerekmez. Yeni bir telefon için yedek istiyorsanız yalnızca o zaman Apple veya Google ile giriş yapın. Belge fotoğrafları telefonunuzdan asla çıkmaz.\n\nManendi Plus tüm haneyi, 25’e kadar izlenen dosyayı, vatandaşlık seyahat bütçesini, H-1B sınırını ve green card sırasını, Face ID’li bir belge kasasını ve PDF statü raporunu ekler.\n\nManendi Plus otomatik yenilenen bir aboneliktir: ayda $9.99 veya yılda $79.99 (fiyatlar ülkeye göre değişir). Ödeme, onayladığınızda Apple Account’unuzdan tahsil edilir. Mevcut dönemin bitiminden en az 24 saat önce iptal etmezseniz otomatik yenilenir; Apple Account ayarlarınızdan istediğiniz zaman yönetebilir veya iptal edebilirsiniz.\n\nManendi bilgi verir, hukuki tavsiye vermez; USCIS veya herhangi bir devlet kurumuyla bağlantılı değildir. Her sayaç resmi kaynağına bağlanır.\n\nKullanım Şartları: https://manendi.onrender.com/terms\nGizlilik Politikası: https://manendi.onrender.com/privacy",
+    "keywords": "OPT,H1B,I-94,STEM,EAD,green card,USCIS,vatandaşlık,göçmenlik,çalışma izni,N-400,F-1,H-4",
+    "whatsNew": "Manendi artık sizin dilinizi konuşuyor: uygulamanın tamamı 46 dilde sunuluyor ve telefonunuzun diline uyuyor. Yeni: kurulumdan hemen sonra haneyi tek dokunuşla Apple veya Google ile yedekleyebilirsiniz. Ayrıca Manendi Plus’ın neleri içerdiği daha net anlatılıyor.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus Aylık",
+    "subscriptionAnnualName": "Manendi Plus Yıllık",
+    "subscriptionDescription": "Hane, 25 dosya, kasa ve statü raporu."
+  },
+  "play": {
+    "title": "Manendi: Vize Statü Saati",
+    "shortDescription": "Statünüzü koruyan her tarih: I-94, OPT, EAD, H-1B, green card ve daha fazlası.",
+    "fullDescription": "Manendi, statünüzü koruyan her tarihi geri sayar ve her birinin ne anlama geldiğini sade bir dille anlatır.\n\n• Statü saatiniz: I-94, pasaport, vize damgası, çalışma izni yenileme pencereleri, OPT işsizlik günleri, tolerans süreleri, H-1B altı yıl sınırı, green card yenileme, şartları kaldırma ve vatandaşlık başvuru tarihiniz.\n• Her dosya, tek bakışta: ailenizin USCIS receipt numaraları tek yerde, her adım sade bir dille açıklanmış.\n• Radar: vizanızı ilgilendiren yeni kurallar, ücretler ve bildirimler, doğrudan Federal Register’dan.\n• Seyahat: seyahatlerinizi kaydedin, bilet almadan önce vatandaşlık seyahat bütçenizi görün.\n• Tasarımdan gizli: hesap gerekmez. Yeni bir telefon için yedek istiyorsanız yalnızca o zaman Google ile giriş yapın. Belge fotoğrafları telefonunuzdan asla çıkmaz.\n\nManendi Plus (aylık veya yıllık abonelik) tüm haneyi, 25’e kadar izlenen dosyayı, vatandaşlık seyahat bütçesini, H-1B sınırını ve green card sırasını, ekran kilidinizin arkasında bir belge kasasını ve PDF statü raporunu ekler.\n\nManendi bilgi verir, hukuki tavsiye vermez. USCIS, ABD Dışişleri Bakanlığı, U.S. Customs and Border Protection veya herhangi bir devlet kurumuyla bağlantılı değildir, onlar tarafından onaylanmamıştır ve onları temsil etmez; adınıza hiçbir başvuru yapmaz. Her sayaç resmi kaynağına bağlanır. Bilgiler uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov ve i94.cbp.dhs.gov dahil resmi kaynaklardan gelir.",
+    "releaseNotes": "Manendi artık sizin dilinizi konuşuyor: uygulamanın tamamı 46 dilde sunuluyor ve telefonunuzun diline uyuyor. Yeni: kurulumdan hemen sonra haneyi tek dokunuşla Google ile yedekleyebilirsiniz. Ayrıca Manendi Plus’ın neleri içerdiği daha net anlatılıyor.",
+    "subscriptionMonthlyTitle": "Manendi Plus Aylık",
+    "subscriptionAnnualTitle": "Manendi Plus Yıllık",
+    "subscriptionBenefits": [
+      "Hanenizdeki her vize",
+      "25’e kadar USCIS dosyasını izleyin",
+      "Vatandaşlık seyahat bütçesi",
+      "Belge kasası ve statü raporu"
+    ],
+    "subscriptionDescription": "Tüm haneniz için tarihler, dosyalar ve seyahatler, geri sayımla."
+  }
+}

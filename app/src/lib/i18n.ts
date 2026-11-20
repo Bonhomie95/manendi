@@ -37,6 +37,8 @@ const chosen = (() => {
 /** The dictionary in use, e.g. "pt-BR", and the phone's locale for numbers and dates, e.g. "pt-BR" or "es-US". */
 export const { lang, locale } = chosen;
 export const rtl = I18nManager.isRTL;
+/** Scripts that come apart when letters are spaced out or set one by one: Arabic and Hebrew, Indic, Thai. */
+export const joined = /^(ar|ur|he|hi|bn|mr|gu|pa|ta|te|kn|ml|or|th)$/.test(lang);
 const EN: Record<string, string> = en;
 const dict: Record<string, string> = { ...EN, ...(lang === 'en' ? {} : DICTS[lang]()) };
 

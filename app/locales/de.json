@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "Manendi nutzt Face ID, um Ihren Dokumententresor zu sperren.",
+    "NSPhotoLibraryUsageDescription": "Wählen Sie Fotos Ihrer Dokumente, um sie in Ihrem Manendi-Tresor aufzubewahren.",
+    "NSCameraUsageDescription": "Fotografieren Sie Ihre Dokumente, um sie in Ihrem Manendi-Tresor aufzubewahren."
+  }
+}

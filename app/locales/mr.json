@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSFaceIDUsageDescription": "तुमची डॉक्युमेंट व्हॉल्ट लॉक करण्यासाठी Manendi Face ID वापरते.",
+    "NSPhotoLibraryUsageDescription": "तुमच्या Manendi व्हॉल्टमध्ये ठेवण्यासाठी तुमच्या कागदपत्रांचे फोटो निवडा.",
+    "NSCameraUsageDescription": "तुमच्या Manendi व्हॉल्टमध्ये ठेवण्यासाठी तुमच्या कागदपत्रांचे फोटो काढा."
+  }
+}

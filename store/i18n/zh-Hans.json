@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: 签证身份倒计时",
+    "subtitle": "每个让你留下的日期",
+    "promotionalText": "F-1 学生、工作许可和 H-1B 费用的规则刚刚变了。Manendi 会替你重新计算日期。",
+    "description": "Manendi 为每个让你保持身份的日期倒数，并用通俗的语言告诉你每一个意味着什么。\n\n• 你的身份倒计时：I-94、护照、签证章、工作许可续期窗口、OPT 失业天数、宽限期、H-1B 六年上限、绿卡续办、解除条件，以及你的入籍申请日期。\n• 每个案件，一目了然：全家人的 USCIS 收据编号集中在一处，每一步都用通俗的语言讲清楚。\n• 雷达：和你的签证有关的新规、费用和通知，直接来自 Federal Register。\n• 出行：记录行程，订票前先看看你的入籍出行额度。\n• 隐私优先：无需账号。只有想在换新手机时备份，才需要用 Apple 或 Google 登录。证件照片绝不会离开你的手机。\n\nManendi Plus 可加入你的全家人、最多 25 个关注的案件、入籍出行额度、H-1B 上限和绿卡排期、由 Face ID 保护的证件保险箱，以及身份报告 PDF。\n\nManendi Plus 是自动续订的订阅：每月 $9.99 或每年 $79.99（价格因国家/地区而异）。确认购买后，费用会从你的 Apple 账户扣除。除非你在当前订阅期结束前至少 24 小时取消，否则会自动续订；你可以随时在 Apple 账户设置中管理或取消。\n\nManendi 提供信息，不提供法律意见，也与 USCIS 或任何政府机构无关。每个倒计时都附有官方来源。\n\n使用条款：https://manendi.onrender.com/terms\n隐私政策：https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,工作许可,绿卡,USCIS,移民,入籍,N-400,留学生,签证",
+    "whatsNew": "Manendi 现在会说你的语言：整个应用提供 46 种语言，并跟随你手机的语言。新增：设置完成后，只需轻点一下，就能用 Apple 或 Google 备份你的家庭数据。另外，Manendi Plus 包含的内容说明也更清楚了。",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus 月度",
+    "subscriptionAnnualName": "Manendi Plus 年度",
+    "subscriptionDescription": "全家人、25 个案件、保险箱和身份报告。"
+  },
+  "play": {
+    "title": "Manendi: 签证身份倒计时",
+    "shortDescription": "每个保持身份的日期：I-94、OPT、EAD、H-1B、绿卡等。",
+    "fullDescription": "Manendi 为每个让你保持身份的日期倒数，并用通俗的语言告诉你每一个意味着什么。\n\n• 你的身份倒计时：I-94、护照、签证章、工作许可续期窗口、OPT 失业天数、宽限期、H-1B 六年上限、绿卡续办、解除条件，以及你的入籍申请日期。\n• 每个案件，一目了然：全家人的 USCIS 收据编号集中在一处，每一步都用通俗的语言讲清楚。\n• 雷达：和你的签证有关的新规、费用和通知，直接来自 Federal Register。\n• 出行：记录行程，订票前先看看你的入籍出行额度。\n• 隐私优先：无需账号。只有想在换新手机时备份，才需要用 Google 登录。证件照片绝不会离开你的手机。\n\nManendi Plus（按月或按年订阅）可加入你的全家人、最多 25 个关注的案件、入籍出行额度、H-1B 上限和绿卡排期、由屏幕锁保护的证件保险箱，以及身份报告 PDF。\n\nManendi 提供信息，不提供法律意见。它与 USCIS、美国国务院、美国海关与边境保护局 (CBP) 或任何政府机构均无关联，也未获其认可或代表它们，并且不会代你提交任何申请。每个倒计时都附有官方来源。信息来自官方渠道，包括 uscis.gov、egov.uscis.gov、federalregister.gov、travel.state.gov 和 i94.cbp.dhs.gov。",
+    "releaseNotes": "Manendi 现在会说你的语言：整个应用提供 46 种语言，并跟随你手机的语言。新增：设置完成后，只需轻点一下，就能用 Google 备份你的家庭数据。另外，Manendi Plus 包含的内容说明也更清楚了。",
+    "subscriptionMonthlyTitle": "Manendi Plus 月度",
+    "subscriptionAnnualTitle": "Manendi Plus 年度",
+    "subscriptionBenefits": [
+      "全家人的每份签证",
+      "关注最多 25 个 USCIS 案件",
+      "入籍出行额度",
+      "证件保险箱和身份报告"
+    ],
+    "subscriptionDescription": "全家人的日期、案件和行程，一起倒数。"
+  }
+}

@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Mark } from '@/components/brand';
 import { Ring } from '@/components/ring';
 import { Button, Icon, T, Tap } from '@/components/ui';
-import { num, t } from '@/lib/i18n';
+import { joined, num, t } from '@/lib/i18n';
 import { font, tint, useColors, type Palette } from '@/lib/theme';
 
 const bob = (ms: number, px: number, delay = 0) => ({
@@ -41,7 +41,7 @@ function CasesArt({ c }: { c: Palette }) {
         }]}>
           <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: col }} />
           <View style={{ flex: 1 }}>
-            <Text style={{ fontFamily: font.heavy, fontSize: 12, letterSpacing: 1, color: c.muted }}>{r}</Text>
+            <Text style={{ fontFamily: font.heavy, fontSize: 12, letterSpacing: joined ? 0 : 1, color: c.muted }}>{r}</Text>
             <Text style={{ fontFamily: font.bold, fontSize: 15, color: c.text }}>{s}</Text>
           </View>
           {i === 2 && <Icon ios="checkmark.seal.fill" android="verified" size={20} color={c.accent} />}
