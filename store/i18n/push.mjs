@@ -90,7 +90,8 @@ async function apple() {
         { subscriptionGroup: rel('subscriptionGroups', group.data[0].id) }, locale, { name: a.subscriptionGroup });
       for (const [pid, name] of [['manendi.plus.monthly', a.subscriptionMonthlyName], ['manendi.plus.annual', a.subscriptionAnnualName]]) {
         await upsert('subscriptionLocalizations', `/v1/subscriptions/${subs[pid]}/subscriptionLocalizations`, { subscription: rel('subscriptions', subs[pid]) }, locale,
-          { name, description: a.subscriptionDescription });
+          { name, description: a.subscriptionDescription })
+          .catch((e) => console.log('subscription', pid, locale, 'not added:', e.message.slice(0, 160)));
       }
     }
     console.log('✔ apple', t);

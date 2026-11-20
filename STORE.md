@@ -137,9 +137,12 @@ Those steps are marked **you**.
 - **Live:** 1.0 on the App Store, 1.0.1 (6) on Google Play.
 - **Google Play 1.1.0 (versionCode 8): sent to production review on 2026-11-20.** It has release notes in 49 languages,
   and the 49 store listings and both subscriptions' text are translated too.
-- **In review:** App Store 1.0.1 (build 12). It releases by itself once approved.
-- **App Store 1.1.0 (build 13): uploaded to App Store Connect on 2026-11-20.** It is ready for TestFlight, and for
-  submission once 1.0.1 has left review.
+- **App Store 1.1.0 (build 13): Waiting for Review since 2026-11-20, releases by itself once approved.** It replaces
+  1.0.1, which was withdrawn from review the same day; 1.1.0 includes everything 1.0.1 had. The name, subtitle,
+  description, keywords and What's New are in 47 locales.
+- **Still English on iOS: the subscription names and descriptions.** Apple refuses new subscription languages while
+  an earlier English change ("up to 25") is pending review: "Cannot create new localization, change pending review."
+  Once that clears, add the 46 languages, then send them with a `subscriptionSubmissions` POST per plan.
 - **Next: 1.1.0, the app and both store listings in 46 languages.** That's every App Store language in our 174
   storefronts, plus English. See "1.1.0" below.
 - **Backend, yours to do:**
