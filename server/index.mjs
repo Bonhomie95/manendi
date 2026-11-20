@@ -6,6 +6,7 @@ import http from 'node:http';
 import { createHash } from 'node:crypto';
 import { MongoClient } from 'mongodb';
 import { LIMITS, isPlus, lapsed, planView, revenueCat, storePlan } from './billing.mjs';
+import { langOf, say } from './i18n.mjs';
 import { identity } from './identity.mjs';
 import { pages } from './pages.mjs';
 import { fetchRadar } from './radar.mjs';
@@ -72,12 +73,12 @@ async function guard(key, max) {
   if (a.n > max) throw fail(429, 'That’s a lot of checks. Try again in a few minutes.');
 }
 
-async function push(deviceId, title, body) {
+async function push(deviceId, label, body) {
   const d = await devices.findOne({ _id: deviceId });
   if (!d?.pushToken || !isPlus(d)) return; // change alerts are part of Plus
   await fetch('https://exp.host/--/api/v2/push/send', {
     method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json' },
-    body: JSON.stringify({ to: d.pushToken, title, body, sound: 'default', data: { path: '/cases' } }),
+    body: JSON.stringify({ to: d.pushToken, title: `${say(d.lang, 'Case update')} · ${label}`, body, sound: 'default', data: { path: '/cases' } }),
   }).catch(() => {});
 }
 
@@ -88,7 +89,7 @@ async function check(w, alert = false) {
   const ours = changed ? [{ status: w.status, date: w.modified }, ...(w.history ?? [])].slice(0, 60) : w.history ?? [];
   const set = { form: c.form, status: c.status, detail: c.detail, modified: c.modified, history: c.history.length ? c.history : ours, checkedAt: new Date() };
   await watches.updateOne({ _id: w._id }, { $set: set, $unset: { error: '' } });
-  if (alert && changed) await push(w.deviceId, `Case update · ${w.label || w.receipt}`, c.status);
+  if (alert && changed) await push(w.deviceId, w.label || w.receipt, c.status); // USCIS's status text stays in English
   return { ...w, ...set, error: null };
 }
 
@@ -118,8 +119,9 @@ on('GET', '/radar', async () => {
   }
 }, true);
 
-on('POST', '/device', async ({ body, device }) => {
+on('POST', '/device', async ({ body, device, lang }) => {
   const set = {};
+  if (lang !== device.lang) set.lang = lang; // for push alerts in the app's language
   if (typeof body.appUserId === 'string' && /^[\w-]{8,64}$/.test(body.appUserId)) set.appUserId = body.appUserId;
   if (body.pushToken === null || (typeof body.pushToken === 'string' && /^Expo(nent)?PushToken\[[\w-]+\]$/.test(body.pushToken))) set.pushToken = body.pushToken;
   if (Object.keys(set).length) await devices.updateOne({ _id: device._id }, { $set: set });
@@ -287,8 +289,9 @@ await Promise.all([
 ]);
 setInterval(() => sweep().catch((e) => console.error('sweep', e)), 3600e3).unref();
 
-http.createServer(async (req, res) => {
+const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://local');
+  const lang = langOf(req);
   try {
     const route = routes.find((r) => r.method === req.method && r.re.test(url.pathname));
     if (!route) throw fail(404, 'Not found');
@@ -296,18 +299,26 @@ http.createServer(async (req, res) => {
       params: url.pathname.match(route.re).slice(1).map(decodeURIComponent),
       query: Object.fromEntries(url.searchParams),
       body: ['POST', 'PUT', 'PATCH'].includes(req.method) ? await readJson(req) : {},
+      lang,
       ...(route.open ? {} : await auth(req)),
     };
     const out = (await route.fn(ctx)) ?? { ok: true };
     if (out[RAW]) { res.writeHead(200, { 'content-type': out[RAW][0] }); return res.end(out[RAW][1]); }
     res.writeHead(200, { 'content-type': 'application/json' });
-    res.end(JSON.stringify(out));
+    res.end(JSON.stringify(out, (k, v) => (k === 'error' && typeof v === 'string' ? say(lang, v) : v))); // a watch's last error
   } catch (e) {
     if (!e.status) console.error(e);
     res.writeHead(e.status ?? 500, { 'content-type': 'application/json' });
-    res.end(JSON.stringify({ error: e.status ? e.message : 'Something went wrong' }));
+    res.end(JSON.stringify({ error: say(lang, e.status ? e.message : 'Something went wrong') }));
   }
 }).listen(Number(PORT), HOST, () => console.log(`manendi api → http://${HOST}:${PORT} (db: ${MONGODB_DB}, cases: ${cases.mock ? 'mock' : cases.live ? 'live' : 'off'}${drill ? ' + sandbox drill' : ''})`));
+
+// Render sends SIGTERM on every deploy and restart: stop taking new requests, let the ones in flight finish, close the
+// database, then exit. A stuck request can't hold the shutdown past 10 seconds.
+process.on('SIGTERM', () => {
+  server.close(() => client.close().finally(() => process.exit(0)));
+  setTimeout(() => process.exit(0), 10_000).unref();
+});
 
 // ponytail: Render's free plan sleeps after 15 idle minutes (~1 min cold start). Pinging our own public URL every 5–10
 // minutes counts as traffic, so the API stays warm. KEEPALIVE_HOURS ("12-04", UTC) limits that to part of the day: a free

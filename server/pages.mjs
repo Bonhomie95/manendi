@@ -59,6 +59,7 @@ export function pages({ supportEmail, legalName, address = '' }) {
 <li><b>A random device key.</b> Your app makes one on first launch. It is not your name, email or phone number.</li>
 <li><b>Receipt numbers you choose to watch</b>, the label you give each one, and the case status USCIS returns for it. We use them only to look up those cases through USCIS’s official Case Status API on your behalf and to tell you when they change. You can remove a case or erase everything at any time.</li>
 <li><b>A push token</b>, if you allow notifications, so we can alert you when a watched case changes.</li>
+<li><b>The app’s language</b>, so messages and alerts reach you in it.</li>
 <li><b>Plan status.</b> Whether you have Manendi Plus. Apple or Google take the payment — we never see card details. RevenueCat, our subscription service, receives a random ID (not your name or email) and the purchase records Apple or Google provide.</li>
 <li><b>Technical data.</b> Our servers and hosting providers process your IP address and basic request details to run and protect the service.</li>
 </ul>
@@ -149,7 +150,7 @@ ${contact}`);
 <h1>Erase your Manendi data</h1>
 <p class="muted">Manendi, by ${us}. Signing in is optional, and most of your data never leaves your phone.</p>
 <h2>What we hold</h2>
-<p>Receipt numbers you chose to watch (with their labels and USCIS statuses), a push token if you allowed notifications, a random device key and your plan status. If you signed in: your account (Google or Apple ID, email and name) and its household backup.</p>
+<p>Receipt numbers you chose to watch (with their labels and USCIS statuses), a push token if you allowed notifications, a random device key, the app’s language and your plan status. If you signed in: your account (Google or Apple ID, email and name) and its household backup.</p>
 <h2>Erase it in the app (fastest)</h2>
 <p>Open Manendi → <b>Family</b> → <b>Erase my server data</b>. It happens immediately and also deletes your account and its backup. To delete only the account, tap your account on the Family tab → <b>Delete account</b>. To remove everything on the phone too, choose <b>Erase everything</b>, or delete the app.</p>
 <h2>Can’t open the app?</h2>
