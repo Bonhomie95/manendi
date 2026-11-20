@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Mark } from '@/components/brand';
 import { Ring } from '@/components/ring';
 import { Button, Icon, T, Tap } from '@/components/ui';
+import { num, t } from '@/lib/i18n';
 import { font, tint, useColors, type Palette } from '@/lib/theme';
 
 const bob = (ms: number, px: number, delay = 0) => ({
@@ -17,12 +18,12 @@ function ClockArt({ c }: { c: Palette }) {
   return (
     <View style={{ width: 280, height: 230, alignItems: 'center', justifyContent: 'center' }}>
       <Ring size={196} progress={0.63} color={c.accent} track={c.line}>
-        <Text style={{ fontFamily: font.display, fontSize: 64, lineHeight: 66, color: c.text }}>57</Text>
-        <Text style={{ fontFamily: font.bold, fontSize: 13, color: c.muted }}>days of grace left</Text>
+        <Text style={{ fontFamily: font.display, fontSize: 64, lineHeight: 66, color: c.text }}>{num(57)}</Text>
+        <Text style={{ fontFamily: font.bold, fontSize: 13, color: c.muted }}>{t('welcome.art.graceLeft', { n: 57 })}</Text>
       </Ring>
-      {[['I-94', 8, 20, c.gold], ['EAD', 222, 36, c.alt], ['OPT', 196, 178, c.accent]].map(([t, x, y, col], i) => (
-        <Animated.View key={t as string} style={[a.chip, { left: x as number, top: y as number, backgroundColor: c.card, borderColor: tint(col as string, 0.5) }, bob(2400 + i * 400, 4, i * 300)]}>
-          <Text style={{ fontFamily: font.heavy, fontSize: 12, color: col as string }}>{t}</Text>
+      {[['I-94', 8, 20, c.gold], ['EAD', 222, 36, c.alt], ['OPT', 196, 178, c.accent]].map(([label, x, y, col], i) => (
+        <Animated.View key={label as string} style={[a.chip, { left: x as number, top: y as number, backgroundColor: c.card, borderColor: tint(col as string, 0.5) }, bob(2400 + i * 400, 4, i * 300)]}>
+          <Text style={{ fontFamily: font.heavy, fontSize: 12, color: col as string }}>{label}</Text>
         </Animated.View>
       ))}
     </View>
@@ -61,9 +62,9 @@ function RadarArt({ c }: { c: Palette }) {
         }} />
       ))}
       <Mark size={64} />
-      {[['H-1B fee rule', 0, 26, c.alt], ['OPT', 196, 64, c.gold], ['Work permits', 30, 176, c.accent]].map(([t, x, y, col], i) => (
-        <Animated.View key={t as string} style={[a.chip, { left: x as number, top: y as number, backgroundColor: tint(col as string, 0.14), borderColor: 'transparent' }, bob(2600 + i * 300, 5, i * 500)]}>
-          <Text style={{ fontFamily: font.heavy, fontSize: 12, color: col as string }}>{t}</Text>
+      {[[t('welcome.art.feeRule'), 0, 26, c.alt], ['OPT', 196, 64, c.gold], [t('welcome.art.workPermits'), 30, 176, c.accent]].map(([label, x, y, col], i) => (
+        <Animated.View key={label as string} style={[a.chip, { left: x as number, top: y as number, backgroundColor: tint(col as string, 0.14), borderColor: 'transparent' }, bob(2600 + i * 300, 5, i * 500)]}>
+          <Text style={{ fontFamily: font.heavy, fontSize: 12, color: col as string }}>{label}</Text>
         </Animated.View>
       ))}
     </View>
@@ -71,9 +72,9 @@ function RadarArt({ c }: { c: Palette }) {
 }
 
 const SLIDES = [
-  { title: 'Know your days.', body: 'I-94, work permit, OPT, grace periods: every date that keeps you in status, counted down for you.', Art: ClockArt },
-  { title: 'Every case, one glance.', body: 'Your family’s USCIS cases, each step explained in plain English.', Art: CasesArt },
-  { title: 'Hear what changes.', body: 'New rules and fees that touch your visa, straight from the Federal Register. Nothing else.', Art: RadarArt },
+  { title: t('welcome.slide1.title'), body: t('welcome.slide1.body'), Art: ClockArt },
+  { title: t('welcome.slide2.title'), body: t('welcome.slide2.body'), Art: CasesArt },
+  { title: t('welcome.slide3.title'), body: t('welcome.slide3.body'), Art: RadarArt },
 ];
 
 function Dot({ x, i, width, color }: { x: SharedValue<number>; i: number; width: number; color: string }) {
@@ -112,13 +113,13 @@ export default function Welcome() {
         <View style={{ flexDirection: 'row', gap: 6, alignSelf: 'center', marginBottom: 8 }}>
           {SLIDES.map((sl, i) => <Dot key={sl.title} x={x} i={i} width={width} color={c.text} />)}
         </View>
-        <Button title="Start" kind="accent" onPress={() => router.push('/setup')} />
-        <Tap onPress={() => router.push('/restore')} accessibilityLabel="Restore my household" style={{ alignSelf: 'center', paddingVertical: 4 }}>
-          <T v="strong" color={c.accent}>Restore my household</T>
+        <Button title={t('welcome.start')} kind="accent" onPress={() => router.push('/setup')} />
+        <Tap onPress={() => router.push('/restore')} accessibilityLabel={t('welcome.restore')} style={{ alignSelf: 'center', paddingVertical: 4 }}>
+          <T v="strong" color={c.accent}>{t('welcome.restore')}</T>
         </Tap>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
           <Icon ios="lock.fill" android="lock" size={12} color={c.muted} />
-          <T v="small" muted>No account needed. Your details stay on this phone.</T>
+          <T v="small" muted>{t('welcome.private')}</T>
         </View>
       </View>
     </View>

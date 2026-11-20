@@ -1,0 +1,455 @@
+{
+  "ar": {
+    "name": "Arabic",
+    "apple": [
+      "ar-SA"
+    ],
+    "play": [
+      "ar"
+    ],
+    "platform": "ar"
+  },
+  "bn": {
+    "name": "Bangla",
+    "apple": [
+      "bn-BD"
+    ],
+    "play": [
+      "bn-BD"
+    ],
+    "platform": "bn"
+  },
+  "ca": {
+    "name": "Catalan",
+    "apple": [
+      "ca"
+    ],
+    "play": [
+      "ca"
+    ],
+    "platform": "ca"
+  },
+  "cs": {
+    "name": "Czech",
+    "apple": [
+      "cs"
+    ],
+    "play": [
+      "cs-CZ"
+    ],
+    "platform": "cs"
+  },
+  "da": {
+    "name": "Danish",
+    "apple": [
+      "da"
+    ],
+    "play": [
+      "da-DK"
+    ],
+    "platform": "da"
+  },
+  "de": {
+    "name": "German",
+    "apple": [
+      "de-DE"
+    ],
+    "play": [
+      "de-DE"
+    ],
+    "platform": "de"
+  },
+  "el": {
+    "name": "Greek",
+    "apple": [
+      "el"
+    ],
+    "play": [
+      "el-GR"
+    ],
+    "platform": "el"
+  },
+  "es": {
+    "name": "Spanish (Latin America)",
+    "apple": [
+      "es-MX"
+    ],
+    "play": [
+      "es-419",
+      "es-US"
+    ],
+    "platform": "es"
+  },
+  "es-ES": {
+    "name": "Spanish (Spain)",
+    "apple": [
+      "es-ES"
+    ],
+    "play": [
+      "es-ES"
+    ],
+    "platform": "es-ES"
+  },
+  "fi": {
+    "name": "Finnish",
+    "apple": [
+      "fi"
+    ],
+    "play": [
+      "fi-FI"
+    ],
+    "platform": "fi"
+  },
+  "fr": {
+    "name": "French",
+    "apple": [
+      "fr-FR",
+      "fr-CA"
+    ],
+    "play": [
+      "fr-FR",
+      "fr-CA"
+    ],
+    "platform": "fr"
+  },
+  "gu": {
+    "name": "Gujarati",
+    "apple": [
+      "gu-IN"
+    ],
+    "play": [
+      "gu"
+    ],
+    "platform": "gu"
+  },
+  "he": {
+    "name": "Hebrew",
+    "apple": [
+      "he"
+    ],
+    "play": [
+      "iw-IL"
+    ],
+    "platform": "he"
+  },
+  "hi": {
+    "name": "Hindi",
+    "apple": [
+      "hi"
+    ],
+    "play": [
+      "hi-IN"
+    ],
+    "platform": "hi"
+  },
+  "hr": {
+    "name": "Croatian",
+    "apple": [
+      "hr"
+    ],
+    "play": [
+      "hr"
+    ],
+    "platform": "hr"
+  },
+  "hu": {
+    "name": "Hungarian",
+    "apple": [
+      "hu"
+    ],
+    "play": [
+      "hu-HU"
+    ],
+    "platform": "hu"
+  },
+  "id": {
+    "name": "Indonesian",
+    "apple": [
+      "id"
+    ],
+    "play": [
+      "id"
+    ],
+    "platform": "id"
+  },
+  "it": {
+    "name": "Italian",
+    "apple": [
+      "it"
+    ],
+    "play": [
+      "it-IT"
+    ],
+    "platform": "it"
+  },
+  "ja": {
+    "name": "Japanese",
+    "apple": [
+      "ja"
+    ],
+    "play": [
+      "ja-JP"
+    ],
+    "platform": "ja"
+  },
+  "kn": {
+    "name": "Kannada",
+    "apple": [
+      "kn-IN"
+    ],
+    "play": [
+      "kn-IN"
+    ],
+    "platform": "kn"
+  },
+  "ko": {
+    "name": "Korean",
+    "apple": [
+      "ko"
+    ],
+    "play": [
+      "ko-KR"
+    ],
+    "platform": "ko"
+  },
+  "ml": {
+    "name": "Malayalam",
+    "apple": [
+      "ml-IN"
+    ],
+    "play": [
+      "ml-IN"
+    ],
+    "platform": "ml"
+  },
+  "mr": {
+    "name": "Marathi",
+    "apple": [
+      "mr-IN"
+    ],
+    "play": [
+      "mr-IN"
+    ],
+    "platform": "mr"
+  },
+  "ms": {
+    "name": "Malay",
+    "apple": [
+      "ms"
+    ],
+    "play": [
+      "ms",
+      "ms-MY"
+    ],
+    "platform": "ms"
+  },
+  "nl": {
+    "name": "Dutch",
+    "apple": [
+      "nl-NL"
+    ],
+    "play": [
+      "nl-NL"
+    ],
+    "platform": "nl"
+  },
+  "no": {
+    "name": "Norwegian (Bokmål)",
+    "apple": [
+      "no"
+    ],
+    "play": [
+      "no-NO"
+    ],
+    "platform": "nb"
+  },
+  "or": {
+    "name": "Odia",
+    "apple": [
+      "or-IN"
+    ],
+    "play": [],
+    "platform": "or"
+  },
+  "pa": {
+    "name": "Punjabi (Gurmukhi)",
+    "apple": [
+      "pa-IN"
+    ],
+    "play": [
+      "pa"
+    ],
+    "platform": "pa"
+  },
+  "pl": {
+    "name": "Polish",
+    "apple": [
+      "pl"
+    ],
+    "play": [
+      "pl-PL"
+    ],
+    "platform": "pl"
+  },
+  "pt-BR": {
+    "name": "Portuguese (Brazil)",
+    "apple": [
+      "pt-BR"
+    ],
+    "play": [
+      "pt-BR"
+    ],
+    "platform": "pt-BR"
+  },
+  "pt-PT": {
+    "name": "Portuguese (Portugal)",
+    "apple": [
+      "pt-PT"
+    ],
+    "play": [
+      "pt-PT"
+    ],
+    "platform": "pt-PT"
+  },
+  "ro": {
+    "name": "Romanian",
+    "apple": [
+      "ro"
+    ],
+    "play": [
+      "ro"
+    ],
+    "platform": "ro"
+  },
+  "ru": {
+    "name": "Russian",
+    "apple": [
+      "ru"
+    ],
+    "play": [
+      "ru-RU"
+    ],
+    "platform": "ru"
+  },
+  "sk": {
+    "name": "Slovak",
+    "apple": [
+      "sk"
+    ],
+    "play": [
+      "sk"
+    ],
+    "platform": "sk"
+  },
+  "sl": {
+    "name": "Slovenian",
+    "apple": [
+      "sl-SI"
+    ],
+    "play": [
+      "sl"
+    ],
+    "platform": "sl"
+  },
+  "sv": {
+    "name": "Swedish",
+    "apple": [
+      "sv"
+    ],
+    "play": [
+      "sv-SE"
+    ],
+    "platform": "sv"
+  },
+  "ta": {
+    "name": "Tamil",
+    "apple": [
+      "ta-IN"
+    ],
+    "play": [
+      "ta-IN"
+    ],
+    "platform": "ta"
+  },
+  "te": {
+    "name": "Telugu",
+    "apple": [
+      "te-IN"
+    ],
+    "play": [
+      "te-IN"
+    ],
+    "platform": "te"
+  },
+  "th": {
+    "name": "Thai",
+    "apple": [
+      "th"
+    ],
+    "play": [
+      "th"
+    ],
+    "platform": "th"
+  },
+  "tr": {
+    "name": "Turkish",
+    "apple": [
+      "tr"
+    ],
+    "play": [
+      "tr-TR"
+    ],
+    "platform": "tr"
+  },
+  "uk": {
+    "name": "Ukrainian",
+    "apple": [
+      "uk"
+    ],
+    "play": [
+      "uk"
+    ],
+    "platform": "uk"
+  },
+  "ur": {
+    "name": "Urdu",
+    "apple": [
+      "ur-PK"
+    ],
+    "play": [
+      "ur"
+    ],
+    "platform": "ur"
+  },
+  "vi": {
+    "name": "Vietnamese",
+    "apple": [
+      "vi"
+    ],
+    "play": [
+      "vi"
+    ],
+    "platform": "vi"
+  },
+  "zh-Hans": {
+    "name": "Chinese (Simplified)",
+    "apple": [
+      "zh-Hans"
+    ],
+    "play": [
+      "zh-CN"
+    ],
+    "platform": "zh-Hans"
+  },
+  "zh-Hant": {
+    "name": "Chinese (Traditional)",
+    "apple": [
+      "zh-Hant"
+    ],
+    "play": [
+      "zh-TW",
+      "zh-HK"
+    ],
+    "platform": "zh-Hant"
+  }
+}

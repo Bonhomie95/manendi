@@ -5,6 +5,7 @@ import Animated, { ZoomIn } from 'react-native-reanimated';
 import { Sheet } from '@/components/sheet';
 import { Appear, Button, Card, Icon, Row, T, Tap } from '@/components/ui';
 import { full, today } from '@/lib/dates';
+import { t, tr, type Key } from '@/lib/i18n';
 import { packing } from '@/lib/meta';
 import { clocks } from '@/lib/rules';
 import { useStore } from '@/lib/store';
@@ -19,12 +20,12 @@ export default function Fly() {
   const p = data.people.find((x) => x.id === person) ?? me;
   const [done, setDone] = useState<Set<number>>(new Set());
   if (!p) return null;
-  const warnings = clocks(p, today()).filter((x) => WATCH.includes(x.id) && x.level !== 'ok' && !(x.id === 'visa' && (x.days ?? 0) >= 0));
+  const warnings = clocks(p, today(), tr).filter((x) => WATCH.includes(x.id) && x.level !== 'ok' && !(x.id === 'visa' && (x.days ?? 0) >= 0));
   const list = packing(p.status);
 
   return (
-    <Sheet title="Before you fly" footer={<Button title="Log this trip" kind="accent" onPress={() => router.replace({ pathname: '/trip', params: { person: p.id } })} />}>
-      <T muted>For {p.name} · {p.status}. What people in this status usually carry. Check your own documents and ask your DSO or HR if anything changed.</T>
+    <Sheet title={t('fly.title')} footer={<Button title={t('fly.logTrip')} kind="accent" onPress={() => router.replace({ pathname: '/trip', params: { person: p.id } })} />}>
+      <T muted>{t('fly.intro', { name: p.name, status: t(`status.${p.status}` as Key) })}</T>
       {warnings.map((w, i) => (
         <Appear key={w.id} i={i}><Card style={{ gap: 4, backgroundColor: tint(levelColor(c, w.level), 0.08), borderColor: tint(levelColor(c, w.level), 0.3) }}>
           <Row><Icon ios="exclamationmark.triangle.fill" android="warning" size={16} color={levelColor(c, w.level)} /><T v="strong">{w.title}{w.date ? ` · ${full(w.date)}` : ''}</T></Row>
@@ -47,7 +48,7 @@ export default function Fly() {
           );
         })}
       </View>
-      <T v="small" muted>Information, not legal advice. Entry is always up to the officer at the border.</T>
+      <T v="small" muted>{t('fly.disclaimer')}</T>
     </Sheet>
   );
 }

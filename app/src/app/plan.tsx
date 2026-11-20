@@ -10,23 +10,23 @@ import { Button, Field, Icon, Row, T, Tap, toast } from '@/components/ui';
 import { api, openPage, type PlanView } from '@/lib/api';
 import { buy, getOffers, manageUrl, restore, testMode, type Offer } from '@/lib/billing';
 import { full } from '@/lib/dates';
-import { LOCK } from '@/lib/meta';
+import { t } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 import { brand, font, tint, useColors } from '@/lib/theme';
 
-const store = Platform.OS === 'ios' ? 'Apple Account' : 'Google Play account';
+const legal = t(Platform.OS === 'ios' ? 'plan.legal.ios' : 'plan.legal.android');
 
 type Perk = [string, string, string, string];
 // Change alerts need live USCIS status (production keys, after USCIS's demo): never promise them before then.
-const CASES: Perk = ['tray.full.fill', 'inbox', 'Every case, in one place', 'Up to 25 receipt numbers, every step explained in plain English.'];
-const WATCHED: Perk = ['tray.full.fill', 'inbox', 'Every case, watched', 'Up to 25 receipt numbers, and an alert the moment one changes.'];
+const CASES: Perk = ['tray.full.fill', 'inbox', t('plan.perk.cases.title'), t('plan.perk.cases.sub')];
+const WATCHED: Perk = ['tray.full.fill', 'inbox', t('plan.perk.watched.title'), t('plan.perk.watched.sub')];
 const PERKS: Perk[] = [
-  ['person.2.fill', 'group', 'Your whole household', 'Spouse, kids, parents: every visa in the house, each with its own clocks.'],
+  ['person.2.fill', 'group', t('plan.perk.household.title'), t('plan.perk.household.sub')],
   CASES,
-  ['airplane', 'flight', 'Citizenship travel budget', 'How many days abroad you can still spend, plus long-trip warnings.'],
-  ['hourglass', 'hourglass_top', 'H-1B limit & green card queue', 'Six years plus every day you can win back, and your place in line.'],
-  ['lock.doc.fill', 'lock', 'Document vault', `Passports, I-797s and cards behind ${LOCK}. They never leave your phone.`],
-  ['doc.richtext', 'picture_as_pdf', 'Status report', 'Every date and case on one clean page for your attorney or HR.'],
+  ['airplane', 'flight', t('plan.perk.travel.title'), t('plan.perk.travel.sub')],
+  ['hourglass', 'hourglass_top', t('plan.perk.h1b.title'), t('plan.perk.h1b.sub')],
+  ['lock.doc.fill', 'lock', t('plan.perk.vault.title'), t(Platform.OS === 'ios' ? 'plan.perk.vault.sub.ios' : 'plan.perk.vault.sub.android')],
+  ['doc.richtext', 'picture_as_pdf', t('plan.perk.report.title'), t('plan.perk.report.sub')],
 ];
 
 export default function Plan() {
@@ -67,7 +67,7 @@ export default function Plan() {
     }
   }
 
-  const unlock = () => { if (code?.trim() && !busy) run('code', () => api<PlanView>('/billing/code', { body: { code } }), 'That code doesn’t work.'); };
+  const unlock = () => { if (code?.trim() && !busy) run('code', () => api<PlanView>('/billing/code', { body: { code } }), t('plan.badCode')); };
 
   const lightBar = Platform.OS === 'android' ? <StatusBar style="light" /> : null;
   if (done) {
@@ -75,8 +75,8 @@ export default function Plan() {
       <View style={[st.done, { backgroundImage: `linear-gradient(160deg, ${brand.ink2}, ${brand.ink})` }]}>
         {lightBar}
         <Animated.View entering={ZoomIn.springify().damping(10)}><Mark size={140} animated /></Animated.View>
-        <Animated.Text entering={FadeInDown.delay(500)} style={st.doneTitle}>Welcome to{'\n'}Manendi Plus.</Animated.Text>
-        <Animated.Text entering={FadeIn.delay(800)} style={st.doneSub}>Your whole household is covered.</Animated.Text>
+        <Animated.Text entering={FadeInDown.delay(500)} style={st.doneTitle}>{t('plan.welcome')}</Animated.Text>
+        <Animated.Text entering={FadeIn.delay(800)} style={st.doneSub}>{t('plan.welcome.sub')}</Animated.Text>
       </View>
     );
   }
@@ -89,29 +89,27 @@ export default function Plan() {
           <View style={[st.glow, { backgroundImage: `radial-gradient(circle, ${tint(brand.gold, 0.35)} 0%, ${tint(brand.gold, 0)} 70%)` }]} />
           <Row style={{ justifyContent: 'space-between' }}>
             <Mark size={62} animated />
-            <Tap onPress={() => router.back()} accessibilityLabel="Close" style={st.close}>
+            <Tap onPress={() => router.back()} accessibilityLabel={t('plan.close')} style={st.close}>
               <Icon ios="xmark" android="close" size={15} color="#FFFFFF" />
             </Tap>
           </Row>
           <Text style={st.kicker}>MANENDI PLUS</Text>
-          <Animated.Text entering={FadeInDown.delay(150).springify()} style={st.title}>Stay sure.{'\n'}All of you.</Animated.Text>
-          <Animated.Text entering={FadeInDown.delay(250)} style={st.sub}>
-            Every date, case and trip for your whole household: counted, watched, and kept on your phone.
-          </Animated.Text>
+          <Animated.Text entering={FadeInDown.delay(150).springify()} style={st.title}>{t('plan.title')}</Animated.Text>
+          <Animated.Text entering={FadeInDown.delay(250)} style={st.sub}>{t('plan.sub')}</Animated.Text>
         </View>
 
         <View style={{ padding: 22, gap: 16 }}>
           {plus && (
             <Animated.View entering={FadeInDown} style={[st.active, { backgroundColor: tint(c.good, 0.12), borderColor: tint(c.good, 0.4) }]}>
-              <Row><Icon ios="checkmark.seal.fill" android="verified" size={22} color={c.good} /><T v="strong">You’re on Manendi Plus</T></Row>
+              <Row><Icon ios="checkmark.seal.fill" android="verified" size={22} color={c.good} /><T v="strong">{t('plan.active')}</T></Row>
               <T v="small" muted>
-                {data.plan.until ? `Covered through ${full(data.plan.until.slice(0, 10))}.` : ''}
-                {data.plan.source === 'dev' ? ' Test plan — no real charge.' : ''}
+                {data.plan.until ? t('plan.until', { date: full(data.plan.until.slice(0, 10)) }) : ''}
+                {data.plan.source === 'dev' ? ` ${t('plan.testPlan')}` : ''}
               </T>
-              {data.plan.source === 'store' && <Button title="Manage subscription" kind="soft" style={{ height: 46 }} onPress={() => Linking.openURL(manageUrl)} />}
+              {data.plan.source === 'store' && <Button title={t('plan.manage')} kind="soft" style={{ height: 46 }} onPress={() => Linking.openURL(manageUrl)} />}
               {data.plan.source === 'dev' && testMode && (
-                <Button title="End test plan" kind="soft" style={{ height: 46 }}
-                  onPress={async () => { setPlan(await api<PlanView>('/billing/dev-grant', { body: { period: 'off' } })); toast('Back on Free.'); }} />
+                <Button title={t('plan.endTest')} kind="soft" style={{ height: 46 }}
+                  onPress={async () => { setPlan(await api<PlanView>('/billing/dev-grant', { body: { period: 'off' } })); toast(t('plan.backOnFree')); }} />
               )}
             </Animated.View>
           )}
@@ -136,48 +134,53 @@ export default function Plan() {
                 {offers.map((o) => {
                   const on = o.period === chosen?.period;
                   return (
-                    <Tap key={o.period} onPress={() => setPeriod(o.period)} accessibilityState={{ selected: on }} accessibilityLabel={`${o.period} plan ${o.price}`}
+                    <Tap key={o.period} onPress={() => setPeriod(o.period)} accessibilityState={{ selected: on }}
+                      accessibilityLabel={t(o.period === 'annual' ? 'plan.option.annual' : 'plan.option.monthly', { price: o.price })}
                       style={[st.option, { backgroundColor: c.card, borderColor: on ? c.text : c.line, borderWidth: on ? 2 : 1 }]}>
                       <View style={[st.radio, { borderColor: on ? c.text : c.line }]}>{on && <View style={[st.dot, { backgroundColor: c.text }]} />}</View>
                       <View style={{ flex: 1 }}>
-                        <T v="strong">{o.period === 'annual' ? 'Yearly' : 'Monthly'}</T>
-                        <T v="small" muted>{o.period === 'annual' ? `${o.price} a year${o.perMonth ? ` · ${o.perMonth}/mo` : ''}` : `${o.price} a month`}</T>
+                        <T v="strong">{o.period === 'annual' ? t('plan.yearly') : t('plan.monthly')}</T>
+                        <T v="small" muted>
+                          {o.period === 'annual'
+                            ? (o.perMonth ? t('plan.price.yearMonth', { price: o.price, perMonth: o.perMonth }) : t('plan.price.year', { price: o.price }))
+                            : t('plan.price.month', { price: o.price })}
+                        </T>
                       </View>
-                      {o.period === 'annual' && save ? <View style={[st.save, { backgroundColor: c.accent }]}><Text style={[st.saveText, { color: c.onAccent }]}>SAVE {save}%</Text></View> : null}
+                      {o.period === 'annual' && save ? <View style={[st.save, { backgroundColor: c.accent }]}><Text style={[st.saveText, { color: c.onAccent }]}>{t('plan.saveBadge', { pct: save })}</Text></View> : null}
                     </Tap>
                   );
                 })}
               </View>
-              <Button title={chosen ? `Start Plus · ${chosen.price}${chosen.period === 'annual' ? '/yr' : '/mo'}` : 'Start Manendi Plus'} kind="accent"
-                loading={busy === 'buy' || !offers.length} disabled={!chosen || !!busy} onPress={() => chosen && run('buy', () => buy(chosen), 'Not active yet — try Restore.')} />
+              <Button title={chosen ? t(chosen.period === 'annual' ? 'plan.start.annual' : 'plan.start.monthly', { price: chosen.price }) : t('plan.start')} kind="accent"
+                loading={busy === 'buy' || !offers.length} disabled={!chosen || !!busy} onPress={() => chosen && run('buy', () => buy(chosen), t('plan.notActive'))} />
               {testMode && (
                 <View style={[st.test, { backgroundColor: tint(c.gold, 0.14) }]}>
                   <Icon ios="testtube.2" android="science" size={16} color={c.gold} />
-                  <T v="small" style={{ flex: 1 }}>Test mode — no charge. Add your RevenueCat keys to sell for real.</T>
+                  <T v="small" style={{ flex: 1 }}>{t('plan.testMode')}</T>
                 </View>
               )}
             </>
           )}
 
-          <Tap haptic={false} disabled={!!busy} onPress={() => run('restore', restore, 'No purchases to restore.')} style={{ alignSelf: 'center' }}>
-            <T v="small" color={c.text}>{busy === 'restore' ? 'Restoring…' : 'Restore purchases'}</T>
+          <Tap haptic={false} disabled={!!busy} onPress={() => run('restore', restore, t('plan.nothingToRestore'))} style={{ alignSelf: 'center' }}>
+            <T v="small" color={c.text}>{busy === 'restore' ? t('plan.restoring') : t('plan.restore')}</T>
           </Tap>
           {/* Play reviewers can't buy, so Play Console › Sign in details gives them a code. Android only: Apple bans unlock codes (3.1.1). */}
           {Platform.OS === 'android' && !plus && (code === null ? (
             <Tap haptic={false} onPress={() => setCode('')} style={{ alignSelf: 'center' }}>
-              <T v="small" muted>Have a code?</T>
+              <T v="small" muted>{t('plan.haveCode')}</T>
             </Tap>
           ) : (
             <Animated.View entering={FadeInDown} style={{ gap: 10 }}>
-              <Field label="Code" value={code} onChangeText={setCode} autoCapitalize="characters" autoCorrect={false} autoFocus returnKeyType="go" onSubmitEditing={unlock} />
-              <Button title="Unlock Plus" kind="soft" style={{ height: 46 }} loading={busy === 'code'} disabled={!code.trim() || !!busy} onPress={unlock} />
+              <Field label={t('plan.code')} value={code} onChangeText={setCode} autoCapitalize="characters" autoCorrect={false} autoFocus returnKeyType="go" onSubmitEditing={unlock} />
+              <Button title={t('plan.unlock')} kind="soft" style={{ height: 46 }} loading={busy === 'code'} disabled={!code.trim() || !!busy} onPress={unlock} />
             </Animated.View>
           ))}
           <T v="small" muted style={{ textAlign: 'center', fontSize: 11, lineHeight: 16 }}>
-            Billed to your {store}. Auto-renews at the price above until cancelled. Cancel anytime at least 24 hours before renewal in your {store} settings.{' '}
-            <Text style={{ textDecorationLine: 'underline' }} onPress={() => openPage('terms')}>Terms</Text>
+            {legal}{' '}
+            <Text style={{ textDecorationLine: 'underline' }} onPress={() => openPage('terms')}>{t('plan.terms')}</Text>
             {' · '}
-            <Text style={{ textDecorationLine: 'underline' }} onPress={() => openPage('privacy')}>Privacy</Text>
+            <Text style={{ textDecorationLine: 'underline' }} onPress={() => openPage('privacy')}>{t('plan.privacy')}</Text>
           </T>
         </View>
       </Animated.ScrollView>

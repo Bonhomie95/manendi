@@ -1,21 +1,26 @@
 import { File, Paths } from 'expo-file-system';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
-import { full, today } from './dates';
-import { inDays, type Clock, type Person } from './rules';
+import { today } from './dates';
+import { trEn } from './i18n';
+import { clocks, inDays, type Person } from './rules';
 import type { CaseLink } from './store';
 import type { Watch } from './api';
 
 const esc = (s: string) => s.replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[ch]!);
 const COLOR = { over: '#D93A30', urgent: '#D9481F', soon: '#B86E05', ok: '#17805C', info: '#5E6878' };
 
+// Always in English: it's for US attorneys, DSOs and HR, whatever language the app is in.
+const full = (s: string) => { const [y, m, d] = s.slice(0, 10).split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); };
+
 /** One clean page per person — every date and case — for an attorney, a DSO or HR. Built on the phone. */
-export async function shareReport(people: Person[], all: Clock[], cases: CaseLink[], watches: Watch[]) {
+export async function shareReport(people: Person[], cases: CaseLink[], watches: Watch[]) {
   const t = today();
+  const all = people.flatMap((p) => clocks(p, t, trEn));
   const section = (p: Person) => {
     const rows = all.filter((c) => c.personId === p.id).map((c) => `
       <tr><td><span class="dot" style="background:${COLOR[c.level]}"></span>${esc(c.title)}</td>
-      <td class="when">${c.date ? `${full(c.date)}<br><small>${inDays(c.days ?? 0)}</small>` : c.count ? `${c.count.limit - c.count.used} ${c.count.unit} left` : '—'}</td>
+      <td class="when">${c.date ? `${full(c.date)}<br><small>${inDays(c.days ?? 0, trEn)}</small>` : c.count ? `${c.count.limit - c.count.used} ${c.count.unit} left` : '—'}</td>
       <td><small>${esc(c.note)}</small></td></tr>`).join('');
     const mine = cases.filter((k) => k.personId === p.id).map((k) => {
       const w = watches.find((x) => x.receipt === k.receipt);

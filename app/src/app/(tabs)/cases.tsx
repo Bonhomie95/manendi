@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import { View } from 'react-native';
 import { Appear, Card, Float, Icon, Row, Screen, T, Tap } from '@/components/ui';
 import { full } from '@/lib/dates';
+import { t } from '@/lib/i18n';
 import { FORMS, explain } from '@/lib/meta';
 import { useStore } from '@/lib/store';
 import { font, tint, useColors } from '@/lib/theme';
@@ -18,8 +19,8 @@ export default function Cases() {
   return (
     <Screen onRefresh={sync}>
       <Row style={{ justifyContent: 'space-between', marginTop: 4 }}>
-        <T v="title">Cases</T>
-        <Tap onPress={() => router.push('/case')} accessibilityLabel="Add a case"
+        <T v="title">{t('tabs.cases')}</T>
+        <Tap onPress={() => router.push('/case')} accessibilityLabel={t('cases.add')}
           style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: c.text, alignItems: 'center', justifyContent: 'center' }}>
           <Icon ios="plus" android="add" size={18} color={c.bg} />
         </Tap>
@@ -28,24 +29,24 @@ export default function Cases() {
       {!live.on && (
         <Card style={{ backgroundColor: tint(c.gold, 0.1), borderColor: tint(c.gold, 0.3), flexDirection: 'row', gap: 12, alignItems: 'flex-start' }}>
           <Icon ios="antenna.radiowaves.left.and.right" android="sensors" size={18} color={c.gold} />
-          <T v="small" style={{ flex: 1 }}>Live USCIS status is on its way. Until it switches on, tap a case → Check on USCIS, then log the update here. Your cases will light up on their own.</T>
+          <T v="small" style={{ flex: 1 }}>{t('cases.liveSoon')}</T>
         </Card>
       )}
-      {live.mock && <T v="small" color={c.warn}>Test mode: statuses are made up, not from USCIS.</T>}
+      {live.mock && <T v="small" color={c.warn}>{t('cases.testMode')}</T>}
 
       {items.length === 0 ? (
         <Card style={{ alignItems: 'center', gap: 10, paddingVertical: 30 }}>
           <Float><Icon ios="tray" android="inbox" size={34} color={c.accent} /></Float>
-          <T v="h2">No cases yet</T>
-          <T muted style={{ textAlign: 'center' }}>Add the receipt number from any USCIS notice. It looks like IOE0912345678.</T>
-          <Tap onPress={() => router.push('/case')}><T v="strong" color={c.accent}>Add a receipt number</T></Tap>
+          <T v="h2">{t('cases.empty.title')}</T>
+          <T muted style={{ textAlign: 'center' }}>{t('cases.empty.body')}</T>
+          <Tap onPress={() => router.push('/case')}><T v="strong" color={c.accent}>{t('cases.empty.action')}</T></Tap>
         </Card>
       ) : items.map(({ k, w, status, date }, i) => {
         const ex = explain(status);
         const rfe = /evidence was sent|denied/i.test(status ?? '');
         return (
           <Appear key={k.receipt} i={i}>
-            <Tap onPress={() => router.push({ pathname: '/case', params: { receipt: k.receipt } })} accessibilityLabel={`${k.label || k.receipt}, ${status ?? 'no status yet'}`}>
+            <Tap onPress={() => router.push({ pathname: '/case', params: { receipt: k.receipt } })} accessibilityLabel={status === null ? t('cases.item.a11yNoStatus', { name: k.label || k.receipt }) : t('cases.item.a11y', { name: k.label || k.receipt, status })}>
               <Card style={{ gap: 8 }}>
                 <Row style={{ justifyContent: 'space-between' }}>
                   <T style={{ fontFamily: font.heavy, letterSpacing: 1.4, fontSize: 13 }} muted>{k.receipt}</T>
@@ -57,11 +58,11 @@ export default function Cases() {
                 <Row style={{ gap: 8, alignItems: 'flex-start' }}>
                   <View style={{ width: 9, height: 9, borderRadius: 5, marginTop: 5, backgroundColor: !status ? c.line : rfe ? c.alt : /approved|delivered|mailed|produced/i.test(status) ? c.accent : c.gold }} />
                   <View style={{ flex: 1 }}>
-                    <T v="small" style={{ fontSize: 14 }}>{status ?? 'No status yet'}</T>
+                    <T v="small" style={{ fontSize: 14 }}>{status ?? t('cases.noStatus')}</T>
                     {ex && <T v="small" muted>{ex.meaning}</T>}
                   </View>
                 </Row>
-                {date && <T v="small" muted style={{ fontSize: 11.5 }}>Updated {full(date)}</T>}
+                {date && <T v="small" muted style={{ fontSize: 11.5 }}>{t('cases.updated', { date: full(date) })}</T>}
               </Card>
             </Tap>
           </Appear>

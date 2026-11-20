@@ -9,6 +9,7 @@ import type { Token } from './account';
 import { api, ApiError, type Account, type PlanView, type Watch } from './api';
 import { startBilling, switchUser } from './billing';
 import { today } from './dates';
+import { tr } from './i18n';
 import { scheduleReminders } from './notify';
 import { byUrgency, clocks, type Clock, type Person } from './rules';
 
@@ -140,7 +141,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const plus = data.plan.plus && (!data.plan.until || new Date(data.plan.until) > new Date());
   const all = useMemo(() => {
     const t = today();
-    return data.people.flatMap((p) => clocks(p, t)).sort(byUrgency);
+    return data.people.flatMap((p) => clocks(p, t, tr)).sort(byUrgency);
   }, [data.people]);
 
   // Local reminders follow the clocks: rescheduled whenever a date changes.

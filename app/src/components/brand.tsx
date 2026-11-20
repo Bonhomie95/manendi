@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, { cubicBezier, type CSSAnimationKeyframes } from 'react-native-reanimated';
+import { t } from '@/lib/i18n';
 import { brand, font, tint } from '@/lib/theme';
 
 export type MarkColors = { ring: string; arch: string; dot: string };
@@ -79,10 +80,11 @@ const PALETTES: Palette[] = [
 ];
 const PATTERNS: Pattern[] = ['aurora', 'sonar', 'globe', 'stamps', 'dial'];
 const TAGLINES = [
-  'Stay sure.', 'Every date that keeps you here.', 'Know your days.', 'Your status, in good hands.',
-  'Calm for the long wait.', 'No surprise deadlines.', 'Here, and staying.', 'Papers in order. Mind at ease.',
+  t('brand.tagline.1'), t('brand.tagline.2'), t('brand.tagline.3'), t('brand.tagline.4'),
+  t('brand.tagline.5'), t('brand.tagline.6'), t('brand.tagline.7'), t('brand.tagline.8'),
 ];
-const STAMPS = [['ADMITTED', 'JFK'], ['ENTRY', 'SFO'], ['ADMITTED', 'IAH'], ['ENTRY', 'ORD'], ['ADMITTED', 'MIA'], ['ENTRY', 'SEA'], ['ADMITTED', 'ATL']];
+const [ADMITTED, ENTRY] = [t('brand.stamp.admitted'), t('brand.stamp.entry')];
+const STAMPS = [[ADMITTED, 'JFK'], [ENTRY, 'SFO'], [ADMITTED, 'IAH'], [ENTRY, 'ORD'], [ADMITTED, 'MIA'], [ENTRY, 'SEA'], [ADMITTED, 'ATL']];
 const pick = <T,>(a: readonly T[]) => a[Math.floor(Math.random() * a.length)];
 
 export function pickLook(): Look {

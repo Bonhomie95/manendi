@@ -1,0 +1,29 @@
+{
+  "apple": {
+    "name": "Manendi: Visa Status Clock",
+    "subtitle": "Every date that keeps you here",
+    "promotionalText": "Rules just changed for F-1 students, work permits and H-1B fees. Manendi recounts your dates for you.",
+    "description": "Manendi counts down every date that keeps you in status — and tells you, in plain English, what each one means.\n\n• Your status clock: I-94, passport, visa stamp, work permit renewal windows, OPT unemployment days, grace periods, H-1B six-year limit, green card renewal, removing conditions and your citizenship filing date.\n• Every case, one glance: your family’s USCIS receipt numbers in one place, each step explained in plain English.\n• Radar: new rules, fees and notices that touch your visa, straight from the Federal Register.\n• Travel: log trips and see your citizenship travel budget before you book.\n• Private by design: no account needed. Sign in with Apple or Google only if you want a backup for a new phone. Document photos never leave yours.\n\nManendi Plus adds your whole household, up to 25 watched cases, the citizenship travel budget, the H-1B limit and green card queue, a Face ID document vault, and a status report PDF.\n\nManendi Plus is an auto-renewing subscription: $9.99 a month or $79.99 a year (prices vary by country). Payment is charged to your Apple Account when you confirm. It renews automatically unless you cancel at least 24 hours before the end of the current period; manage or cancel it anytime in your Apple Account settings.\n\nManendi gives information, not legal advice, and is not affiliated with USCIS or any government agency. Every clock links its official source.\n\nTerms of Use: https://manendi.onrender.com/terms\nPrivacy Policy: https://manendi.onrender.com/privacy",
+    "keywords": "I-94,OPT,STEM,H1B,H-4,F-1,EAD,work permit,green card,USCIS,tracker,citizenship,N-400,immigration",
+    "whatsNew": "Manendi now speaks your language: the whole app is available in 46 languages and follows your phone’s language. New: right after setup, you can back up your household with Apple or Google in one tap. Plus, clearer wording on what Manendi Plus includes.",
+    "subscriptionGroup": "Manendi Plus",
+    "subscriptionMonthlyName": "Manendi Plus Monthly",
+    "subscriptionAnnualName": "Manendi Plus Annual",
+    "subscriptionDescription": "Household, up to 25 cases, vault and status report."
+  },
+  "play": {
+    "title": "Manendi: Visa Status Clock",
+    "shortDescription": "Every date that keeps you in status: I-94, OPT, EAD, H-1B, green card and more.",
+    "fullDescription": "Manendi counts down every date that keeps you in status, and tells you in plain English what each one means.\n\n• Your status clock: I-94, passport, visa stamp, work permit renewal windows, OPT unemployment days, grace periods, the H-1B six-year limit, green card renewal, removing conditions and your citizenship filing date.\n• Every case, one glance: your family's USCIS receipt numbers in one place, each step explained in plain English.\n• Radar: new rules, fees and notices that touch your visa, straight from the Federal Register.\n• Travel: log trips and see your citizenship travel budget before you book.\n• Private by design: no account needed. Sign in with Google only if you want a backup for a new phone. Document photos never leave yours.\n\nManendi Plus (a monthly or yearly subscription) adds your whole household, up to 25 watched cases, the citizenship travel budget, the H-1B limit and green card queue, a document vault behind your screen lock, and a status report PDF.\n\nManendi gives information, not legal advice. It is not affiliated with, endorsed by or representing USCIS, the U.S. Department of State, U.S. Customs and Border Protection or any government agency, and it files nothing on your behalf. Every clock links its official source. Information comes from official sources, including uscis.gov, egov.uscis.gov, federalregister.gov, travel.state.gov and i94.cbp.dhs.gov.",
+    "releaseNotes": "Manendi now speaks your language: the whole app is available in 46 languages and follows your phone’s language. New: right after setup, you can back up your household with Google in one tap. Plus, clearer wording on what Manendi Plus includes.",
+    "subscriptionMonthlyTitle": "Manendi Plus Monthly",
+    "subscriptionAnnualTitle": "Manendi Plus Yearly",
+    "subscriptionBenefits": [
+      "Every visa in your household",
+      "Track up to 25 USCIS cases",
+      "Citizenship travel budget",
+      "Document vault and status report"
+    ],
+    "subscriptionDescription": "Your whole household’s dates, cases and trips, counted down."
+  }
+}

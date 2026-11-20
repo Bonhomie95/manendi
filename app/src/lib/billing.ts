@@ -3,6 +3,7 @@
 import { Platform } from 'react-native';
 import Purchases, { type PurchasesPackage } from 'react-native-purchases';
 import { api, type PlanView } from './api';
+import { t } from './i18n';
 
 const KEY = Platform.select({ ios: process.env.EXPO_PUBLIC_RC_IOS_KEY, android: process.env.EXPO_PUBLIC_RC_ANDROID_KEY });
 export const testMode = !KEY;
@@ -49,7 +50,7 @@ export async function buy(offer: Offer): Promise<PlanView | null> {
   if (!KEY) return api<PlanView>('/billing/dev-grant', { body: { period: offer.period } });
   // Fallback offers (store unreachable) carry no package: try the store once more, then say so out loud.
   const pkg = offer.pkg ?? (await getOffers()).find((o) => o.period === offer.period)?.pkg;
-  if (!pkg) throw new Error(`Couldn’t reach ${Platform.OS === 'ios' ? 'the App Store' : 'Google Play'}. Try again in a moment.`);
+  if (!pkg) throw new Error(t(Platform.OS === 'ios' ? 'billing.unreachable.ios' : 'billing.unreachable.android'));
   try {
     await Purchases.purchasePackage(pkg);
   } catch (e) {

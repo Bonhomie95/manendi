@@ -1,6 +1,7 @@
 import { Redirect } from 'expo-router';
 import { NativeTabs } from 'expo-router/native-tabs';
 import { Platform } from 'react-native';
+import { num, t } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 import { tint, useColors } from '@/lib/theme';
 
@@ -20,24 +21,24 @@ export default function Tabs() {
       backgroundColor={Platform.OS === 'android' ? c.card : undefined}
       labelVisibilityMode="labeled">
       <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Status</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{t('tabs.status')}</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf={{ default: 'clock', selected: 'clock.fill' }} md="schedule" />
-        {urgent > 0 && <NativeTabs.Trigger.Badge>{String(urgent)}</NativeTabs.Trigger.Badge>}
+        {urgent > 0 && <NativeTabs.Trigger.Badge>{num(urgent)}</NativeTabs.Trigger.Badge>}
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="cases">
-        <NativeTabs.Trigger.Label>Cases</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{t('tabs.cases')}</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf={{ default: 'tray.full', selected: 'tray.full.fill' }} md="inbox" />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="radar">
-        <NativeTabs.Trigger.Label>Radar</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{t('tabs.radar')}</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="dot.radiowaves.left.and.right" md="radar" />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="travel">
-        <NativeTabs.Trigger.Label>Travel</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{t('tabs.travel')}</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="airplane" md="flight" />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="family">
-        <NativeTabs.Trigger.Label>Family</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{t('tabs.family')}</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf={{ default: 'person.2', selected: 'person.2.fill' }} md="family_restroom" />
       </NativeTabs.Trigger>
     </NativeTabs>

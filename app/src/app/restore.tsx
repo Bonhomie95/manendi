@@ -5,17 +5,16 @@ import { Mark } from '@/components/brand';
 import { Sheet } from '@/components/sheet';
 import { SignIn } from '@/components/sign-in';
 import { T } from '@/components/ui';
+import { t } from '@/lib/i18n';
 
 export default function Restore() {
   return (
-    <Sheet title="Welcome back" footer={
+    <Sheet title={t('restore.title')} footer={
       <SignIn onDone={(restored) => { router.dismissAll(); router.replace(restored ? '/(tabs)' : '/setup'); }} />
     }>
       <Mark size={64} />
-      <T v="body" muted style={{ fontSize: 18, lineHeight: 26 }}>
-        Sign in with the account you backed up to. Everyone’s dates, trips and cases come back to this phone.
-      </T>
-      <T v="small" muted>Document photos stay on the phone they were taken on. No backup on that account yet? You’ll set up as usual.</T>
+      <T v="body" muted style={{ fontSize: 18, lineHeight: 26 }}>{t('restore.body')}</T>
+      <T v="small" muted>{t('restore.note')}</T>
     </Sheet>
   );
 }

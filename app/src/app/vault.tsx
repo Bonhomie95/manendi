@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 import { Platform, View } from 'react-native';
 import { Appear, Button, Card, Float, Icon, Row, Screen, T, Tap } from '@/components/ui';
 import { full } from '@/lib/dates';
-import { DOC_KINDS, LOCK } from '@/lib/meta';
+import { t } from '@/lib/i18n';
+import { DOC_KINDS } from '@/lib/meta';
 import { useStore, vaultFile } from '@/lib/store';
 import { useColors } from '@/lib/theme';
 
@@ -18,7 +19,7 @@ export default function Vault() {
   async function unlock() {
     // No passcode or biometrics on the device means there is nothing to check against.
     if ((await LocalAuthentication.getEnrolledLevelAsync()) === LocalAuthentication.SecurityLevel.NONE) return setOpen(true);
-    const r = await LocalAuthentication.authenticateAsync({ promptMessage: 'Unlock your document vault', cancelLabel: 'Not now' });
+    const r = await LocalAuthentication.authenticateAsync({ promptMessage: t('vault.prompt'), cancelLabel: t('vault.notNow') });
     setOpen(r.success);
     setFailed(!r.success);
   }
@@ -28,30 +29,30 @@ export default function Vault() {
   return (
     <Screen>
       <Row style={{ justifyContent: 'space-between' }}>
-        <Tap onPress={() => router.back()} accessibilityLabel="Back" style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center' }}>
+        <Tap onPress={() => router.back()} accessibilityLabel={t('vault.back')} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center' }}>
           <Icon ios="chevron.left" android="arrow_back" size={18} />
         </Tap>
         {open && (
-          <Tap onPress={() => router.push('/doc')} accessibilityLabel="Add a document" style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: c.text, alignItems: 'center', justifyContent: 'center' }}>
+          <Tap onPress={() => router.push('/doc')} accessibilityLabel={t('vault.add')} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: c.text, alignItems: 'center', justifyContent: 'center' }}>
             <Icon ios="plus" android="add" size={18} color={c.bg} />
           </Tap>
         )}
       </Row>
-      <T v="title">Document vault</T>
-      <Row style={{ gap: 6 }}><Icon ios="lock.fill" android="lock" size={12} color={c.muted} /><T v="small" muted>Stored only on this phone, behind {LOCK}{Platform.OS === 'ios' ? ' or your passcode' : ''}.</T></Row>
+      <T v="title">{t('vault.title')}</T>
+      <Row style={{ gap: 6 }}><Icon ios="lock.fill" android="lock" size={12} color={c.muted} /><T v="small" muted>{t(Platform.OS === 'ios' ? 'vault.stored.ios' : 'vault.stored.android')}</T></Row>
 
       {!open ? (
         <Card style={{ alignItems: 'center', gap: 12, paddingVertical: 34, marginTop: 10 }}>
           <Float><Icon ios="faceid" android="fingerprint" size={40} color={c.accent} /></Float>
-          <T v="h2">{failed ? 'Still locked' : 'Locked'}</T>
-          <Button title="Unlock" kind="accent" onPress={unlock} style={{ alignSelf: 'stretch' }} />
+          <T v="h2">{failed ? t('vault.stillLocked') : t('vault.locked')}</T>
+          <Button title={t('vault.unlock')} kind="accent" onPress={unlock} style={{ alignSelf: 'stretch' }} />
         </Card>
       ) : !data.docs.length ? (
         <Card style={{ alignItems: 'center', gap: 10, paddingVertical: 30, marginTop: 10 }}>
           <Float><Icon ios="doc.viewfinder" android="document_scanner" size={36} color={c.accent} /></Float>
-          <T v="h2">Nothing here yet</T>
-          <T muted style={{ textAlign: 'center' }}>Snap your passport, I-797s, EAD or green card so they’re there at the airport, the DMV or HR.</T>
-          <Button title="Add a document" kind="accent" onPress={() => router.push('/doc')} style={{ alignSelf: 'stretch' }} />
+          <T v="h2">{t('vault.empty.title')}</T>
+          <T muted style={{ textAlign: 'center' }}>{t('vault.empty.body')}</T>
+          <Button title={t('vault.add')} kind="accent" onPress={() => router.push('/doc')} style={{ alignSelf: 'stretch' }} />
         </Card>
       ) : (
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
@@ -64,7 +65,7 @@ export default function Vault() {
                   {d.files[0] ? <Image source={{ uri: vaultFile(d.files[0]).uri }} style={{ height: 110, borderRadius: 16 }} contentFit="cover" />
                     : <View style={{ height: 110, borderRadius: 16, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center' }}><Icon ios={kind?.[2] ?? 'doc'} android={kind?.[3] ?? 'description'} size={28} color={c.muted} /></View>}
                   <T v="strong" numberOfLines={1}>{d.title}</T>
-                  <T v="small" muted numberOfLines={1}>{[who, d.expires && `exp. ${full(d.expires)}`].filter(Boolean).join(' · ')}</T>
+                  <T v="small" muted numberOfLines={1}>{[who, d.expires && t('vault.expires', { date: full(d.expires) })].filter(Boolean).join(' · ')}</T>
                 </Card>
               </Tap></Appear>
             );

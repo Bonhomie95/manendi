@@ -6,12 +6,20 @@ import { DatesForm, StatusPicker, WORKING } from '@/components/person-form';
 import { Sheet } from '@/components/sheet';
 import { Button, Card, Chip, Field, Icon, Row, T, Tap } from '@/components/ui';
 import { full } from '@/lib/dates';
+import { t } from '@/lib/i18n';
 import { ASK, type Person, type Status } from '@/lib/rules';
 import { newId, useStore } from '@/lib/store';
 import { useColors } from '@/lib/theme';
 
-const RELATIONS: [Person['relation'], string][] = [['me', 'Me'], ['spouse', 'Spouse'], ['child', 'Child'], ['parent', 'Parent'], ['other', 'Other']];
-const CHARGE = ['All other countries', 'India', 'China (mainland)', 'Mexico', 'Philippines'];
+const RELATIONS: [Person['relation'], string][] = [
+  ['me', t('person.relation.me')], ['spouse', t('person.relation.spouse')], ['child', t('person.relation.child')],
+  ['parent', t('person.relation.parent')], ['other', t('person.relation.other')],
+];
+// [saved value (English, as the Visa Bulletin names it), label]
+const CHARGE: [string, string][] = [
+  ['All other countries', t('person.charge.other')], ['India', t('person.charge.india')], ['China (mainland)', t('person.charge.china')],
+  ['Mexico', t('person.charge.mexico')], ['Philippines', t('person.charge.philippines')],
+];
 
 export default function PersonScreen() {
   const c = useColors();
@@ -40,45 +48,45 @@ export default function PersonScreen() {
     router.back();
   }
   function remove() {
-    Alert.alert(`Remove ${existing!.name}?`, 'Their dates, trips, documents and cases come off this phone.', [
-      { text: 'Cancel', style: 'cancel' },
-      { text: 'Remove', style: 'destructive', onPress: () => { removePerson(existing!.id); router.back(); } },
+    Alert.alert(t('person.remove.title', { name: existing!.name }), t('person.remove.body'), [
+      { text: t('person.cancel'), style: 'cancel' },
+      { text: t('person.remove'), style: 'destructive', onPress: () => { removePerson(existing!.id); router.back(); } },
     ]);
   }
 
   return (
-    <Sheet title={existing ? existing.name : 'Add someone'} footer={<Button title="Save" kind="accent" disabled={!name.trim() || !status} onPress={save} />}>
-      <Field label="Name" value={name} onChangeText={setName} placeholder="First name" autoFocus={!existing} />
+    <Sheet title={existing ? existing.name : t('person.add')} footer={<Button title={t('person.save')} kind="accent" disabled={!name.trim() || !status} onPress={save} />}>
+      <Field label={t('person.name')} value={name} onChangeText={setName} placeholder={t('person.name.placeholder')} autoFocus={!existing} />
       <View style={{ gap: 8 }}>
-        <T v="label">Who they are</T>
+        <T v="label">{t('person.who')}</T>
         <Row style={{ flexWrap: 'wrap' }}>{RELATIONS.map(([k, l]) => <Chip key={k} label={l} on={relation === k} onPress={() => setRelation(k)} />)}</Row>
       </View>
       <View style={{ gap: 10 }}>
-        <T v="label">Status today</T>
+        <T v="label">{t('person.status')}</T>
         <StatusPicker value={status} onChange={(s) => setStatus(s)} />
       </View>
       {status && <DatesForm status={status} dates={dates} setDates={setDates} ds={ds} setDs={setDs} married={married} setMarried={setMarried} />}
       {queue && (
         <View style={{ gap: 10 }}>
-          <Field label="Green card category" value={category} onChangeText={setCategory} placeholder="EB-2, EB-3, F2A…" autoCapitalize="characters" maxLength={12} />
-          <T v="label">Chargeability (country of birth)</T>
-          <Row style={{ flexWrap: 'wrap' }}>{CHARGE.map((x) => <Chip key={x} label={x} on={charge === x} onPress={() => setCharge(charge === x ? '' : x)} />)}</Row>
+          <Field label={t('person.category')} value={category} onChangeText={setCategory} placeholder="EB-2, EB-3, F2A…" autoCapitalize="characters" maxLength={12} />
+          <T v="label">{t('person.chargeability')}</T>
+          <Row style={{ flexWrap: 'wrap' }}>{CHARGE.map(([x, l]) => <Chip key={x} label={l} on={charge === x} onPress={() => setCharge(charge === x ? '' : x)} />)}</Row>
         </View>
       )}
       {existing && status && WORKING.includes(status) && (
         <View style={{ gap: 10 }}>
           <Row style={{ justifyContent: 'space-between' }}>
-            <T v="label">Jobs</T>
-            <Tap onPress={() => router.push({ pathname: '/job', params: { person: existing.id, mode: 'start' } })}><T v="small" color={c.accent}>Add a job</T></Tap>
+            <T v="label">{t('person.jobs')}</T>
+            <Tap onPress={() => router.push({ pathname: '/job', params: { person: existing.id, mode: 'start' } })}><T v="small" color={c.accent}>{t('person.addJob')}</T></Tap>
           </Row>
-          {!existing.jobs.length && <T v="small" muted>No jobs yet. They drive the unemployment and grace-period clocks.</T>}
+          {!existing.jobs.length && <T v="small" muted>{t('person.noJobs')}</T>}
           {existing.jobs.map((j) => (
             <Tap key={j.id} onPress={() => router.push({ pathname: '/job', params: { person: existing.id, id: j.id } })}>
               <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14 }}>
                 <Icon ios="briefcase.fill" android="work" size={16} color={j.end ? c.muted : c.accent} />
                 <View style={{ flex: 1 }}>
                   <T v="strong">{j.employer}</T>
-                  <T v="small" muted>{full(j.start)} → {j.end ? full(j.end) : 'now'}</T>
+                  <T v="small" muted>{j.end ? t('person.job.dates', { start: full(j.start), end: full(j.end) }) : t('person.job.since', { start: full(j.start) })}</T>
                 </View>
               </Card>
             </Tap>
@@ -86,7 +94,7 @@ export default function PersonScreen() {
         </View>
       )}
       {existing && (data.people.length > 1 || existing.relation !== 'me') && (
-        <Tap onPress={remove} style={{ alignSelf: 'center', paddingVertical: 8 }}><T v="small" color={c.danger}>Remove {existing.name}</T></Tap>
+        <Tap onPress={remove} style={{ alignSelf: 'center', paddingVertical: 8 }}><T v="small" color={c.danger}>{t('person.removeName', { name: existing.name })}</T></Tap>
       )}
     </Sheet>
   );

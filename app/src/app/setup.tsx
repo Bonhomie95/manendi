@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DateField } from '@/components/date-field';
 import { DatesForm, StatusPicker, WORKING } from '@/components/person-form';
 import { Button, Field, Icon, Row, T, Tap } from '@/components/ui';
+import { t } from '@/lib/i18n';
 import type { Person, Status } from '@/lib/rules';
 import { newId, useStore } from '@/lib/store';
 import { useColors } from '@/lib/theme';
@@ -28,7 +29,7 @@ export default function Setup() {
   function finish() {
     savePerson({
       id: newId(), name: name.trim(), relation: 'me', status: status!, dates, ds: ds || undefined, marriedToCitizen: married || undefined, trips: [],
-      jobs: working && jobStart ? [{ id: newId(), employer: employer.trim() || 'Current job', start: jobStart }] : [],
+      jobs: working && jobStart ? [{ id: newId(), employer: employer.trim() || t('setup.currentJob'), start: jobStart }] : [],
     });
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     router.dismissAll();
@@ -39,9 +40,9 @@ export default function Setup() {
   }
 
   const steps = [
-    { title: 'First things first.', sub: 'What should we call you?', ok: !!name.trim() },
-    { title: 'Your status today.', sub: 'Pick the one on your latest approval notice or I-94.', ok: !!status },
-    { title: 'Your key dates.', sub: 'Copy them from your documents. Skip any you don’t have yet.', ok: true },
+    { title: t('setup.name.title'), sub: t('setup.name.sub'), ok: !!name.trim() },
+    { title: t('setup.status.title'), sub: t('setup.status.sub'), ok: !!status },
+    { title: t('setup.dates.title'), sub: t('setup.dates.sub'), ok: true },
   ];
   const now = steps[step];
 
@@ -49,7 +50,7 @@ export default function Setup() {
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1, backgroundColor: c.bg }}>
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingTop: insets.top + 8, paddingBottom: 24, paddingHorizontal: 24, gap: 22 }}>
         <Row style={{ justifyContent: 'space-between' }}>
-          <Tap onPress={() => (step ? setStep(step - 1) : router.back())} accessibilityLabel="Back"
+          <Tap onPress={() => (step ? setStep(step - 1) : router.back())} accessibilityLabel={t('setup.back')}
             style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center' }}>
             <Icon ios="chevron.left" android="arrow_back" size={18} />
           </Tap>
@@ -65,7 +66,7 @@ export default function Setup() {
             <T muted>{now.sub}</T>
           </View>
           {step === 0 && (
-            <Field label="Your first name" value={name} onChangeText={setName} placeholder="First name is fine" autoFocus autoComplete="given-name"
+            <Field label={t('setup.name.label')} value={name} onChangeText={setName} placeholder={t('setup.name.placeholder')} autoFocus autoComplete="given-name"
               textContentType="givenName" returnKeyType="next" onSubmitEditing={() => name.trim() && setStep(1)} />
           )}
           {step === 1 && <StatusPicker value={status} onChange={(s) => { setStatus(s); setDates({}); }} />}
@@ -74,19 +75,19 @@ export default function Setup() {
               <DatesForm status={status} dates={dates} setDates={setDates} ds={ds} setDs={setDs} married={married} setMarried={setMarried} />
               {working && (
                 <View style={{ gap: 14 }}>
-                  <T v="h2">Working right now?</T>
-                  <Field label="Employer" value={employer} onChangeText={setEmployer} placeholder="Optional" />
-                  <DateField label="Started this job" value={jobStart} onChange={setJobStart} hint="Counts toward your unemployment and grace-period clocks" />
+                  <T v="h2">{t('setup.job.title')}</T>
+                  <Field label={t('setup.job.employer')} value={employer} onChangeText={setEmployer} placeholder={t('setup.job.optional')} />
+                  <DateField label={t('setup.job.start')} value={jobStart} onChange={setJobStart} hint={t('setup.job.startHint')} />
                 </View>
               )}
-              <T v="small" muted>Information, not legal advice. Every clock links its official source.</T>
+              <T v="small" muted>{t('setup.disclaimer')}</T>
             </>
           )}
         </Animated.View>
       </ScrollView>
       <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: insets.top, backgroundColor: c.bg }} />
       <View style={{ paddingHorizontal: 24, paddingBottom: insets.bottom + 14, gap: 10 }}>
-        <Button title={step < 2 ? 'Next' : 'Start my clock'} kind="accent" disabled={!now.ok} onPress={() => (step < 2 ? setStep(step + 1) : finish())} />
+        <Button title={t(step < 2 ? 'setup.next' : 'setup.finish')} kind="accent" disabled={!now.ok} onPress={() => (step < 2 ? setStep(step + 1) : finish())} />
       </View>
     </KeyboardAvoidingView>
   );

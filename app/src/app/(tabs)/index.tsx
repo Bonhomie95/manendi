@@ -6,6 +6,7 @@ import { ClockCard } from '@/components/clock-card';
 import { Hero } from '@/components/hero';
 import { Appear, Card, Chip, Float, Icon, Row, Screen, T, Tap } from '@/components/ui';
 import { greeting } from '@/lib/dates';
+import { t } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 import { useColors } from '@/lib/theme';
 
@@ -39,45 +40,45 @@ export default function Status() {
       <Row style={{ justifyContent: 'space-between', marginTop: 4 }}>
         <View>
           <T v="label">{greeting()}</T>
-          <T v="title">{who === 'all' && people.length > 1 ? 'Your household' : name(personId ?? '') || 'You'}</T>
+          <T v="title">{who === 'all' && people.length > 1 ? t('home.household') : name(personId ?? '') || t('home.you')}</T>
         </View>
         <Float px={3} ms={3200}><Mark size={40} /></Float>
       </Row>
 
       {people.length > 1 && (
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>
-          <Chip label="Everyone" on={who === 'all'} onPress={() => setWho('all')} />
+          <Chip label={t('home.everyone')} on={who === 'all'} onPress={() => setWho('all')} />
           {people.map((p) => <Chip key={p.id} label={p.name} on={who === p.id} onPress={() => setWho(p.id)} />)}
         </ScrollView>
       )}
 
       {heroes.length ? (
-        <Hero key={who} clocks={heroes} label={(x, i) => (people.length > 1 && who === 'all' ? name(x.personId) : i ? 'Up next' : 'Most pressing')} />
+        <Hero key={who} clocks={heroes} label={(x, i) => (people.length > 1 && who === 'all' ? name(x.personId) : i ? t('home.upNext') : t('home.mostPressing'))} />
       ) : (
         <Card style={{ alignItems: 'center', gap: 12, paddingVertical: 28 }}>
           <Float><Icon ios="calendar.badge.plus" android="event" size={34} color={c.accent} /></Float>
-          <T v="h2">Add your first date</T>
-          <T muted style={{ textAlign: 'center' }}>Your I-94, passport or work permit is a good start.</T>
-          <Tap onPress={() => router.push({ pathname: '/person', params: { id: personId ?? 'new' } })}><T v="strong" color={c.accent}>Add dates</T></Tap>
+          <T v="h2">{t('home.empty.title')}</T>
+          <T muted style={{ textAlign: 'center' }}>{t('home.empty.body')}</T>
+          <Tap onPress={() => router.push({ pathname: '/person', params: { id: personId ?? 'new' } })}><T v="strong" color={c.accent}>{t('home.empty.action')}</T></Tap>
         </Card>
       )}
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingVertical: 2 }}>
-        <Appear i={0}><Action ios="briefcase" android="work_off" label="My job ended" onPress={() => router.push({ pathname: '/job', params: { person: personId, mode: 'end' } })} /></Appear>
-        <Appear i={1}><Action ios="briefcase.fill" android="work" label="New job" onPress={() => router.push({ pathname: '/job', params: { person: personId, mode: 'start' } })} /></Appear>
-        <Appear i={2}><Action ios="airplane.departure" android="flight_takeoff" label="Add a trip" onPress={() => router.push({ pathname: '/trip', params: { person: personId } })} /></Appear>
-        <Appear i={3}><Action ios="checklist" android="checklist" label="Before you fly" onPress={() => router.push({ pathname: '/fly', params: { person: personId } })} /></Appear>
-        <Appear i={4}><Action ios="calendar" android="edit_calendar" label="Edit dates" onPress={() => router.push({ pathname: '/person', params: { id: personId } })} /></Appear>
+        <Appear i={0}><Action ios="briefcase" android="work_off" label={t('home.jobEnded')} onPress={() => router.push({ pathname: '/job', params: { person: personId, mode: 'end' } })} /></Appear>
+        <Appear i={1}><Action ios="briefcase.fill" android="work" label={t('home.newJob')} onPress={() => router.push({ pathname: '/job', params: { person: personId, mode: 'start' } })} /></Appear>
+        <Appear i={2}><Action ios="airplane.departure" android="flight_takeoff" label={t('travel.addTrip')} onPress={() => router.push({ pathname: '/trip', params: { person: personId } })} /></Appear>
+        <Appear i={3}><Action ios="checklist" android="checklist" label={t('travel.beforeFly')} onPress={() => router.push({ pathname: '/fly', params: { person: personId } })} /></Appear>
+        <Appear i={4}><Action ios="calendar" android="edit_calendar" label={t('home.editDates')} onPress={() => router.push({ pathname: '/person', params: { id: personId } })} /></Appear>
       </ScrollView>
 
-      {rest.length > 0 && <T v="label" style={{ marginTop: 6 }}>Coming up</T>}
+      {rest.length > 0 && <T v="label" style={{ marginTop: 6 }}>{t('home.comingUp')}</T>}
       {rest.map((x, i) => (
         <Appear key={`${x.personId}-${x.id}`} i={i + 1}>
           <ClockCard clock={x} who={people.length > 1 && who === 'all' ? name(x.personId) : undefined} locked={x.plus && !plus} />
         </Appear>
       ))}
 
-      <T v="small" muted style={{ textAlign: 'center', marginTop: 10 }}>Manendi gives information, not legal advice. Each clock links its official source.</T>
+      <T v="small" muted style={{ textAlign: 'center', marginTop: 10 }}>{t('home.disclaimer')}</T>
     </Screen>
   );
 }

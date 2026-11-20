@@ -1,10 +1,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { clocks, daysAbroad, isDate, span, type Person } from './rules.ts';
+import en from '../i18n/en.json' with { type: 'json' };
+import { format } from './msg.ts';
+import { clocks, daysAbroad, isDate, span, type Person, type Tr } from './rules.ts';
+
+// English wording from the dictionary, so these tests also check en.json.
+const tr: Tr = (k, v) => format((en as Record<string, string>)[k] ?? k, v);
 
 const TODAY = '2026-11-12';
 const person = (p: Partial<Person>): Person => ({ id: 'p', name: 'Ada', relation: 'me', status: 'Other', dates: {}, jobs: [], trips: [], ...p });
-const find = (p: Person, id: string, today = TODAY) => clocks(p, today).find((c) => c.id === id);
+const find = (p: Person, id: string, today = TODAY) => clocks(p, today, tr).find((c) => c.id === id);
 
 test('OPT unemployment runs on every jobless day, weekends included', () => {
   const p = person({ status: 'OPT', dates: { optStart: '2026-01-01', optEnd: '2026-12-31' }, jobs: [{ id: 'j', employer: 'Acme', start: '2026-02-01', end: '2026-05-31' }] });
@@ -118,12 +123,12 @@ test('D/S on the I-94 means no I-94 countdown; expired stamps are calm', () => {
 
 test('most pressing first', () => {
   const p = person({ status: 'H-1B', dates: { passport: '2026-10-01', i94: '2026-12-01', visa: '2030-01-01' } });
-  assert.deepEqual(clocks(p, TODAY).map((c) => c.level), ['over', 'urgent', 'info']);
+  assert.deepEqual(clocks(p, TODAY, tr).map((c) => c.level), ['over', 'urgent', 'info']);
 });
 
 test('helpers', () => {
   assert.equal(daysAbroad({ id: 't', depart: '2026-11-01' }, '2026-01-01', TODAY), 11);
-  assert.equal(span(1234), '3 years 4 months');
+  assert.equal(span(1234, tr), '3 years 4 months');
   assert.equal(isDate('2026-02-30'), false);
   assert.equal(isDate('2028-02-29'), true);
 });

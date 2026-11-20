@@ -7,10 +7,11 @@ import { headline } from '@/components/clock-card';
 import { Ring } from '@/components/ring';
 import { CountUp, Icon, Row, T, Tap } from '@/components/ui';
 import { full } from '@/lib/dates';
+import { t, tr } from '@/lib/i18n';
 import { inDays, type Clock } from '@/lib/rules';
 import { brand, levelColor, tint, useColors } from '@/lib/theme';
 
-const LEVEL = { over: 'Past due', urgent: 'Act now', soon: 'Coming up', ok: 'On track', info: 'Good to know' } as const;
+const LEVEL = { over: t('hero.level.over'), urgent: t('hero.level.urgent'), soon: t('hero.level.soon'), ok: t('hero.level.ok'), info: t('hero.level.info') } as const;
 const INK = '#F7F4EC';
 const GAP = 12;
 
@@ -31,7 +32,7 @@ function Page({ clock, label, i, x, step, w, active }: {
   }));
   return (
     <Tap onPress={() => router.push({ pathname: '/clock', params: { person: clock.personId, id: clock.id } })}
-      accessibilityLabel={`${label}: ${clock.title}${big ? `, ${big.n} ${big.unit}` : ''}`} style={{ width: w }}>
+      accessibilityLabel={big ? t('hero.a11y.count', { label, title: clock.title, n: big.value, unit: big.unit }) : t('hero.a11y', { label, title: clock.title })} style={{ width: w }}>
       <Animated.View style={[card, {
         borderRadius: 32, padding: 22, gap: 16, overflow: 'hidden', alignItems: 'center',
         backgroundImage: `linear-gradient(160deg, ${brand.ink2}, ${brand.ink})`, boxShadow: '0 18px 40px rgba(15,27,45,0.28)',
@@ -62,7 +63,7 @@ function Page({ clock, label, i, x, step, w, active }: {
         </Animated.View>
         <View style={{ alignItems: 'center', gap: 4 }}>
           <T v="h2" color={INK} style={{ textAlign: 'center' }}>{clock.title}</T>
-          {clock.date && <T v="small" color={col}>{full(clock.date)} · {inDays(clock.days ?? 0)}</T>}
+          {clock.date && <T v="small" color={col}>{full(clock.date)} · {inDays(clock.days ?? 0, tr)}</T>}
           <T v="small" color={tint(INK, 0.72)} style={{ textAlign: 'center' }} numberOfLines={3}>{clock.note}</T>
         </View>
       </Animated.View>
@@ -102,7 +103,7 @@ export function Hero({ clocks, label }: { clocks: Clock[]; label: (clock: Clock,
         }}>
         {clocks.map((k, i) => <Page key={`${k.personId}-${k.id}`} clock={k} label={label(k, i)} i={i} x={x} step={step} w={w} active={page === i} />)}
       </Animated.ScrollView>
-      <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 6 }} accessible accessibilityLabel={`Card ${page + 1} of ${clocks.length}`}>
+      <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 6 }} accessible accessibilityLabel={t('hero.page', { n: page + 1, total: clocks.length })}>
         {clocks.map((k, i) => <Dot key={`${k.personId}-${k.id}`} i={i} x={x} step={step} color={c.text} />)}
       </View>
     </View>

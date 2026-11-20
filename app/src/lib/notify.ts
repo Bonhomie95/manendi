@@ -4,7 +4,8 @@ import * as Notifications from 'expo-notifications';
 import { AndroidImportance, IosAuthorizationStatus } from 'expo-notifications';
 import { Platform } from 'react-native';
 import { api } from './api';
-import { inDays, type Clock, type Person } from './rules';
+import { t } from './i18n';
+import type { Clock, Person } from './rules';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({ shouldPlaySound: false, shouldSetBadge: false, shouldShowBanner: true, shouldShowList: true }),
@@ -13,7 +14,7 @@ Notifications.setNotificationHandler({
 /** Asks once; true when reminders can be shown. */
 export async function enableReminders(): Promise<boolean> {
   if (Platform.OS === 'android') {
-    await Notifications.setNotificationChannelAsync('reminders', { name: 'Deadline reminders', importance: AndroidImportance.HIGH });
+    await Notifications.setNotificationChannelAsync('reminders', { name: t('notify.channel'), importance: AndroidImportance.HIGH });
   }
   const { status, ios } = await Notifications.requestPermissionsAsync({ ios: { allowAlert: true, allowBadge: false, allowSound: true } });
   const ok = status === 'granted' || ios?.status === IosAuthorizationStatus.PROVISIONAL;
@@ -43,8 +44,8 @@ export async function scheduleReminders(all: Clock[], people: Person[]) {
       const at = new Date(`${c.date}T09:00:00`);
       at.setDate(at.getDate() - lead);
       if (+at <= now) continue;
-      const when = lead === 0 ? 'Today' : inDays(lead).replace(/^in /, 'In ').replace(/^tomorrow$/, 'Tomorrow');
-      jobs.push({ at, title: c.title, body: `${who(c.personId)}${when}. ${c.note}` });
+      const when = lead === 0 ? t('notify.today') : lead === 1 ? t('notify.tomorrow') : t('notify.inDays', { n: lead });
+      jobs.push({ at, title: c.title, body: t('notify.body', { who: who(c.personId), when, note: c.note }) });
     }
   }
   // iOS keeps at most 64 pending local notifications: the nearest ones win.

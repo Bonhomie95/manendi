@@ -2,6 +2,7 @@ import { File, Paths } from 'expo-file-system';
 import { Text, View } from 'react-native';
 import Animated, { cubicBezier, steps, type CSSAnimationKeyframes, type CSSAnimationTimingFunction } from 'react-native-reanimated';
 import type { MarkColors } from '@/components/brand';
+import { lang, t } from '@/lib/i18n';
 import { font, tint } from '@/lib/theme';
 
 // The launch logo, reborn every time: the same mark (ring, doorway, dot) assembled by one of thirteen choreographies,
@@ -88,7 +89,10 @@ const LETTERS = {
 } satisfies Record<string, (i: number, z: number) => { k: Record<string, LF>; ms: number; at: number; ease: CSSAnimationTimingFunction }>;
 type Letters = keyof typeof LETTERS;
 
-const MOTTOS = ['HERE AND STAYING', 'EVERY DATE THAT KEEPS YOU HERE', 'KNOW YOUR DAYS', 'STAY SURE', 'PAPERS IN ORDER'];
+const MOTTOS = [t('intro.motto.1'), t('intro.motto.2'), t('intro.motto.3'), t('intro.motto.4'), t('intro.motto.5')];
+// ponytail: the seal sets one character at a time around a circle, which breaks joined and combining scripts and
+// right-to-left order, so those languages skip it; shape the text along a path if they should get it too.
+const SEAL = !/^(ar|ur|he|hi|bn|mr|gu|pa|ta|te|kn|ml|or|th)$/.test(lang);
 
 export type Intro = { entrance: Entrance; letters: Letters; motto: string | null; seed: number[] };
 
@@ -104,7 +108,7 @@ function nextEntrance(): Entrance {
 }
 
 export function pickIntro(): Intro {
-  return { entrance: nextEntrance(), letters: pick(Object.keys(LETTERS) as Letters[]), motto: Math.random() < 0.3 ? pick(MOTTOS) : null, seed: Array.from({ length: 8 }, Math.random) };
+  return { entrance: nextEntrance(), letters: pick(Object.keys(LETTERS) as Letters[]), motto: SEAL && Math.random() < 0.3 ? pick(MOTTOS) : null, seed: Array.from({ length: 8 }, Math.random) };
 }
 
 /** When the mark has settled, in ms after it starts: the name and tagline follow from here. */

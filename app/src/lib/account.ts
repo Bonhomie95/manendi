@@ -5,6 +5,7 @@ import { GoogleSignin, isSuccessResponse } from '@react-native-google-signin/goo
 import * as Apple from 'expo-apple-authentication';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
+import { t } from './i18n';
 
 export type Token = { provider: 'google' | 'apple'; idToken: string; name?: string };
 const ids = Constants.expoConfig?.extra?.google as { webClientId: string; iosClientId: string };
@@ -16,11 +17,11 @@ export async function googleToken(): Promise<Token | null> {
     await GoogleSignin.signOut().catch(() => {}); // always show the account picker
     const r = await GoogleSignin.signIn();
     if (!isSuccessResponse(r)) return null;
-    if (!r.data.idToken) throw new Error('Google didn’t finish signing you in. Try again.');
+    if (!r.data.idToken) throw new Error(t('account.google.unfinished'));
     return { provider: 'google', idToken: r.data.idToken };
   } catch (e) {
     // Android code 10: this build's signing key isn't registered with Google yet.
-    if (String((e as { code?: unknown }).code) === '10') throw new Error('Google sign-in isn’t set up for this build yet.');
+    if (String((e as { code?: unknown }).code) === '10') throw new Error(t('account.google.notSetUp'));
     throw e;
   }
 }
@@ -28,7 +29,7 @@ export async function googleToken(): Promise<Token | null> {
 export async function appleToken(): Promise<Token | null> {
   try {
     const r = await Apple.signInAsync({ requestedScopes: [Apple.AppleAuthenticationScope.FULL_NAME, Apple.AppleAuthenticationScope.EMAIL] });
-    if (!r.identityToken) throw new Error('Apple didn’t finish signing you in. Try again.');
+    if (!r.identityToken) throw new Error(t('account.apple.unfinished'));
     // Apple shares the name only on the very first sign-in, so pass it along for the account.
     const name = [r.fullName?.givenName, r.fullName?.familyName].filter(Boolean).join(' ');
     return { provider: 'apple', idToken: r.identityToken, ...(name ? { name } : {}) };
@@ -36,7 +37,7 @@ export async function appleToken(): Promise<Token | null> {
     const code = (e as { code?: string }).code;
     if (code === 'ERR_REQUEST_CANCELED') return null;
     // What Apple reports when the phone isn't signed in to an Apple Account and the person closes its prompt.
-    if (code === 'ERR_REQUEST_UNKNOWN') throw new Error('Sign in with Apple didn’t finish. Check this iPhone is signed in to an Apple Account in Settings.');
+    if (code === 'ERR_REQUEST_UNKNOWN') throw new Error(t('account.apple.noAccount'));
     throw e;
   }
 }

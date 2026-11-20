@@ -2,6 +2,7 @@ import * as Crypto from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
 import * as WebBrowser from 'expo-web-browser';
 import { Appearance, Platform } from 'react-native';
+import { lang, t } from './i18n';
 import { brand } from './theme';
 
 // Simulators reach the Mac at localhost (iOS) / 10.0.2.2 (Android). Set EXPO_PUBLIC_API_URL for devices & prod.
@@ -43,14 +44,15 @@ export async function api<T = { ok: true }>(path: string, opts: { method?: strin
   try {
     res = await fetch(API_URL + path, {
       method: opts.method ?? (opts.body ? 'POST' : 'GET'),
-      headers: { 'content-type': 'application/json', authorization: `Bearer ${deviceKey}` },
+      // The server answers errors and sends push alerts in the app's language.
+      headers: { 'content-type': 'application/json', authorization: `Bearer ${deviceKey}`, 'accept-language': lang },
       body: opts.body ? JSON.stringify(opts.body) : undefined,
     });
   } catch {
-    throw new ApiError('Can’t reach Manendi right now. Your dates still work offline.', 0);
+    throw new ApiError(t('api.offline'), 0);
   }
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new ApiError(data.error ?? 'Something went wrong', res.status);
+  if (!res.ok) throw new ApiError(data.error ?? t('api.error'), res.status);
   return data as T;
 }
 

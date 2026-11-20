@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Backdrop, Tagline, pickLook } from '@/components/brand';
 import { IntroMark, IntroWordmark, landsAt, pickIntro } from '@/components/intro';
+import { t } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
 // Every launch draws a fresh look: 13 logo choreographies (dealt from a shuffled deck, so none repeats until all have
@@ -27,7 +28,7 @@ export default function Intro() {
   useEffect(() => { if (timeUp) router.replace(data.people.length ? '/(tabs)' : '/welcome'); }, [timeUp, data.people.length]);
 
   return (
-    <Pressable style={{ flex: 1 }} onPress={() => setTimeUp(true)} accessibilityHint="Tap to skip the intro"
+    <Pressable style={{ flex: 1 }} onPress={() => setTimeUp(true)} accessibilityHint={t('intro.skip')}
       onLayout={() => { if (!shown) { SplashScreen.hide(); setShown(true); } }}>
       <StatusBar style={look.light ? 'light' : 'dark'} />
       <Backdrop look={look} />

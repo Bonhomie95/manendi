@@ -8,6 +8,7 @@ import {
 import Animated, { cubicBezier, FadeInDown, FadeInUp, FadeOut, FadeOutUp, LinearTransition, useReducedMotion } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FullWindowOverlay } from 'react-native-screens';
+import { num, rtl } from '@/lib/i18n';
 import { font, tint, useColors } from '@/lib/theme';
 
 const ios = Platform.OS === 'ios';
@@ -25,13 +26,17 @@ const variants = {
 };
 export function T({ v = 'body', muted, color, style, ...p }: TextProps & { v?: keyof typeof variants; muted?: boolean; color?: string }) {
   const c = useColors();
-  return <Text maxFontSizeMultiplier={1.6} {...p} style={[variants[v], { color: color ?? (muted || v === 'label' ? c.muted : c.text) }, style]} />;
+  // In RTL, React Native only flips text that sets an alignment: 'left' means the start of the line.
+  return <Text maxFontSizeMultiplier={1.6} {...p} style={[variants[v], { color: color ?? (muted || v === 'label' ? c.muted : c.text) }, rtl && { textAlign: 'left' }, style]} />;
 }
 
 // ---------- icons: SF Symbols on iOS, Material Symbols on Android ----------
-export function Icon({ ios, android, size = 22, color, ...p }: Omit<SymbolViewProps, 'name'> & { ios: SymbolViewProps['name'] & string; android: string; color?: string }) {
+// Arrows and chevrons point the other way in right-to-left languages.
+const DIRECTIONAL = /chevron\.(left|right)|arrow\.(left|right|up\.right)|^(arrow_back|arrow_forward|chevron_left|chevron_right|arrow_outward|north_east)$/;
+export function Icon({ ios, android, size = 22, color, style, ...p }: Omit<SymbolViewProps, 'name'> & { ios: SymbolViewProps['name'] & string; android: string; color?: string }) {
   const c = useColors();
-  return <SymbolView name={{ ios, android, web: android } as SymbolViewProps['name']} size={size} tintColor={color ?? c.text} {...p} />;
+  const flip = rtl && (DIRECTIONAL.test(ios) || DIRECTIONAL.test(android));
+  return <SymbolView name={{ ios, android, web: android } as SymbolViewProps['name']} size={size} tintColor={color ?? c.text} style={[style, flip && { transform: [{ scaleX: -1 }] }]} {...p} />;
 }
 
 // ---------- press feedback ----------
@@ -94,7 +99,7 @@ export function CountUp({ value, ms = 900, ...p }: ComponentProps<typeof T> & { 
     });
     return () => cancelAnimationFrame(raf);
   }, [value, ms, reduce]);
-  return <T {...p}>{(reduce ? value : n).toLocaleString()}</T>;
+  return <T {...p}>{num(reduce ? value : n)}</T>;
 }
 
 export function Button({ title, onPress, kind = 'primary', loading, disabled, icon, style }: {

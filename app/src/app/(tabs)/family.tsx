@@ -7,6 +7,7 @@ import { SignIn } from '@/components/sign-in';
 import { Appear, Avatar, Card, CountUp, Icon, Row, Screen, T, Tap, toast } from '@/components/ui';
 import { openPage } from '@/lib/api';
 import { full } from '@/lib/dates';
+import { locale, t, type Key } from '@/lib/i18n';
 import { LOCK, statusIcon } from '@/lib/meta';
 import { enableReminders } from '@/lib/notify';
 import { shareReport } from '@/lib/report';
@@ -43,38 +44,37 @@ export default function Family() {
   const go = (path: '/vault' | '/plan') => router.push(plus || path === '/plan' ? path : '/plan');
 
   async function reminders() {
-    if (data.reminders) { update((d) => ({ ...d, reminders: false })); return toast('Reminders off.'); }
+    if (data.reminders) { update((d) => ({ ...d, reminders: false })); return toast(t('family.reminders.offToast')); }
     const ok = await enableReminders();
-    if (!ok) return toast('Notifications are off for Manendi in Settings.');
+    if (!ok) return toast(t('family.reminders.blocked'));
     update((d) => ({ ...d, reminders: true }));
-    toast('Reminders on: 90, 30, 7 and 1 day before each date.');
+    toast(t('family.reminders.onToast'));
   }
   async function report() {
     if (!plus) return router.push('/plan');
     setBusy(true);
-    try { await shareReport(people, all, data.cases, watches); } catch (e) { toast((e as Error).message); } finally { setBusy(false); }
+    try { await shareReport(people, data.cases, watches); } catch (e) { toast((e as Error).message); } finally { setBusy(false); }
   }
   const store = Platform.OS === 'ios' ? 'Apple Account' : 'Google Play';
   const run = (fn: () => Promise<void>, ok: string) => async () => { try { await fn(); toast(ok); } catch (e) { toast((e as Error).message); } };
   const account = data.account;
-  const manageAccount = () => Alert.alert(account?.email ?? account?.name ?? 'Your account',
-    'Your household backs up here, so a new phone gets it back when you sign in. Document photos stay on this phone.', [
-      { text: 'Sign out', onPress: run(signOut, 'Signed out. Everything stays on this phone.') },
-      { text: 'Delete account', style: 'destructive', onPress: () => Alert.alert('Delete your account?',
-        `Deletes its backup, email and name from Manendi’s server now. This phone keeps its data. Manendi Plus keeps billing until you cancel it in your ${store} settings.`,
-        [{ text: 'Cancel', style: 'cancel' }, { text: 'Delete', style: 'destructive', onPress: run(deleteAccount, 'Account deleted.') }]) },
-      { text: 'Cancel', style: 'cancel' },
+  const manageAccount = () => Alert.alert(account?.email ?? account?.name ?? t('family.account.title'),
+    t('family.account.body'), [
+      { text: t('family.account.signOut'), onPress: run(signOut, t('family.account.signedOut')) },
+      { text: t('family.account.delete'), style: 'destructive', onPress: () => Alert.alert(t('family.delete.title'),
+        t('family.delete.body', { store }),
+        [{ text: t('family.cancel'), style: 'cancel' }, { text: t('family.delete.confirm'), style: 'destructive', onPress: run(deleteAccount, t('family.delete.done')) }]) },
+      { text: t('family.cancel'), style: 'cancel' },
     ]);
   const backedUp = account?.backupAt
-    ? `Backed up ${new Date(account.backupAt).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}`
-    : 'Backing up…';
+    ? t('family.account.backedUp', { when: new Date(account.backupAt).toLocaleString(locale, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) })
+    : t('family.account.backingUp');
   const confirmErase = (all: boolean) => Alert.alert(
-    all ? 'Erase everything?' : 'Erase your server data?',
-    all ? 'Deletes every person, date, trip, document and case on this phone, plus what Manendi’s server holds. This can’t be undone.'
-      : `Deletes your watched cases${account ? ', your account and its backup' : ''} and this device’s record from Manendi’s server now. Your dates on this phone stay.`,
-    [{ text: 'Cancel', style: 'cancel' }, {
-      text: 'Erase', style: 'destructive', onPress: async () => {
-        try { await (all ? eraseAll() : eraseServer()); toast(all ? 'Erased.' : 'Server data erased.'); }
+    all ? t('family.erase.all.title') : t('family.erase.server.title'),
+    all ? t('family.erase.all.body') : account ? t('family.erase.server.bodyAccount') : t('family.erase.server.body'),
+    [{ text: t('family.cancel'), style: 'cancel' }, {
+      text: t('family.erase.confirm'), style: 'destructive', onPress: async () => {
+        try { await (all ? eraseAll() : eraseServer()); toast(all ? t('family.erase.all.done') : t('family.erase.server.done')); }
         catch (e) { toast((e as Error).message); }
       },
     }],
@@ -82,18 +82,19 @@ export default function Family() {
 
   return (
     <Screen>
-      <T v="title" style={{ marginTop: 4 }}>Family</T>
+      <T v="title" style={{ marginTop: 4 }}>{t('tabs.family')}</T>
       {people.map((p, i) => {
         const top = all.find((x) => x.personId === p.id && x.level !== 'info');
         const big = top && headline(top);
         const [ios, android] = statusIcon(p.status);
+        const status = t(`status.${p.status}` as Key);
         return (
-          <Appear key={p.id} i={i}><Tap onPress={() => router.push({ pathname: '/person', params: { id: p.id } })} accessibilityLabel={`${p.name}, ${p.status}`}>
+          <Appear key={p.id} i={i}><Tap onPress={() => router.push({ pathname: '/person', params: { id: p.id } })} accessibilityLabel={t('family.person.a11y', { name: p.name, status })}>
             <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
               <Avatar name={p.name} color={[c.accent, c.alt, c.gold, '#5B6CFF'][people.indexOf(p) % 4]} size={46} />
               <View style={{ flex: 1, gap: 2 }}>
-                <T v="strong">{p.name}{p.relation === 'me' ? ' (you)' : ''}</T>
-                <Row style={{ gap: 6 }}><Icon ios={ios} android={android} size={13} color={c.muted} /><T v="small" muted>{p.status}</T></Row>
+                <T v="strong">{p.relation === 'me' ? t('family.person.me', { name: p.name }) : p.name}</T>
+                <Row style={{ gap: 6 }}><Icon ios={ios} android={android} size={13} color={c.muted} /><T v="small" muted>{status}</T></Row>
                 {top && <T v="small" color={levelColor(c, top.level)} numberOfLines={1}>{top.title}{top.date ? ` · ${full(top.date)}` : ''}</T>}
               </View>
               {big && <View style={{ alignItems: 'flex-end' }}><CountUp v="h2" color={levelColor(c, top!.level)} value={big.value} /><T v="small" muted style={{ fontSize: 11 }}>{big.unit}</T></View>}
@@ -101,35 +102,35 @@ export default function Family() {
           </Tap></Appear>
         );
       })}
-      <Tap onPress={() => router.push(plus || people.length < 1 ? { pathname: '/person', params: { id: 'new' } } : '/plan')} accessibilityLabel="Add someone">
+      <Tap onPress={() => router.push(plus || people.length < 1 ? { pathname: '/person', params: { id: 'new' } } : '/plan')} accessibilityLabel={t('family.addSomeone')}>
         <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 12, borderStyle: 'dashed', borderWidth: 1.5, boxShadow: 'none', backgroundColor: 'transparent' }}>
           <Icon ios="person.crop.circle.badge.plus" android="person_add" size={22} color={c.accent} />
-          <T v="strong" color={c.accent} style={{ flex: 1 }}>Add a spouse, child or parent</T>
+          <T v="strong" color={c.accent} style={{ flex: 1 }}>{t('family.addPerson')}</T>
           {!plus && <View style={{ paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8, backgroundColor: tint(c.gold, 0.18) }}><T v="label" color={c.gold} style={{ fontSize: 10 }}>Plus</T></View>}
         </Card>
       </Tap>
 
       <Appear i={2}>
         <Card style={{ gap: 0, paddingVertical: 8 }}>
-          <Item ios="crown.fill" android="workspace_premium" title={plus ? 'Manendi Plus is on' : 'Manendi Plus'}
-            sub={plus ? (data.plan.until ? `Renews or ends ${full(data.plan.until.slice(0, 10))}` : 'Active') : 'Family, 25 cases, citizenship budget, vault'} onPress={() => go('/plan')} />
-          <Item ios="lock.doc.fill" android="lock" title="Document vault" sub={`Passports, I-797s and cards behind ${LOCK}`} plusOnly={!plus} onPress={() => go('/vault')} />
-          <Item ios="doc.richtext" android="picture_as_pdf" title={busy ? 'Preparing…' : 'Status report (PDF)'} sub="Every date and case on one page, for your attorney or HR" plusOnly={!plus} onPress={report} />
+          <Item ios="crown.fill" android="workspace_premium" title={plus ? t('family.plus.on') : 'Manendi Plus'}
+            sub={plus ? (data.plan.until ? t('family.plus.renews', { date: full(data.plan.until.slice(0, 10)) }) : t('family.plus.active')) : t('family.plus.pitch')} onPress={() => go('/plan')} />
+          <Item ios="lock.doc.fill" android="lock" title={t('family.vault.title')} sub={t('family.vault.sub', { lock: LOCK })} plusOnly={!plus} onPress={() => go('/vault')} />
+          <Item ios="doc.richtext" android="picture_as_pdf" title={busy ? t('family.report.preparing') : t('family.report.title')} sub={t('family.report.sub')} plusOnly={!plus} onPress={report} />
           <Item ios={data.reminders ? 'bell.badge.fill' : 'bell.slash'} android={data.reminders ? 'notifications_active' : 'notifications_off'}
-            title={data.reminders ? 'Reminders are on' : 'Turn on reminders'} sub="90, 30, 7 and 1 day before each date. Works offline." onPress={reminders} />
+            title={data.reminders ? t('family.reminders.on') : t('family.reminders.turnOn')} sub={t('family.reminders.sub')} onPress={reminders} />
         </Card>
       </Appear>
 
       <Appear i={3}>
         {account ? (
           <Card style={{ gap: 0, paddingVertical: 8 }}>
-            <Item ios="checkmark.icloud.fill" android="cloud_done" title={account.email ?? account.name ?? 'Signed in'} sub={backedUp} onPress={manageAccount} />
+            <Item ios="checkmark.icloud.fill" android="cloud_done" title={account.email ?? account.name ?? t('family.account.signedIn')} sub={backedUp} onPress={manageAccount} />
           </Card>
         ) : (
           <Card style={{ gap: 14 }}>
             <View style={{ gap: 4 }}>
-              <T v="strong">Back up your household</T>
-              <T v="small" muted>Optional. Sign in to get everyone’s dates and cases back on any phone. Document photos never leave this one.</T>
+              <T v="strong">{t('family.backup.title')}</T>
+              <T v="small" muted>{t('family.backup.body')}</T>
             </View>
             <SignIn />
           </Card>
@@ -138,20 +139,20 @@ export default function Family() {
 
       <Appear i={4}>
         <Card style={{ gap: 0, paddingVertical: 8 }}>
-          <Item ios="hand.raised.fill" android="privacy_tip" title="Privacy" sub={account ? 'Backed up to your account; photos stay here' : 'Your details stay on this phone'} onPress={() => openPage('privacy')} />
-          <Item ios="doc.plaintext" android="gavel" title="Terms" onPress={() => openPage('terms')} />
-          <Item ios="questionmark.bubble.fill" android="support_agent" title="Support" onPress={() => openPage('support')} />
+          <Item ios="hand.raised.fill" android="privacy_tip" title={t('family.privacy')} sub={account ? t('family.privacy.account') : t('family.privacy.local')} onPress={() => openPage('privacy')} />
+          <Item ios="doc.plaintext" android="gavel" title={t('family.terms')} onPress={() => openPage('terms')} />
+          <Item ios="questionmark.bubble.fill" android="support_agent" title={t('family.support')} onPress={() => openPage('support')} />
         </Card>
       </Appear>
 
       <Appear i={5}>
         <Card style={{ gap: 0, paddingVertical: 8 }}>
-          <Item ios="icloud.slash" android="cloud_off" title="Erase my server data" sub={account ? 'Cases, account and backup, device record' : 'Watched cases and this device’s record'} onPress={() => confirmErase(false)} danger />
-          <Item ios="trash.fill" android="delete_forever" title="Erase everything" sub="Everything on this phone, too" onPress={() => confirmErase(true)} danger />
+          <Item ios="icloud.slash" android="cloud_off" title={t('family.erase.server.item')} sub={account ? t('family.erase.server.subAccount') : t('family.erase.server.sub')} onPress={() => confirmErase(false)} danger />
+          <Item ios="trash.fill" android="delete_forever" title={t('family.erase.all.item')} sub={t('family.erase.all.sub')} onPress={() => confirmErase(true)} danger />
         </Card>
       </Appear>
 
-      <T v="small" muted style={{ textAlign: 'center' }}>Manendi {Constants.expoConfig?.version} · Information, not legal advice.</T>
+      <T v="small" muted style={{ textAlign: 'center' }}>{t('family.footer', { version: Constants.expoConfig?.version ?? '' })}</T>
     </Screen>
   );
 }
