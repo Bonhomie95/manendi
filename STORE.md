@@ -162,11 +162,14 @@ Those steps are marked **you**.
   - Upload the build to production with release notes in every language (`playReleaseNotes()` in
     `store/i18n/push.mjs`).
   - Then run `node store/i18n/push.mjs play` for the 48 listings and both subscriptions' text.
-- **App Store** (only one version can be in review):
-  - Once 1.0.1 is approved, create version 1.1.0 with the new build.
-  - Run `node store/i18n/push.mjs apple 1.1.0`. It covers names, subtitles, descriptions, keywords, What's New and
-    the subscription text, in 50 locales.
-  - Submit for review.
+- **App Store** (only one version can be in review, and build 13 is already in App Store Connect): once 1.0.1 has
+  left review, run `node store/i18n/push.mjs apple 1.1.0 --submit` with the App Store Connect key in `ASC_KEY_PATH`,
+  `ASC_KEY_ID` and `ASC_ISSUER`. In order, it:
+  - creates the version and attaches the newest processed 1.1.0 build;
+  - sets the English text from `en.json` and copies the review details;
+  - fills names, subtitles, descriptions, keywords, What's New and the subscription text in 46 more locales;
+  - submits the version for review.
+  `--dry` prints the writes without making them.
 - **Builds:** this month's free EAS cloud builds are used up until 2026-12-01. Until then, build on this Mac with
   `eas build -p ios|android --profile production --local --output <file>`. Signing credentials and build numbers
   still come from EAS.

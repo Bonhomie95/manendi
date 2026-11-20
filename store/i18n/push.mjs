@@ -1,5 +1,8 @@
 // Pushes the translated store listings (store/i18n/<tag>.json) to App Store Connect and Google Play.
-//   node store/i18n/push.mjs apple <version>   e.g. 1.1.0: app name/subtitle, version text, subscription group and plans
+//   node store/i18n/push.mjs apple <version> [--submit]   e.g. 1.1.0: creates the version if needed (only once the
+//     previous one has left review), attaches its newest processed build, sets the English text from en.json, copies
+//     the review details, then every other language: app name/subtitle, version text, subscription group and plans.
+//     --submit also sends it for review.
 //   node store/i18n/push.mjs play               listings and subscription listings (release notes go with the release)
 //   add --dry to only print what would change
 // Env: ASC_KEY_PATH, ASC_KEY_ID, ASC_ISSUER (App Store Connect API key) and PLAY_SA (Play service-account JSON path).
@@ -10,6 +13,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 
 const [store, version] = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const DRY = process.argv.includes('--dry');
+const SUBMIT = process.argv.includes('--submit');
 const APP_ID = '6833923129';
 const PKG = 'dev.bonhomieinc.manendi';
 const at = (p) => new URL(p, import.meta.url);
@@ -49,13 +53,32 @@ async function upsert(type, listPath, parentRel, locale, attrs) {
 }
 
 async function apple() {
-  if (!version) throw new Error('usage: push.mjs apple <version>');
-  const v = (await asc(`/v1/apps/${APP_ID}/appStoreVersions?filter[versionString]=${version}&filter[platform]=IOS`)).data[0];
-  if (!v) throw new Error(`no App Store version ${version}: create it first`);
+  if (!version) throw new Error('usage: push.mjs apple <version> [--submit]');
+  const versions = (await asc(`/v1/apps/${APP_ID}/appStoreVersions?filter[platform]=IOS&limit=10`)).data;
+  let v = versions.find((x) => x.attributes.versionString === version);
+  if (!v) {
+    v = (await asc('/v1/appStoreVersions', { method: 'POST', body: doc('appStoreVersions', { platform: 'IOS', versionString: version, releaseType: 'AFTER_APPROVAL' }, { app: rel('apps', APP_ID) }) })).data;
+    log('created version', version);
+  }
+  const build = (await asc(`/v1/builds?filter[app]=${APP_ID}&filter[preReleaseVersion.version]=${version}&filter[processingState]=VALID&sort=-uploadedDate&limit=1`)).data[0];
+  if (!build) throw new Error(`no processed ${version} build in App Store Connect yet`);
+  await asc(`/v1/appStoreVersions/${v.id}/relationships/build`, { method: 'PATCH', body: rel('builds', build.id) });
+  log('build', build.attributes.version, 'attached');
+  const review = await asc(`/v1/appStoreVersions/${v.id}/appStoreReviewDetail`).catch(() => ({ data: null }));
+  if (!review.data) {
+    const prev = versions.find((x) => x.attributes.versionString !== version);
+    const old = (await asc(`/v1/appStoreVersions/${prev.id}/appStoreReviewDetail`)).data.attributes;
+    const keep = ['contactFirstName', 'contactLastName', 'contactPhone', 'contactEmail', 'demoAccountRequired', 'notes'];
+    await asc('/v1/appStoreReviewDetails', { method: 'POST', body: doc('appStoreReviewDetails', Object.fromEntries(keep.map((k) => [k, old[k]])), { appStoreVersion: rel('appStoreVersions', v.id) }) });
+    log('review details copied from', prev.attributes.versionString);
+  }
   const info = (await asc(`/v1/apps/${APP_ID}/appInfos`)).data.find((x) => !['READY_FOR_DISTRIBUTION', 'READY_FOR_SALE'].includes(x.attributes.appStoreState ?? x.attributes.state));
   const group = (await asc(`/v1/apps/${APP_ID}/subscriptionGroups?include=subscriptions`));
   const subs = Object.fromEntries((group.included ?? []).map((s) => [s.attributes.productId, s.id]));
   const enUS = (await asc(`/v1/appStoreVersions/${v.id}/appStoreVersionLocalizations`)).data.find((x) => x.attributes.locale === 'en-US').attributes;
+  const en = JSON.parse(readFileSync(at('./en.json'), 'utf8')).apple;
+  await upsert('appStoreVersionLocalizations', `/v1/appStoreVersions/${v.id}/appStoreVersionLocalizations`, { appStoreVersion: rel('appStoreVersions', v.id) }, 'en-US',
+    { description: en.description, keywords: en.keywords, promotionalText: en.promotionalText, whatsNew: en.whatsNew, supportUrl: enUS.supportUrl });
   for (const t of tags) {
     const a = listing(t).apple;
     for (const locale of LANGS[t].apple) {
@@ -76,6 +99,12 @@ async function apple() {
     await asc('/v1/subscriptionSubmissions', { method: 'POST', body: doc('subscriptionSubmissions', null, { subscription: rel('subscriptions', id) }) })
       .then(() => log('submitted subscription', id)).catch((e) => console.log('subscription submission:', e.message.slice(0, 160)));
   }
+  if (!SUBMIT) return;
+  let rs = (await asc(`/v1/reviewSubmissions?filter[app]=${APP_ID}&filter[platform]=IOS&filter[state]=READY_FOR_REVIEW`)).data[0];
+  if (!rs) rs = (await asc('/v1/reviewSubmissions', { method: 'POST', body: doc('reviewSubmissions', { platform: 'IOS' }, { app: rel('apps', APP_ID) }) })).data;
+  await asc('/v1/reviewSubmissionItems', { method: 'POST', body: doc('reviewSubmissionItems', null, { reviewSubmission: rel('reviewSubmissions', rs.id), appStoreVersion: rel('appStoreVersions', v.id) }) });
+  await asc(`/v1/reviewSubmissions/${rs.id}`, { method: 'PATCH', body: doc('reviewSubmissions', { submitted: true }, null, rs.id) });
+  console.log('✔ submitted', version, 'for review');
 }
 
 // ---------- Google Play ----------
@@ -121,5 +150,5 @@ export const playReleaseNotes = () => [
 if (import.meta.main) {
   if (store === 'apple') await apple();
   else if (store === 'play') await playStore();
-  else throw new Error('usage: push.mjs apple <version> | play [--dry]');
+  else throw new Error('usage: push.mjs apple <version> [--submit] | play [--dry]');
 }
