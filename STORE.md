@@ -135,7 +135,11 @@ Those steps are marked **you**.
 
 ### Where it stands (2026-11-20)
 - **Live:** 1.0 on the App Store, 1.0.1 (6) on Google Play.
+- **Google Play 1.1.0 (versionCode 8): sent to production review on 2026-11-20.** It has release notes in 49 languages,
+  and the 49 store listings and both subscriptions' text are translated too.
 - **In review:** App Store 1.0.1 (build 12). It releases by itself once approved.
+- **App Store 1.1.0 (build 13): uploaded to App Store Connect on 2026-11-20.** It is ready for TestFlight, and for
+  submission once 1.0.1 has left review.
 - **Next: 1.1.0, the app and both store listings in 46 languages.** That's every App Store language in our 174
   storefronts, plus English. See "1.1.0" below.
 - **Backend, yours to do:**
@@ -154,7 +158,7 @@ Those steps are marked **you**.
 - **After changing any text:** from `app/`, run `node scripts/i18n-check.mjs` (it must report 0 errors), then
   `node scripts/i18n-sync.mjs`. The sync writes the language index, the iOS permission texts, the app.json locales
   and `server/i18n.json`.
-- **Google Play** (1.0.1 is live, so this can ship now):
+- **Google Play** (done for 1.1.0 on 2026-11-20):
   - Upload the build to production with release notes in every language (`playReleaseNotes()` in
     `store/i18n/push.mjs`).
   - Then run `node store/i18n/push.mjs play` for the 48 listings and both subscriptions' text.
@@ -163,6 +167,12 @@ Those steps are marked **you**.
   - Run `node store/i18n/push.mjs apple 1.1.0`. It covers names, subtitles, descriptions, keywords, What's New and
     the subscription text, in 50 locales.
   - Submit for review.
+- **Builds:** this month's free EAS cloud builds are used up until 2026-12-01. Until then, build on this Mac with
+  `eas build -p ios|android --profile production --local --output <file>`. Signing credentials and build numbers
+  still come from EAS.
+  - If another project's local build runs at the same time, its temporary keychain can break the iOS export step.
+    The archive in Xcode's Archives folder survives that. Export it with `xcodebuild -exportArchive … -allowProvisioningUpdates`
+    and the App Store Connect API key, then upload the .ipa with `eas submit -p ios --path <ipa>`.
 
 ### Launch record (2026-11-14)
 **App Store: submitted 2026-11-14, Waiting for Review.** Version 1.0 (build 11) went in together with the
